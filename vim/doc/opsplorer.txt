@@ -1,0 +1,219 @@
+*opsplorer.txt*	    For Vim version 6.1.  Last change: 2002 Aug 09
+
+		     opsplorer - by Patrick Schiel
+
+		        file explorer for vim
+
+
+The opsplorer script is intended to be a replacement for the |file-explorer|
+plugin that comes with the vim package. It's got a tree structure (you can
+also quickly change the tree root path) and is designed to be as compact as
+possible.
+
+1. General, Starting		|opsplorer_general|
+2. Navigating			|opsplorer_navigating|
+3. Opening files		|opsplorer_opening_files|
+4. File display			|opsplorer_file_display|
+5. File operations		|opsplorer_file_operations|
+6. Misc funtions		|opsplorer_misc|
+7. Options			|opsplorer_options|
+8. Notes, Bugs, TODOs		|opsplorer_notes|
+
+
+==============================================================================
+*opsplorer_general*
+
+1. General, Starting
+							*:Opsplore*
+Start explorer with: >
+	:Opsplore [start-directory]
+
+This splits the current buffer vertically and draws the tree with the given
+directory as root. When no directory is given, browsing starts in the
+current directory.
+							*opspl_<F11>*
+As alternative, you can use the ToggleShowExplorer command which is bound
+to <F11> by default (see |opsplorer_options|, it's the only global binding
+made by the script).
+
+However, you should see then a new buffer window with the base path (which
+is taken as root for the tree) in the first line and the tree below.
+
+
+==============================================================================
+*opsplorer_navigating*
+
+2. Navigating
+
+opsplorer can be either navigated with mouse or keyboard. Mouse support
+should work in gui versions and in suitable terminals.
+							*opspl_<LeftRelease>*
+A single left click has only effect on a node symbol (+ and -) and expands
+respectively collapses the subtree.
+In keyboard mode, move to a node and press either Space or Return.
+							*opspln_<2-LeftMouse>*
+To change the base path of the tree, doubleclick (keyboard: Space or Return)
+on a directory. You can also doubleclick on the different parts of the
+base path in line 1 to jump quickly to some parent folder.
+							*opspl_<BS>*
+Pressing the Backspace key goes to the parent directory and redraws the
+tree there.
+							*opspl_<Down>*
+Arrow down moves to the beginning of the next entry (filename or node
+symbol).
+							*opspl_<Up>*
+Arrow up moves to the beginning of the previous entry (filename or node
+symbol).
+							*opspl_<S-Down>*
+Shift + Arrow down moves to the next node symbol.
+							*opspl_<S-Up>*
+Shift + Arrow up moves to the previous node symbol.
+							*opspl_q*
+Press q to close the opsplorer buffer.
+
+When navigating in line 1, Arrow up/down moves between the parts of the
+directory.
+
+Note: Space and Return do the same when applied on directories (just act
+like doubleclick), but different things with files. See |opspl_<CR>| and 
+|opspl_<Space>| for these.
+
+
+==============================================================================
+*opsplorer_opening_files*
+
+3. Opening files
+							*opspl_<2-LeftMouse>*
+When doubleclicking on a file, opsplorer opens the selected file in the
+last active buffer. If 'close_explorer_after_open' is set, the opsplorer
+buffer will additionally be closed (see |opsplorer_options| below).
+							*opspl_<CR>*
+Pressing Return on a file opens the file in the last active buffer and
+closes the opsplorer buffer.
+							*opspl_<Space>*
+Pressing Space on a file opens the file in the last active buffer and
+keeps the opsplorer buffer open.
+							*opspl_p*
+If you want to insert the content of the selected file in the active buffer,
+move to place where to insert, select the file in opsplorer and press the
+p key.
+
+
+==============================================================================
+*opsplorer_file_display*
+
+4. File display
+							*opspl_H*
+Press H to toggle display of hidden files (filenames starting with a dot).
+(default: don't show hidden files)
+							*opspl_M*
+If you wanna have a filter for displaying the files, press M and enter the
+new match pattern, something that |glob()| understands (e.g. *.c).
+
+See |opsplorer_options| to change the default settings.
+
+
+==============================================================================
+*opsplorer_file_operations*
+
+5. File operations
+							*opspl_N*
+Press N to rename the selected file, you get prompted for the new filename
+then.
+							*opspl_C*
+Press C to copy the selected file. You will be asked for the target
+filename.
+							*opspl_D*
+Press D to delete the selected file (after confirmation).
+							*opspl_O*
+Press O to move the file to somewhere else. You will be asked for the
+target filename.
+
+Read |opsplorer_notes| for platform support.
+
+
+==============================================================================
+*opsplorer_misc*
+
+6. Miscellaneous functions
+							*opspl_?*
+Press ? to show the bindings for opsplorer. Press ? again to close the
+"help screen" again.
+							*opspl_s*
+Pressing the s key invokes the unix "see" command with the selected filename.
+This command opens a file with the appropriate application (if it's properly
+assigned on your system).
+With that, you can for example play mp3's or open pdf-files out of your vim,
+just try it...
+							*opspl_n*
+Press n to insert the full path of the selected file/directory. The text
+will be inserted in the last active buffer (last position).
+
+
+==============================================================================
+*opsplorer_options*
+
+7. Options
+
+There are some options available that don't have bindings (yet). I've put
+them at the top of the script if you want to change them. If you really
+think there should be mappings for that, let me know... >
+
+	let s:single_click_to_edit=0
+If you change this to 1, a single click is handled like a doubleclick. >
+
+	let s:file_match_pattern='*'
+The default match pattern, is set when script is loaded. You can change
+the match pattern later, see |opspl_M|. >
+
+	let s:show_hidden_files=0
+When set to 1, hidden files (filenames starting with .) are displayed
+at startup (see |opspl_H| for toggling). >
+
+	let s:split_vertical=1
+Maybe you want to split horizontal, set this to 0 then. >
+
+	let s:split_width=16
+The initial size when the opsplorer window is opened. >
+
+	let s:split_minwidth=1
+The minimum display width when the opsplorer buffer is activated. >
+
+	let s:use_colors=1
+Set to 0 if you don't want to use colors. If you want to change the
+color settings, lookup the InitColors() function. >
+
+	let s:close_explorer_after_open=0
+Determines whether the opsplorer buffer should be closed or not after
+opening a file with doubleclick.
+
+
+==============================================================================
+*opsplorer_notes*
+
+8. Notes, Bugs, TODOs
+
+Currently opsplorer uses unix commands for file operations like moving
+and deleting. I'll try to replace that in future.
+
+File operations on nodes (directories) aren't supported yet.
+
+It's not tested on Windows systems yet.
+
+There seems to be a bug in vim that causes vim to go into visual mode after
+a doubleclick (even if 2-LeftMouse is mapped) when LeftRelease is mapped, too,
+and I didn't find a workaround yet :(
+
+Further plans are:
+- Possibility to tag several files to perfom file operations with
+- Options to add other root nodes, for example:
+  - root node "buffers" with all available buffers as children
+  - root node "projects" that handles a set of files / directories
+
+If you encounter any bugs or have some other ideas to improve this script,
+let me know! :)
+
+
+==============================================================================
+
+s/Copyright.*//  vim:tw=78:ts=8:ft=help:norl:

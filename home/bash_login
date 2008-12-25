@@ -1,0 +1,37 @@
+export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/csexton/bin:/usr/local/mysql/bin:$PATH"
+export LSCOLORS=exfxcxdxbxegedabagacad
+export EDITOR="vim"
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias gvim="mvim"
+alias ls="ls -GF"
+#alias vim="/Applications/Vim.app/Contents/MacOS/Vim"
+alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
+alias ri="ri -Tf ansi"
+alias t="todo.py"
+export PS1="\u@\h: \W$ "
+export TODO_DIR="/Users/csexton/Dropbox/notes"
+complete -C /usr/local/bin/command_completion_for_rake -o default rake
+complete -C /Users/csexton/bin/cap-completer.rb -o default cap
+complete -C /usr/local/bin/command_completion_for_rake -o default rake
+#complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+source /opt/local/etc/bash_completion.d/git
+source /opt/local/etc/bash_completion.d/subversion
+source /Users/csexton/bin/todo_completer.sh
+
+if [ -f /opt/local/etc/bash_completion ]; then
+. /opt/local/etc/bash_completion
+fi
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(git::\1)/'
+}
+parse_svn_branch() {
+  parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
+}
+parse_svn_url() {
+  svn info 2>/dev/null | grep -e '^URL*' | sed -e 's#^URL: *\(.*\)#\1#g '
+}
+parse_svn_repository_root() {
+  svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
+}
+export PS1="\[\033[00m\]\u@\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "

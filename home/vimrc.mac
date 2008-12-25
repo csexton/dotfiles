@@ -1,0 +1,3 @@
+set noantialias
+filetype plugin indent on
+syntax on
