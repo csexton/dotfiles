@@ -17,12 +17,18 @@ def mac?
   RUBY_PLATFORM =~ /darwin/i
 end
 
+# Detect if this is linux
+def linux?
+  RUBY_PLATFORM =~ /linux/i
+end
+
 desc "Create simlinks to the files in the user's home dir"
 task :symlink do
   puts "Linking files:"
   symlink_home('home/bashrc', '.bashrc')
   symlink_home('home/irbrc', '.irbrc')
   symlink_home('home/vimrc.mac', '.vimrc') if mac?
-  symlink_home('home/bash_login', '.bash_login')
-  #symlink_home('vim', '.vim')
+  symlink_home('home/bash_login.mac', '.bash_login') if mac?
+  symlink_home('home/bash_login.linux', '.bash_login') if linux?
+  symlink_home('vim', '.vim')
 end
