@@ -1,0 +1,18 @@
+[user]
+    name = Christopher Sexton
+	email = csexton@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /Users/csexton/.gitignore
+[alias]
+    ci = commit
+    co = checkout
+    st = status
+[apply]
+    whitespace = strip
+[github]
+	user = csexton
+	token = a71162621f901aaeab7fbd73c8d53423
