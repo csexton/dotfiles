@@ -6,8 +6,8 @@ export PS1="\u@\h: \W$ "
 
 # Platform specific
 
-UNAME=`uname -s`
-case "$UNAME" in
+PLATFORM=`uname -s`
+case "$PLATFORM" in
 "Darwin")
 	echo "On Mac"
 	export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/csexton/bin:/usr/local/mysql/bin:$PATH"

@@ -1,3 +1,13 @@
+def puts_red(str)
+  puts "  \e[00;31m#{str}\e[00m"
+end
+def puts_green(str)
+  puts "  \e[00;32m#{str}\e[00m"
+end
+def puts_blue(str)
+  puts "  \e[00;34m#{str}\e[00m"
+end
+
 # Create a simlink in the user's home directory from the files in ./home
 # src - file name of a file in .home/
 # dest - name of the symlink to create in $HOME
@@ -7,9 +17,9 @@ def symlink_home(src, dest)
     # FileUtils.ln_sf was making odd nested links, and this works.
     FileUtils.rm(File.join(home_dir, dest)) if File.symlink?(File.join(home_dir, dest))
     FileUtils.ln_s(File.join(File.dirname(__FILE__), src), File.join(home_dir, dest))
-    puts "  \e[00;32m #{dest} -> #{src}\e[00m"
+    puts_green "  #{dest} -> #{src}"
   else
-    puts "  \e[00;31mUnable to symlink #{dest} because it exists and is not a symlink\e[00m"
+    puts_red "  Unable to symlink #{dest} because it exists and is not a symlink"
   end
 end 
 
@@ -25,7 +35,7 @@ end
 
 desc "Create simlinks to the files in the user's home dir"
 task :symlink do
-  puts "\e[01;32mLinking files\e[00m"
+  puts_blue "Linking files"
   Dir["home/*"].each do |f|
     symlink_home("#{f}", ".#{File.basename f}")
   end
