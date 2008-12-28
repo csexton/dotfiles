@@ -148,10 +148,10 @@ highlight OL3 ctermfg=9 guifg=lightblue
 highlight OL4 ctermfg=13 guifg=darkviolet
 highlight OL5 ctermfg=15 guifg=white
 
-" For git errors
-hi gitError ctermbg=DarkRed guibg=#330000
-match gitError /^.*\s$/
-2match gitError /^.\{120\}.*$/
+"" For git errors
+"hi gitError ctermbg=DarkRed guibg=#330000
+"match gitError /^.*\s$/
+"2match gitError /^.\{120\}.*$/
 
 
 " Links
