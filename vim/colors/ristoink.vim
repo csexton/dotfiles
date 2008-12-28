@@ -39,14 +39,14 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight Constant      guifg=#339999 ctermfg=73 cterm=none
   "highlight Cursor        guifg=Black guibg=White ctermfg=Black ctermbg=White
   highlight CursorColumn  guifg=NONE guibg=#1A1A8A ctermbg=DarkBlue
-  highlight CursorLine    guifg=NONE guibg=#1A1A8A ctermbg=DarkBlue 
+  highlight CursorLine    guifg=NONE guibg=#1A1A8A ctermbg=DarkBlue
   highlight Directory     none
   highlight ErrorMsg      guifg=Red guibg=Black ctermfg=Red ctermbg=Black
   highlight FoldColumn    none
   highlight Folded        guifg=#AAAA77 guibg=#111111 ctermfg=DarkGrey ctermbg=Black
   highlight Identifier    guifg=#FFCC00 ctermfg=202 cterm=none
   highlight IncSearch     guifg=White guibg=Black ctermfg=White ctermbg=Yellow
-  highlight Keyword       guifg=#FF6600 ctermfg=202 
+  highlight Keyword       guifg=#FF6600 ctermfg=202
   highlight LineNr        guifg=#333333 guibg=Black ctermfg=144 ctermbg=16
   highlight MoreMsg       guifg=#00AA00 ctermfg=Green
   highlight NonText       guifg=#404040 ctermfg=DarkGrey
@@ -54,7 +54,7 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight PmenuSbar     guibg=#5555ff ctermbg=Black
   highlight PmenuSel      guifg=White guibg=#5555ff gui=bold ctermfg=White ctermbg=Blue cterm=none
   highlight PmenuThumb    guibg=White ctermbg=Blue
-  highlight PreProc       guifg=#AAFFFF ctermfg=75 cterm=none 
+  highlight PreProc       guifg=#AAFFFF ctermfg=75 cterm=none
   highlight Question      none
   highlight Regexp        guifg=#44B4CC ctermfg=Cyan
   highlight Search        guifg=Black ctermfg=Black guibg=Yellow1 ctermbg=Yellow
@@ -67,21 +67,21 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight StatusLineNC  guibg=#111111 guifg=#AAAA77 gui=none ctermfg=235 ctermbg=144
   highlight String        guifg=#66FF00 ctermfg=Green cterm=none
   highlight TabLine       gui=underline guifg=#BBBBBB guibg=#333333 term=underline
-  highlight TabLineFill   gui=underline guifg=#BBBBBB guibg=#808080 
+  highlight TabLineFill   gui=underline guifg=#BBBBBB guibg=#808080
   highlight TabLineSel    guibg=Black guifg=White ctermfg=White ctermbg=Black
   highlight Title         guifg=Magenta ctermfg=Magenta
   highlight Type          guifg=#AAAA77 gui=none ctermfg=144
   highlight vertsplit     guibg=#111111 guifg=#AAAA77 gui=none ctermbg=235 ctermfg=235
   "highlight Visual        guibg=#050573 ctermbg=17 cterm=none
   highlight Visual        guibg=#294134 ctermbg=17 cterm=none
-  highlight VisualNOS     guifg=#444444 gui=none 
+  highlight VisualNOS     guifg=#444444 gui=none
   highlight WarningMsg    guifg=Red ctermfg=Red
   highlight WildMenu      guifg=Black guibg=#FFFF00 gui=bold ctermfg=Black ctermbg=Yellow cterm=none
 
-  highlight rubyMethod          guifg=#DDE93D ctermfg=184  
-  highlight railsUserClass      guifg=#AAAAAA 
-  highlight rubyNumber          guifg=#CCFF33 
-  highlight railsUserMethod     guifg=#AACCFF 
+  highlight rubyMethod          guifg=#DDE93D ctermfg=184
+  highlight railsUserClass      guifg=#AAAAAA
+  highlight rubyNumber          guifg=#CCFF33
+  highlight railsUserMethod     guifg=#AACCFF
   "highlight railsMethod       guifg=#EE1122 ctermfg=1
 else
   " cterm 16
@@ -89,9 +89,9 @@ else
   highlight Constant      ctermfg=Cyan cterm=none
   highlight Cursor        ctermfg=Black       ctermbg=White
   highlight CursorColumn  ctermbg=DarkBlue
-  highlight CursorLine    ctermbg=DarkBlue 
+  highlight CursorLine    ctermbg=DarkBlue
   highlight Directory     none
-  highlight ErrorMsg      ctermfg=NONE        ctermbg=Red 
+  highlight ErrorMsg      ctermfg=NONE        ctermbg=Red
   highlight FoldColumn    none
   highlight Folded        ctermfg=DarkGrey    ctermbg=Black
   highlight Identifier    ctermfg=DarkYellow  cterm=none
@@ -104,7 +104,7 @@ else
   highlight PmenuSbar     ctermbg=Grey
   highlight PmenuSel      ctermfg=White       ctermbg=Blue    cterm=none
   highlight PmenuThumb    ctermbg=Blue
-  highlight PreProc       ctermfg=DarkCyan    cterm=none 
+  highlight PreProc       ctermfg=DarkCyan    cterm=none
   highlight Question      ctermfg=Red
   highlight Regexp        ctermfg=Cyan
   highlight Search        ctermfg=NONE        ctermbg=Yellow
@@ -128,17 +128,17 @@ else
   highlight WildMenu      ctermfg=Black ctermbg=Yellow cterm=none
 endif 
 
-" For the showmark plugin 
+" For the showmark plugin
 " http://www.vim.org/scripts/script.php?script_id=152
 " Highlighting: Setup some nice colours to show the mark positions.
-highlight default ShowMarksHLl guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black 
-highlight default ShowMarksHLu guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black 
-highlight default ShowMarksHLo guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black 
-highlight default ShowMarksHLm guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black 
+highlight default ShowMarksHLl guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black
+highlight default ShowMarksHLu guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black
+highlight default ShowMarksHLo guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black
+highlight default ShowMarksHLm guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black
 
 " For the project plugin
-highlight projectText guifg=#CECE9A guibg=Black gui=bold ctermfg=DarkGrey ctermbg=Black 
-highlight projectError guifg=DarkRed guibg=Black gui=bold ctermfg=DarkRed ctermbg=Black 
+highlight projectText guifg=#CECE9A guibg=Black gui=bold ctermfg=DarkGrey ctermbg=Black
+highlight projectError guifg=DarkRed guibg=Black gui=bold ctermfg=DarkRed ctermbg=Black
 highlight projectFoldText guifg=Blue guibg=Black gui=bold ctermfg=DarkGrey ctermbg=Black
 
 " For the VimOutliner plugin
@@ -146,10 +146,10 @@ highlight OL1 ctermfg=15 guifg=white
 highlight OL2 ctermfg=12 guifg=DarkViolet
 highlight OL3 ctermfg=9 guifg=lightblue
 highlight OL4 ctermfg=13 guifg=darkviolet
-highlight OL5 ctermfg=15 guifg=white         
+highlight OL5 ctermfg=15 guifg=white
 
 " For git errors
-hi gitError ctermbg=Red guibg=#330000
+hi gitError ctermbg=DarkRed guibg=#330000
 match gitError /^.*\s$/
 2match gitError /^.\{120\}.*$/
 
