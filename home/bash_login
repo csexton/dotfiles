@@ -2,6 +2,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export EDITOR="vim"
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
+alias screen='TERM=screen screen'
 export PS1="\u@\h: \W$ "
 
 # Platform specific
