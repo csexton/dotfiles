@@ -2,6 +2,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export EDITOR="vim"
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
+alias ssh-fm="ssh sexton@fuzzymonk.com"
 alias screen='TERM=screen screen'
 export PS1="\u@\h: \W$ "
 
@@ -46,4 +47,5 @@ parse_svn_url() {
 parse_svn_repository_root() {
   svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
 }
-export PS1="\[\033[00m\]\u@\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
+#export PS1="\[\033[00m\]\u@\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
+export PS1="\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
