@@ -11,7 +11,7 @@ export PS1="\u@\h: \W$ "
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
-	export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/csexton/bin:/usr/local/mysql/bin:$PATH"
+	export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/usr/local/mysql/bin:$PATH"
 	alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 	alias gvim="mvim"
 	#alias vim="/Applications/Vim.app/Contents/MacOS/Vim"
