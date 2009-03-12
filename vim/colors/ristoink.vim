@@ -152,6 +152,10 @@ highlight OL5 ctermfg=15 guifg=white
 "hi gitError ctermbg=DarkRed guibg=#330000
 "match gitError /^.*\s$/
 "2match gitError /^.\{120\}.*$/
+"
+
+" For trailing whitespace
+"highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen  
 
 
 " Links

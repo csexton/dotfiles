@@ -1,5 +1,5 @@
 " Chris's Settings:
-"set backspace=2
+"set backspace=2  
 set backspace=indent,eol,start
 set errorbells "Ring the bell (beep or screen flash) for error messages.
 "set expandtab "Use the appropriate number of spaces to insert a <Tab>.
@@ -29,7 +29,7 @@ set guioptions-=T " No toolbar
 set wildmenu
 set visualbell
 syntax on
-
+ 		
 colorscheme ristoink 
 
 " gVim specific settings:
