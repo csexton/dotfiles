@@ -43,6 +43,7 @@ if has("gui_running")
 		set guifont=Envy\ Code\ R:h13
 		" Don't antialias in mac gVim
 		"set nomacatsui
+		set fuoptions=maxvert,maxhorz
 	endif 
 
 	if has("win32") || has("win64")
@@ -221,11 +222,22 @@ augroup END
 " Rails options
 let g:rails_menu=1
 
-" Markdown syntax
-augroup mkd
-	autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
-augroup END
-
 if has("ruby")
 	map <leader>t :FuzzyFinderTextMate<CR>
 endif
+
+let g:browser = 'open '     
+" Open the Ruby ApiDock page for the word under cursor, in a new Firefox tab
+function! OpenRubyDoc(keyword)
+	let url = 'http://apidock.com/ruby/'.a:keyword
+	exec '!'.g:browser.' '.url.' &'
+endfunction           
+map <leader>rb :call OpenRubyDoc(expand('<cword>'))<CR>
+
+" Open the Rails ApiDock page for the word under cursos, in a new Firefox tab
+function! OpenRailsDoc(keyword)
+	let url = 'http://apidock.com/rails/'.a:keyword
+	exec '!'.g:browser.' '.url.' &'
+endfunction
+map <leader>rr :call OpenRailsDoc(expand('<cword>'))<CR>
+
