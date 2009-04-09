@@ -11,7 +11,7 @@ export PS1="\u@\h: \W$ "
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
-	export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/usr/local/mysql/bin:$PATH"
+	export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/opt/local/lib/mysql5/bin:$PATH"
 	alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 	alias gvim="mvim"
 	#alias vim="/Applications/Vim.app/Contents/MacOS/Vim"
@@ -49,3 +49,15 @@ parse_svn_repository_root() {
 }
 #export PS1="\[\033[00m\]\u@\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
 export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
+
+# rdoc
+export GEMDIR=`gem env gemdir`
+ 
+gemdoc() {
+  local gems=($GEMDIR/doc/$1*/rdoc/index.html)
+  open ${gems[@]: -1}
+}
+ 
+complete -W '$(`which ls` $GEMDIR/doc)' gemdoc
+ 
+
