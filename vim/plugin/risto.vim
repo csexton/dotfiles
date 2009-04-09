@@ -77,6 +77,7 @@ if has("unix")
 	"noremap <-V> <C-V>
 	"source $VIMRUNTIME/mswin.vim
 	set mouse=a
+    let g:gist_clip_command = 'xclip -selection clipboard'
 endif
 
 if has("mac")
@@ -102,6 +103,7 @@ if has("mac")
 	cmap  <C-E> <End>
 	imap  <C-k> <Esc>DA
 
+	let g:gist_clip_command = 'pbcopy'
 else
 	" This is the MS Win stuff that I like, on mac it does not make much
 	" sense, but I want it for Linux and Windows
@@ -148,6 +150,9 @@ function! PrettyText()
 	setlocal linebreak
 endfunction
 com! Pretty call PrettyText()
+
+" Gist
+let g:gist_open_browser_after_post = 1
 
 " Omni Complete helpers
 set completeopt=longest,menuone
