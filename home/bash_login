@@ -47,7 +47,6 @@ parse_svn_url() {
 parse_svn_repository_root() {
   svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
 }
-#export PS1="\[\033[00m\]\u@\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
 export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]$\[\033[00m\] "
 
 # rdoc
@@ -60,4 +59,18 @@ gemdoc() {
  
 complete -W '$(`which ls` $GEMDIR/doc)' gemdoc
  
+
+
+##
+# Your previous /Users/csexton/.bash_login file was backed up as /Users/csexton/.bash_login.macports-saved_2009-04-13_at_21:16:29
+##
+
+# MacPorts Installer addition on 2009-04-13_at_21:16:29: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+# MacPorts Installer addition on 2009-04-13_at_21:16:29: adding an appropriate MANPATH variable for use with MacPorts.
+export MANPATH=/opt/local/share/man:$MANPATH
+# Finished adapting your MANPATH environment variable for use with MacPorts.
 
