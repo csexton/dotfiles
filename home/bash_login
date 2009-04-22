@@ -14,7 +14,6 @@ case "$PLATFORM" in
 	export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/opt/local/lib/mysql5/bin:$PATH"
 	alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 	alias gvim="mvim"
-	#alias vim="/Applications/Vim.app/Contents/MacOS/Vim"
 	alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
 ;;
 "Linux")
