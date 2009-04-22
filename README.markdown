@@ -1,4 +1,4 @@
-Risto's Dot Files
+Chris's Dot Files
 =================
 
 To install download or clone the project to where you would like to store it.  I keep things in ~/.dotfiles, for fun.
