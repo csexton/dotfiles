@@ -1,8 +1,9 @@
 " Chris's Settings:
 "set backspace=2  
+set autoindent
 set backspace=indent,eol,start
 set errorbells "Ring the bell (beep or screen flash) for error messages.
-"set expandtab "Use the appropriate number of spaces to insert a <Tab>.
+set expandtab "Use the appropriate number of spaces to insert a <Tab>.
 set gdefault "When on, the ":substitute" flag 'g' is default on.
 set hidden " Allow dirty unsaved buffers 
 set hls "When there is a previous search pattern, highlight all its matches.

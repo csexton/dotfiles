@@ -1480,7 +1480,7 @@ function! s:Tlist_Window_Init()
             highlight link TagListFileName MyTagListFileName
         else
             highlight clear TagListFileName
-            highlight default TagListFileName guibg=Grey ctermbg=darkgray
+            highlight default TagListFileName guibg=black ctermbg=darkgray
                         \ guifg=white ctermfg=white
         endif
         if hlexists('MyTagListTagScope')
