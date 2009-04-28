@@ -15,6 +15,7 @@ case "$PLATFORM" in
 	alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 	alias gvim="mvim"
 	alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
+    export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 ;;
 "Linux")
 	echo "On Linux"
