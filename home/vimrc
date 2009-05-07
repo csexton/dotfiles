@@ -23,7 +23,7 @@ if exists("&breakindent")
 elseif has("gui_running")
   set showbreak=\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +++
 endif
-set cmdheight=2
+set cmdheight=1
 set complete-=i     " Searching includes can be slow
 set dictionary+=/usr/share/dict/words
 set display=lastline
