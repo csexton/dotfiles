@@ -1,0 +1,2 @@
+#!/bin/sh
+mysql -h 10.40.3.35 --user=adhoc --password=r3p0rting nobu_production
