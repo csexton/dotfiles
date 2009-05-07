@@ -37,6 +37,7 @@ endif
 set guioptions-=T   " Get rid of toolbar
 set hidden          " Allow dirty unsaved buffers
 set incsearch       " Incremental search
+set ignorecase      " Ignore case in searches.
 set joinspaces
 set laststatus=2    " Always show status line
 if has("mac")
