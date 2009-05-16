@@ -11,18 +11,19 @@ export PS1="\u@\h: \W$ "
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
-	export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/opt/local/lib/mysql5/bin:$PATH"
-    export MANPATH=/opt/local/share/man:$MANPATH
-	alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-	alias gvim="mvim"
-	alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
-    #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+  export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/opt/local/lib/mysql5/bin:$PATH"
+  export MANPATH=/opt/local/share/man:$MANPATH
+  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+  alias gvim="mvim"
+  alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
+  #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 ;;
 "Linux")
-	echo "On Linux"
+  echo "Dotfiles Engage!"
+  alias mvim="gvim"
 ;;
 esac
-#
+
 ## Completion Scripts
 if [ -f /opt/local/etc/bash_completion ]; then
 . /opt/local/etc/bash_completion
@@ -58,10 +59,10 @@ export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w
 
 ## rdoc
 #export GEMDIR=`gem env gemdir`
-# 
+#
 #gemdoc() {
 #  local gems=($GEMDIR/doc/$1*/rdoc/index.html)
 #  open ${gems[@]: -1}
 #}
-# 
+#
 #complete -W '$(`which ls` $GEMDIR/doc)' gemdoc
