@@ -62,7 +62,7 @@ set smarttab        " sw at the start of the line, sts everywhere else
 if exists("+spelllang")
   set spelllang=en_us
 endif
-set splitbelow      " Split windows at bottom
+"set splitbelow      " Split windows at bottom
 set statusline=%5*[%n]%*\ %1*%<%.99f%*\ %2*%h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%*%=%-16(\ %3*%l,%c-%v%*\ %)%4*%P%*
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
 set suffixes+=.dvi  " Lower priority in wildcards
