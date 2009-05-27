@@ -49,7 +49,7 @@ scm_ps1() {
     if [[ -d ".svn" ]] ; then
         s=\(svn:$(svn info | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )\)
     else
-	s=$(__git_ps1 "(git:%s)")
+        s=$(__git_ps1 "(git:%s)")
     fi
     echo -n "$s"
 }
@@ -79,3 +79,4 @@ export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w
 #}
 #
 #complete -W '$(`which ls` $GEMDIR/doc)' gemdoc
+
