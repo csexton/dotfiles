@@ -34,6 +34,7 @@ set grepprg=grep\ -nH\ --exclude='.*.swp'\ --exclude='*~'\ --exclude='*.svn-base
 if has("eval")
   let &highlight = substitute(&highlight,'NonText','SpecialKey','g')
 endif
+set gdefault        " When on, the ":substitute" flag 'g' is default on.
 set guioptions-=T   " Get rid of toolbar
 set hidden          " Allow dirty unsaved buffers
 set incsearch       " Incremental search
