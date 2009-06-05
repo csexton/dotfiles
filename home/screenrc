@@ -1,0 +1,11 @@
+# vim: syntax=screen
+#shell -$SHELL
+shell -/bin/bash
+startup_message off
+escape ``
+bindkey -d -k kb stuff "\010"
+
+# hardstatus alwayslastline "%w"
+# hardstatus alwayslastline "%?%F%{.R.}%?%3n %t%? [%h]%?"
+# hardstatus  on
+# hardstatus alwayslastline
