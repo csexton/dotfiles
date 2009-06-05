@@ -2,3 +2,22 @@ require 'rubygems'
 require 'wirble'
 Wirble.init
 Wirble.colorize
+
+class Integer
+  def to_binary_s
+    bits = self.to_s(2)
+    prepend = (8 - bits.length % 8)
+    bits = ('0' * prepend) + bits
+    return [bits].pack('B*')
+  end
+end
+class String
+  def read_hex_s
+    self.gsub(" ", "").hex.to_binary_s
+  end
+
+  def to_hex_s
+    self.unpack("H*")[0]
+  end
+end
+
