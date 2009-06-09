@@ -18,6 +18,8 @@ if has("gui_running")
 else
     if has("win32") || has("win64")
         set t_Co=16
+    elseif $TERM_PROGRAM == 'Apple_Terminal'
+        set t_Co=16
     elseif $TERM_PROGRAM == 'iTerm.app'
         set t_Co=256
     elseif has("mac")
@@ -29,7 +31,6 @@ else
     elseif &term == "xterm"
         set t_Co=256
     end
-  
 endif
 
 if ((&t_Co == 256) || has("gui_running"))
@@ -147,12 +148,6 @@ highlight OL2 ctermfg=12 guifg=DarkViolet
 highlight OL3 ctermfg=9 guifg=lightblue
 highlight OL4 ctermfg=13 guifg=darkviolet
 highlight OL5 ctermfg=15 guifg=white
-
-"" For git errors
-"hi gitError ctermbg=DarkRed guibg=#330000
-"match gitError /^.*\s$/
-"2match gitError /^.\{120\}.*$/
-"
 
 " For trailing whitespace
 "highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen  
