@@ -33,12 +33,24 @@ def linux?
   RUBY_PLATFORM =~ /linux/i
 end
 
-desc "Create simlinks to the files in the user's home dir"
+desc "create simlinks to the files in the user's home dir"
 task :symlink do
-  puts_blue "Linking files"
-  Dir["home/*"].each do |f|
-    symlink_home("#{f}", ".#{File.basename f}")
+  puts_blue "linking files"
+  dir["home/*"].each do |f|
+    symlink_home("#{f}", ".#{file.basename f}")
   end
 
   symlink_home('vim', '.vim')
+end
+
+desc "create simlinks to the xcode color scheme in the user's Library/Application Support"
+task :symlink_xcode do
+  # TODO: refactor the symlink code, this is ugly
+  puts_blue "linking colorscheme files"
+  color_themes_dir = File.join( ENV['HOME'], "Library", "Application Support", "Xcode", "Color Themes")
+  FileUtils.mkdir_p(color_themes_dir)
+  FileUtils.rm(File.join(color_themes_dir, "RistoInk.xccolortheme")) if File.symlink?(File.join(File.dirname(__FILE__)))
+  puts File.join(File.dirname(__FILE__), "xcode", "RistoInk.xccolortheme")
+  FileUtils.ln_s(File.join(File.dirname(__FILE__), "xcode", "RistoInk.xccolortheme"), color_themes_dir)
+
 end

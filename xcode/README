@@ -1,0 +1,5 @@
+To install run `rake xcode_install`
+
+Or you can copy the colorscheme to "~/Library/Application Support/Xcode/Color
+Themes"
+
