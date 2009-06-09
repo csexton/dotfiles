@@ -86,7 +86,7 @@ if ((&t_Co == 256) || has("gui_running"))
 else
   " cterm 16
   highlight Comment       ctermfg=DarkMagenta
-  highlight Constant      ctermfg=Cyan cterm=none
+  highlight Constant      ctermfg=Cyan        cterm=none
   highlight Cursor        ctermfg=Black       ctermbg=White
   highlight CursorColumn  ctermbg=DarkBlue
   highlight CursorLine    ctermbg=DarkBlue
@@ -102,7 +102,7 @@ else
   highlight NonText       ctermfg=DarkGrey
   highlight Pmenu         ctermfg=White       ctermbg=DarkBlue cterm=none
   highlight PmenuSbar     ctermbg=Grey
-  highlight PmenuSel      ctermfg=White       ctermbg=Blue    cterm=none
+  highlight PmenuSel      ctermfg=White       ctermbg=Blue     cterm=none
   highlight PmenuThumb    ctermbg=Blue
   highlight PreProc       ctermfg=DarkCyan    cterm=none
   highlight Question      ctermfg=Red
@@ -111,11 +111,11 @@ else
   highlight SignColumn    ctermfg=Yellow      ctermbg=Black
   highlight Special       ctermfg=Green
   highlight SpecialKey    ctermfg=DarkGrey
-  highlight SpellBad      ctermbg=none        ctermfg=Red     cterm=underline
-  highlight Statement     ctermfg=Yellow        cterm=none
-  highlight StatusLine    ctermfg=Grey        ctermbg=White   cterm=none
+  highlight SpellBad      ctermbg=none        ctermfg=Red       cterm=underline
+  highlight Statement     ctermfg=Yellow      cterm=none
+  highlight StatusLine    ctermfg=DarkGrey    ctermbg=Black     cterm=none
   highlight StatusLineNC  ctermfg=Grey        ctermbg=DarkGrey
-  highlight String        ctermfg=LightGreen                       cterm=none
+  highlight String        ctermfg=LightGreen                    cterm=none
   highlight TabLine       term=underline
   highlight TabLineFill   none
   highlight TabLineSel    ctermfg=White       ctermbg=Black
