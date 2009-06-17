@@ -29,7 +29,7 @@ if [ -f /opt/local/etc/bash_completion ]; then
 . /opt/local/etc/bash_completion
 fi
 
-if [ -x $HOME/bin/git-completion.bash ]; then
+if which git-completion.bash >/dev/null; then
 . git-completion.bash
 fi
 
@@ -44,11 +44,11 @@ fi
 scm_ps1() {
     local s=
     if [[ -d ".svn" ]] ; then
-        s=\(svn:$(svn info | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )\)
+        s=\(svn\)
     else
-        #if [ -f /opt/local/etc/bash_completion.d/git ]; then # Only show if compleation is there
+	if which git-completion.bash >/dev/null; then # Only show if compleation is there
           s=$(__git_ps1 "(git:%s)")
-        #fi
+        fi
     fi
     echo -n "$s"
 }
