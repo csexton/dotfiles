@@ -595,7 +595,7 @@ if (&t_Co > 2 || has("gui_running")) && has("syntax")
   function! s:initialize_font()
     if exists("&guifont")
       if has("mac")
-       set guifont=Envy\ Code\ R:h13,Monaco:h10
+       set guifont=Envy\ Code\ R:h13,Monaco:h11
        set noantialias
       elseif has("unix")
         if &guifont == ""
