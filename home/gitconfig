@@ -15,4 +15,5 @@
     whitespace = strip
 [github]
 	user = csexton
-	token = a71162621f901aaeab7fbd73c8d53423
+[merge]
+	summary = true

@@ -12,7 +12,7 @@ PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
   export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/opt/local/lib/mysql5/bin:$PATH"
-  export MANPATH=/opt/local/share/man:$MANPATH
+  export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
   alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
   alias gvim="mvim"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
