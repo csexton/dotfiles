@@ -36,8 +36,8 @@ end
 desc "create simlinks to the files in the user's home dir"
 task :symlink do
   puts_blue "linking files"
-  dir["home/*"].each do |f|
-    symlink_home("#{f}", ".#{file.basename f}")
+  Dir["home/*"].each do |f|
+    symlink_home("#{f}", ".#{File.basename f}")
   end
 
   symlink_home('vim', '.vim')
