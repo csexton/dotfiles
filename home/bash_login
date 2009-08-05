@@ -15,6 +15,7 @@ case "$PLATFORM" in
   export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
   alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
   alias gvim="mvim"
+  alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
   #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 ;;
@@ -54,3 +55,5 @@ scm_ps1() {
 }
 export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w \[\033[31m\]\$(scm_ps1)\[\033[00m\]$\[\033[00m\] "
 
+#export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND='echo -ne "\033]0;bash\007"'
