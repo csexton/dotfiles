@@ -27,6 +27,7 @@ set cmdheight=1
 set complete-=i     " Searching includes can be slow
 set dictionary+=/usr/share/dict/words
 set display=lastline
+set expandtab
 if has("eval")
   let &fileencodings = substitute(&fileencodings,"latin1","cp1252","")
 endif
@@ -638,3 +639,8 @@ colorscheme ristoink
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+"if filereadable(expand("~/.vim/plugin/supertab.vim"))
+"source ~/.vim/plugin/supertab.vim
+"endif
+
