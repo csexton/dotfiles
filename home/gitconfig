@@ -17,3 +17,5 @@
 	user = csexton
 [merge]
 	summary = true
+[push]
+	default = matching
