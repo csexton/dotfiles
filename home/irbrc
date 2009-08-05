@@ -3,6 +3,12 @@ require 'wirble'
 Wirble.init
 Wirble.colorize
 
+def hirb
+  require 'hirb'
+  Hirb.enable
+  "Hirb enabled!"
+end
+
 class Integer
   def to_binary_s
     bits = self.to_s(2)
