@@ -1,21 +1,22 @@
 [user]
-    name = Christopher Sexton
-	email = csexton@gmail.com
+        name = Christopher Sexton
+        email = csexton@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+        diff = auto
+        status = auto
+        branch = auto
 [core]
-	excludesfile = /Users/csexton/.gitignore
+        excludesfile = /Users/csexton/.gitignore
 [alias]
-    ci = commit
-    co = checkout
-    st = status
+        ci = commit
+        co = checkout
+        st = status
+        lol = log --pretty=oneline --abbrev-commit --graph --decorate
 [apply]
-    whitespace = strip
+        whitespace = strip
 [github]
-	user = csexton
+        user = csexton
 [merge]
-	summary = true
+        summary = true
 [push]
-	default = matching
+        default = matching
