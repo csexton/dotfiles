@@ -5,6 +5,7 @@ alias ri="ri -Tf ansi"
 alias ssh-fm="ssh sexton@fuzzymonk.com"
 alias screen='TERM=screen screen'
 export PS1="\u@\h: \W$ "
+export P4CONFIG=".p4config"
 
 # Platform specific
 
