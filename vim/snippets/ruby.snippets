@@ -11,7 +11,6 @@ snippet y
 	:yields: ${1:arguments}
 snippet rb
 	#!/usr/bin/env ruby -wKU
-
 snippet req
 	require "${1}"${2}
 snippet #
@@ -335,11 +334,11 @@ snippet ts
 	require "tc_${1:test_case_file}"
 	require "tc_${2:test_case_file}"${3}
 snippet as
-	assert(${1:test}, "${2:Failure message.}")${3}
+	assert ${1:test}, "${2:Failure message.}"
 snippet ase
-	assert_equal(${1:expected}, ${2:actual})${3}
+	assert_equal ${1:expected}, ${2:actual}
 snippet asne
-	assert_not_equal(${1:unexpected}, ${2:actual})${3}
+	assert_not_equal ${1:unexpected}, ${2:actual}
 snippet asid
 	assert_in_delta(${1:expected_float}, ${2:actual_float}, ${3:2 ** -20})${4}
 snippet asio
@@ -347,9 +346,9 @@ snippet asio
 snippet asko
 	assert_kind_of(${1:ExpectedKind}, ${2:actual_instance})${3}
 snippet asn
-	assert_nil(${1:instance})${2}
+	assert_nil ${1:instance}
 snippet asnn
-	assert_not_nil(${1:instance})${2}
+	assert_not_nil ${1:instance}
 snippet asm
 	assert_match(/${1:expected_pattern}/, ${2:actual_string})${3}
 snippet asnm
@@ -418,3 +417,9 @@ snippet tas
 	task :${2:task_name => [:dependent, :tasks]} do
 		${3}
 	end
+snippet pt
+	puts ${1}
+snippet ps
+	puts '${1}'${2}
+snippet pd
+	puts "${1}"${2}
