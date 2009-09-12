@@ -1,4 +1,4 @@
-export LSCOLORS=exfxcxdxbxegedabagacad
+export LSCOLORS=gxfxcxdxbxegedabagacad
 export EDITOR="vim"
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
@@ -12,12 +12,14 @@ export P4CONFIG=".p4config"
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
-  export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/opt/local/lib/mysql5/bin:$PATH"
+  export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Users/csexton/bin:/usr/local/mysql/bin:$PATH"
   export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
   alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
   alias gvim="mvim"
   alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
+  alias yay="growlnotify -m Yay!"
+  alias boo="growlnotify -m Boo!"
   #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 ;;
 "Linux")
@@ -27,6 +29,7 @@ case "$PLATFORM" in
 esac
 
 ## Completion Scripts
+# port install bash-completion
 if [ -f /opt/local/etc/bash_completion ]; then
 . /opt/local/etc/bash_completion
 fi
@@ -58,3 +61,12 @@ export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w
 
 #export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007"'
 export PROMPT_COMMAND='echo -ne "\033]0;bash\007"'
+
+##
+# Your previous /Users/csexton/.bash_login file was backed up as /Users/csexton/.bash_login.macports-saved_2009-09-08_at_10:22:07
+##
+
+# MacPorts Installer addition on 2009-09-08_at_10:22:07: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
