@@ -1,0 +1,31 @@
+#!/bin/sh
+# -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
+
+#export LSCOLORS=gxfxcxdxbxegedabagacad
+export EDITOR="vim"
+alias ls="ls -GF"
+alias ri="ri -Tf ansi"
+alias screen='TERM=screen screen'
+export P4CONFIG=".p4config"
+
+
+PLATFORM=`uname -s`
+case "$PLATFORM" in
+"Darwin")
+  export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/usr/local/mysql/bin:$PATH"
+  export PATH=/usr/local/git/libexec/git-core:$PATH
+  export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
+  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+  alias gvim="mvim"
+  alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
+  alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
+  alias yay="growlnotify -m Yay!"
+  alias boo="growlnotify -m Boo!"
+  #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+  echo "Dotfiles Engage!"
+;;
+"Linux")
+  echo "Dotfiles Engage!"
+  alias mvim="gvim"
+;;
+esac
