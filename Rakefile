@@ -34,7 +34,7 @@ def linux?
 end
 
 desc "create simlinks to the files in the user's home dir"
-task :symlink do
+task :home do
   puts_blue "linking files"
   Dir["home/*"].each do |f|
     symlink_home("#{f}", ".#{File.basename f}")
@@ -44,7 +44,7 @@ task :symlink do
 end
 
 desc "create simlinks to the xcode color scheme in the user's Library/Application Support"
-task :symlink_xcode do
+task :xcode do
   # TODO: refactor the symlink code, this is ugly
   puts_blue "linking colorscheme files"
   color_themes_dir = File.join( ENV['HOME'], "Library", "Application Support", "Xcode", "Color Themes")
@@ -52,5 +52,18 @@ task :symlink_xcode do
   FileUtils.rm(File.join(color_themes_dir, "RistoInk.xccolortheme")) if File.symlink?(File.join(File.dirname(__FILE__)))
   puts File.join(File.dirname(__FILE__), "xcode", "RistoInk.xccolortheme")
   FileUtils.ln_s(File.join(File.dirname(__FILE__), "xcode", "RistoInk.xccolortheme"), color_themes_dir)
+
+end
+
+desc "Configure dotfiles to use zsh"
+task :zsh do
+  if system "which zsh"
+    puts "Change shell to use zsh"
+    system "chsh -s `which zsh`"
+    system "git submodule init oh-my-zsh"
+    system "git submodule update oh-my-zsh"
+  else 
+    puts "Error: zsh is not installed on your system, or not in your path."
+  end
 
 end

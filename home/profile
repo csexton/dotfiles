@@ -27,5 +27,6 @@ case "$PLATFORM" in
 "Linux")
   echo "Dotfiles Engage!"
   alias mvim="gvim"
+  alias ls="ls --color -F"
 ;;
 esac
