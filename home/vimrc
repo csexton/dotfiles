@@ -157,6 +157,11 @@ let g:surround_indent = 1
 let g:dbext_default_history_file = "/tmp/dbext_sql_history.txt"
 endif
 
+if has("mac")
+  let g:gist_clip_command = 'pbcopy'
+ let g:gist_browser_command = 'echo "%URL%" | pbcopy'
+ let g:gist_open_browser_after_post = 1
+endif
 " }}}2
 " Section: Commands {{{1
 " -----------------------
@@ -649,3 +654,9 @@ endif
 "source ~/.vim/plugin/supertab.vim
 "endif
 
+
+function! Find(pattern)
+  exe "vimgrep /".a:pattern."/gj **"
+  exe "cw"
+endfunction
+command! -nargs=1 Find :call Find(<q-args>)

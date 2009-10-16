@@ -1,5 +1,5 @@
-# Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.dotfiles/oh-my-zsh
+# Path to your oh-my-zsh configuration.
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -10,6 +10,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 #
+export DISABLE_AUTO_UPDATE="true"
 
 # This might need to be moved into a mac-specific file in oh-my-zsh
 
