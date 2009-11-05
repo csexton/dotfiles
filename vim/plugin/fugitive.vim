@@ -405,7 +405,7 @@ call s:add_methods('buffer',['getvar','getline','repo','type','name','commit','p
 " }}}1
 " Git {{{1
 
-call s:command("-bar -bang -nargs=? -complete=customlist,s:GitComplete Git :call s:Git(<bang>0,<f-args>)")
+call s:command("-bar -bang -nargs=? -complete=customlist,s:GitComplete Git :call s:Git(<bang>0,<q-args>)")
 
 function! s:ExecuteInTree(cmd) abort
   let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd ' : 'cd '
@@ -424,6 +424,7 @@ function! s:Git(bang,cmd) abort
     let git .= ' --no-pager'
   endif
   call s:ExecuteInTree('!'.git.' '.a:cmd)
+  call s:ReloadIndex()
 endfunction
 
 function! s:GitComplete(A,L,P) abort
@@ -450,6 +451,89 @@ endfunction
 
 call s:command("-bar -bang -nargs=? -complete=customlist,s:DirComplete Gcd  :cd<bang>  `=s:repo().bare() ? s:repo().dir(<q-args>) : s:repo().tree(<q-args>)`")
 call s:command("-bar -bang -nargs=? -complete=customlist,s:DirComplete Glcd :lcd<bang> `=s:repo().bare() ? s:repo().dir(<q-args>) : s:repo().tree(<q-args>)`")
+
+" }}}1
+" Gstatus {{{1
+
+call s:command("-bar Gstatus :execute s:Status()")
+
+function! s:Status()
+  try
+    Gpedit :
+    wincmd P
+    nnoremap <buffer> <silent> q    :<C-U>bdelete<CR>
+  catch /^fugitive:/
+    return 'echoerr v:errmsg'
+  endtry
+  return ''
+endfunction
+
+function! s:ReloadIndex()
+  let mytab = tabpagenr()
+  for tab in [mytab] + range(1,tabpagenr('$'))
+    for winnr in range(1,tabpagewinnr(tab,'$'))
+      if getbufvar(tabpagebuflist(tab)[winnr-1],'fugitive_type') ==# 'index'
+        execute 'tabnext '.tab
+        if winnr != winnr()
+          execute winnr.'wincmd w'
+          let restorewinnr = 1
+        endif
+        try
+          if !&modified
+            call s:BufReadIndex()
+          endif
+        finally
+          if exists('restorewinnr')
+            wincmd p
+          endif
+          execute 'tabnext '.mytab
+        endtry
+      endif
+    endfor
+  endfor
+endfunction
+
+function! s:StageToggle(lnum1,lnum2)
+  try
+    let output = ''
+    for lnum in range(a:lnum1,a:lnum2)
+      let line = getline(lnum)
+      let filename = matchstr(line,'^#\t[[:alpha:] ]\+: *\zs.*')
+      if filename ==# ''
+        let filename = matchstr(line,'^#\t\zs.*')
+      endif
+      if filename ==# ''
+        continue
+      endif
+      if !exists('first_filename')
+        let first_filename = filename
+      endif
+      execute lnum
+      let section = getline(search('^# .*:$','bnW'))
+      if line =~# '^#\trenamed:' && filename =~ ' -> '
+        let cmd = ['mv','--'] + reverse(split(filename,' -> '))
+        let filename = cmd[-1]
+      elseif section =~? ' to be '
+        let cmd = ['reset','-q','--',filename]
+      elseif line =~# '^#\tdeleted:'
+        let cmd = ['rm','--',filename]
+      else
+        let cmd = ['add','--',filename]
+      endif
+      let output .= call(s:repo().git_chomp_in_tree,cmd,s:repo())."\n"
+    endfor
+    if exists('first_filename')
+      silent! edit!
+      1
+      redraw
+      call search('^#\t\%([[:alpha:] ]\+: *\)\=\V'.first_filename.'\$','W')
+    endif
+    echo s:sub(s:gsub(output,'\n+','\n'),'\n$','')
+  catch /^fugitive:/
+    return 'echoerr v:errmsg'
+  endtry
+  return 'checktime'
+endfunction
 
 " }}}1
 " Ggrep, Glog {{{1
@@ -519,15 +603,22 @@ function! s:Edit(cmd,...) abort
     return ''
   elseif a:0
     let file = s:buffer().expand(a:1)
-  elseif s:buffer().commit() ==# ''
+  elseif s:buffer().commit() ==# '' && s:buffer().path('/') !~# '^/.git\>'
     let file = s:buffer().path(':')
   else
     let file = s:buffer().path('/')
   endif
-  let file = s:repo().translate(file)
+  try
+    let file = s:repo().translate(file)
+  catch /^fugitive:/
+    return 'echoerr v:errmsg'
+  endtry
   if a:cmd =~# 'read!$'
     return '%delete|read '.s:fnameescape(file).'|1delete_|diffupdate|'.line('.')
   else
+    if &previewwindow && getbufvar('','fugitive_type') ==# 'index'
+      wincmd p
+    endif
     return a:cmd.' '.s:fnameescape(file)
   endif
 endfunction
@@ -576,7 +667,10 @@ function! s:Write(force,...) abort
       for winnr in range(1,tabpagewinnr(tab,'$'))
         if tabpagebuflist(tab)[winnr-1] == treebufnr
           execute 'tabnext '.tab
-          execute winnr.'wincmd w'
+          if winnr != winnr()
+            execute winnr.'wincmd w'
+            let restorewinnr = 1
+          endif
           try
             let lnum = line('.')
             let last = line('$')
@@ -586,8 +680,10 @@ function! s:Write(force,...) abort
             silent execute lnum
             let did = 1
           finally
-            wincmd p
-            execute 'tabnext '.tab
+            if exists('restorewinnr')
+              wincmd p
+            endif
+            execute 'tabnext '.mytab
           endtry
         endif
       endfor
@@ -612,11 +708,12 @@ function! s:Write(force,...) abort
   let two = s:repo().translate(':2:'.path)
   let three = s:repo().translate(':3:'.path)
   for nr in range(1,bufnr('$'))
-    if !getbufvar(nr,'&modified') && (bufname(nr) == one || bufname(nr) == two || bufname(nr) == three)
+    if bufloaded(nr) && !getbufvar(nr,'&modified') && (bufname(nr) == one || bufname(nr) == two || bufname(nr) == three)
       execute nr.'bdelete'
     endif
   endfor
 
+  unlet! restorewinnr
   let zero = s:repo().translate(':0:'.path)
   for tab in range(1,tabpagenr('$'))
     for winnr in range(1,tabpagewinnr(tab,'$'))
@@ -624,7 +721,10 @@ function! s:Write(force,...) abort
       let bufname = bufname(bufnr)
       if bufname ==# zero && bufnr != mybufnr
         execute 'tabnext '.tab
-        execute winnr.'wincmd w'
+        if winnr != winnr()
+          execute winnr.'wincmd w'
+          let restorewinnr = 1
+        endif
         try
           let lnum = line('.')
           let last = line('$')
@@ -634,13 +734,16 @@ function! s:Write(force,...) abort
           set nomodified
           diffupdate
         finally
-          wincmd p
+          if exists('restorewinnr')
+            wincmd p
+          endif
           execute 'tabnext '.mytab
         endtry
         break
       endif
     endfor
   endfor
+  call s:ReloadIndex()
   return 'checktime'
 endfunction
 
@@ -673,11 +776,17 @@ function! s:Diff(...) abort
       let file = s:buffer().path('/')
     elseif a:1 ==# ':'
       let file = s:buffer().path(':0:')
+    elseif a:1 =~# '^:/'
+      try
+        let file = s:repo().rev_parse(a:1)
+      catch /^fugitive:/
+        return 'echoerr v:errmsg'
+      endtry
     else
       let file = s:buffer().expand(a:1)
     endif
     if file !~ ':' && file !~ '^/'
-      let file = file.s:buffer().path(':0:')
+      let file = file.s:buffer().path(':')
     endif
   else
     let file = s:buffer().path(s:buffer().commit() == '' ? ':0:' : '/')
@@ -714,6 +823,7 @@ function! s:Move(force,destination)
   if isdirectory(destination)
     let destination = fnamemodify(s:sub(destination,'/$','').'/'.expand('%:t'),':.')
   endif
+  call s:ReloadIndex()
   if s:buffer().commit() == ''
     return 'saveas! '.s:fnameescape(destination)
   else
@@ -746,6 +856,7 @@ function! s:Remove(force)
     let v:errmsg = 'fugitive: '.s:sub(message,'error:.*\zs\n\(.*-f.*',' (add ! to force)')
     return 'echoerr '.string(v:errmsg)
   else
+    call s:ReloadIndex()
     return 'bdelete'.(a:force ? '!' : '')
   endif
 endfunction
@@ -821,8 +932,8 @@ function! s:Blame(bang,line1,line2,count) abort
         execute current
         execute "vertical resize ".(match(getline('.'),'\s\+\d\+)')+1)
         setlocal nomodified nomodifiable nonumber scrollbind nowrap foldcolumn=0 nofoldenable filetype=fugitiveblame
-        nnoremap <buffer> <silent> q    :bdelete<CR>
-        nnoremap <buffer> <silent> <CR> :exe <SID>BlameJump()<CR>
+        nnoremap <buffer> <silent> q    :<C-U>bdelete<CR>
+        nnoremap <buffer> <silent> <CR> :<C-U>exe <SID>BlameJump()<CR>
         nnoremap <buffer> <silent> o    :<C-U>exe <SID>Edit((&splitbelow ? "botright" : "topleft")." split", matchstr(getline('.'),'\x\+'))<CR>
         nnoremap <buffer> <silent> O    :<C-U>exe <SID>Edit("tabedit", matchstr(getline('.'),'\x\+'))<CR>
         syncbind
@@ -913,12 +1024,34 @@ function! s:ReplaceCmd(cmd) abort
 endfunction
 
 function! s:BufReadIndex()
+  if !exists('b:fugitive_display_format')
+    let b:fugitive_display_format = +getbufvar('#','fugitive_display_format')
+  endif
+  let b:fugitive_display_format = b:fugitive_display_format % 2
+  let b:fugitive_type = 'index'
   try
     let b:git_dir = s:repo().dir()
-    let b:fugitive_type = 'index'
     setlocal noro ma
-    call s:ReplaceCmd(s:repo().git_command('ls-files','--stage'))
-    setlocal ro noma nomod nomodeline ft=git
+    if b:fugitive_display_format
+      call s:ReplaceCmd(s:repo().git_command('ls-files','--stage'))
+      set ft=git nospell
+    else
+      let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd ' : 'cd '
+      let dir = getcwd()
+      try
+        execute cd.' `=s:repo().tree()`'
+        call s:ReplaceCmd(s:repo().git_command('status'))
+      finally
+        execute cd.' `=dir`'
+      endtry
+      set ft=gitcommit
+    endif
+    setlocal ro noma nomod nomodeline bufhidden=delete
+    nnoremap <buffer> <silent> a :<C-U>let b:fugitive_display_format += 1<Bar>exe <SID>BufReadIndex()<CR>
+    nnoremap <buffer> <silent> i :<C-U>let b:fugitive_display_format -= 1<Bar>exe <SID>BufReadIndex()<CR>
+    nnoremap <buffer> <silent> - :<C-U>execute <SID>StageToggle(line('.'),line('.')+v:count1-1)<CR>
+    xnoremap <buffer> <silent> - :<C-U>execute <SID>StageToggle(line("'<"),line("'>"))<CR>
+    call s:JumpInit()
   catch /^fugitive:/
     return 'echoerr v:errmsg'
   endtry
@@ -971,6 +1104,8 @@ function! s:BufWriteIndexFile()
     let error = system(s:repo().git_command('update-index','--index-info').' < '.tmp)
     if v:shell_error == 0
       setlocal nomodified
+      silent execute 'doautocmd BufWritePost '.s:fnameescape(expand('%:p'))
+      call s:ReloadIndex()
       return ''
     else
       return 'echoerr '.string('fugitive: '.error)
@@ -1034,8 +1169,8 @@ function! s:BufReadObject()
     setlocal ro noma nomod nomodeline
     if b:fugitive_type !=# 'blob'
       set filetype=git
-      nnoremap <buffer> <silent> a :let b:fugitive_display_format += 1<Bar>exe <SID>BufReadObject()<CR>
-      nnoremap <buffer> <silent> i :let b:fugitive_display_format -= 1<Bar>exe <SID>BufReadObject()<CR>
+      nnoremap <buffer> <silent> a :<C-U>let b:fugitive_display_format += v:count1<Bar>exe <SID>BufReadObject()<CR>
+      nnoremap <buffer> <silent> i :<C-U>let b:fugitive_display_format -= v:count1<Bar>exe <SID>BufReadObject()<CR>
     else
       call s:JumpInit()
     endif
@@ -1077,14 +1212,7 @@ function! s:GF(mode) abort
     let buffer = s:buffer()
     let myhash = buffer.sha1()
 
-    if buffer.type('index')
-      if getline('.') =~# '^\d\{6\} \x\{40\} \d\t'
-        let ref = matchstr(getline('.'),'\x\{40\}')
-        let file = ':'.s:sub(matchstr(getline('.'),'\d\t.*'),'\t',':')
-        return s:Edit(a:mode,file)
-      endif
-
-    elseif buffer.type('tree')
+    if buffer.type('tree')
       let showtree = (getline(1) =~# '^tree ' && getline(2) == "")
       if showtree && line('.') == 1
         return ""
@@ -1105,6 +1233,36 @@ function! s:GF(mode) abort
       endif
 
     else
+
+      " Index
+      if getline('.') =~# '^\d\{6\} \x\{40\} \d\t'
+        let ref = matchstr(getline('.'),'\x\{40\}')
+        let file = ':'.s:sub(matchstr(getline('.'),'\d\t.*'),'\t',':')
+        return s:Edit(a:mode,file)
+
+      elseif getline('.') =~# '^#\trenamed:.* -> '
+        let file = '/'.matchstr(getline('.'),' -> \zs.*')
+        return s:Edit(a:mode,file)
+      elseif getline('.') =~# '^#\t[[:alpha:] ]\+: *.'
+        let file = '/'.matchstr(getline('.'),': *\zs.*')
+        return s:Edit(a:mode,file)
+      elseif getline('.') =~# '^#\t.'
+        let file = '/'.matchstr(getline('.'),'#\t\zs.*')
+        return s:Edit(a:mode,file)
+      elseif getline('.') =~# ': needs merge$'
+        let file = '/'.matchstr(getline('.'),'.*\ze: needs merge$')
+        return s:Edit(a:mode,file).'|Gdiff'
+
+      elseif getline('.') ==# '# Not currently on any branch.'
+        return s:Edit(a:mode,'HEAD')
+      elseif getline('.') =~# '^# On branch '
+        let file = 'refs/heads/'.getline('.')[12:]
+        return s:Edit(a:mode,file)
+      elseif getline('.') =~# "^# Your branch .*'"
+        let file = 'refs/remotes/'.matchstr(getline('.'),"'\\zs\\S\\+\\ze'")
+        return s:Edit(a:mode,file)
+      endif
+
       let showtree = (getline(1) =~# '^tree ' && getline(2) == "")
 
       if getline('.') =~# '^ref: '
@@ -1141,15 +1299,33 @@ function! s:GF(mode) abort
       elseif getline('.') =~# '^[+-]\{3\} [ab/]'
         let ref = getline('.')[4:]
 
+      elseif getline('.') =~# '^rename from '
+        let ref = 'a/'.getline('.')[12:]
+      elseif getline('.') =~# '^rename to '
+        let ref = 'b/'.getline('.')[10:]
+
+      elseif getline('.') =~# '^diff --git \%(a/.*\|/dev/null\) \%(b/.*\|/dev/null\)'
+        let dref = matchstr(getline('.'),'\Cdiff --git \zs\%(a/.*\|/dev/null\)\ze \%(b/.*\|/dev/null\)')
+        let ref = matchstr(getline('.'),'\Cdiff --git \%(a/.*\|/dev/null\) \zs\%(b/.*\|/dev/null\)')
+
       elseif line('$') == 1 && getline('.') =~ '^\x\{40\}$'
         let ref = getline('.')
       else
         let ref = ''
       endif
 
-      if myhash != ''
+      if myhash ==# ''
+        let ref = s:sub(ref,'^a/','HEAD:')
+        let ref = s:sub(ref,'^b/',':0:')
+        if exists('dref')
+          let dref = s:sub(dref,'^a/','HEAD:')
+        endif
+      else
         let ref = s:sub(ref,'^a/',myhash.'^:')
         let ref = s:sub(ref,'^b/',myhash.':')
+        if exists('dref')
+          let dref = s:sub(dref,'^a/',myhash.'^:')
+        endif
       endif
 
       if ref == '/dev/null'
@@ -1157,7 +1333,9 @@ function! s:GF(mode) abort
         let ref = 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
       endif
 
-      if ref != ""
+      if exists('dref')
+        return s:Edit(a:mode,ref) . '|Gdiff '.s:fnameescape(dref)
+      elseif ref != ""
         return s:Edit(a:mode,ref)
       endif
 

@@ -6,14 +6,14 @@ export ZSH=$HOME/.dotfiles/oh-my-zsh
 #export ZSH_THEME="maran"
 export ZSH_THEME="risto"
 
+export DISABLE_AUTO_UPDATE="true"
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 #
-export DISABLE_AUTO_UPDATE="true"
 
 # This might need to be moved into a mac-specific file in oh-my-zsh
-
 #stty erase ^H &>/dev/null
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
@@ -40,3 +40,5 @@ bindtc kd "^[[B" down-line-or-history
 bindtc kr "^[[C" forward-char
 bindtc kl "^[[D" backward-char
 
+# Mac Aliases
+alias xcode="open *.xcodeproj"
