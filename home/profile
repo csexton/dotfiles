@@ -8,7 +8,6 @@ alias ri="ri -Tf ansi"
 alias screen='TERM=screen screen'
 export P4CONFIG=".p4config"
 
-
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
@@ -21,6 +20,7 @@ case "$PLATFORM" in
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
   alias yay="growlnotify -m Yay!"
   alias boo="growlnotify -m Boo!"
+  alias xcode="open *.xcodeproj"
   #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
   echo "Dotfiles Engage!"
 ;;
@@ -30,3 +30,8 @@ case "$PLATFORM" in
   alias ls="ls --color -F"
 ;;
 esac
+
+if [ -f $HOME/.local_profile ]
+then
+  source $HOME/.local_profile
+fi

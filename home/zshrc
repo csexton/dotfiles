@@ -39,6 +39,3 @@ bindtc ku "^[[A" up-line-or-history
 bindtc kd "^[[B" down-line-or-history
 bindtc kr "^[[C" forward-char
 bindtc kl "^[[D" backward-char
-
-# Mac Aliases
-alias xcode="open *.xcodeproj"
