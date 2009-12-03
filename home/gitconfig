@@ -12,6 +12,7 @@
         co = checkout
         st = status
         lol = log --pretty=oneline --abbrev-commit --graph --decorate
+        input = read name && echo $name
 [apply]
         whitespace = strip
 [github]

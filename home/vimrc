@@ -21,7 +21,7 @@ endif
 if exists("&breakindent")
   set breakindent showbreak=+++
 elseif has("gui_running")
-  set showbreak=\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +++
+  set showbreak=⤥
 endif
 set cmdheight=1
 set complete-=i     " Searching includes can be slow
@@ -660,3 +660,16 @@ function! Find(pattern)
   exe "cw"
 endfunction
 command! -nargs=1 Find :call Find(<q-args>)
+
+
+
+function! Notes()
+  exe "e ~/Notes/"
+endfunction
+command! -nargs=0 Notes :call Notes()
+
+function! Note(name)
+  exe "e ~/Notes/".a:name."*"
+endfunction
+command! -nargs=1 Note :call Note(<q-args>)
+

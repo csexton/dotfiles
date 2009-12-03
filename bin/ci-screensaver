@@ -1,0 +1,2 @@
+#!/bin/sh
+ scp "$1" continuousintegration@ci-mini.local:Pictures/Screensaver/
