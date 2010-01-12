@@ -2,4 +2,4 @@
 au BufNewFile,BufRead *.mkd,*.markdown set filetype=mkd
 
 au BufNewFile,BufRead *.mkd,*.markdown set filetype=mkd
-au BufNewFile,BufRead *.mkd,*.markdown set wrap=off
+"au BufNewFile,BufRead *.mkd,*.markdown set wrap=off
