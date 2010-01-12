@@ -38,13 +38,16 @@ function Note()
         echo "You must specify a name, yo."
     endif
 endfunction
-command! -nargs=? -range=% NotesPost :call NotesPost()
+command! -nargs=? -range=% Note :call Note()
 
 function Notes()
     exe "e " . g:notes_path
 endfunction
-command! -nargs=? -range=% NotesList :call NotesList()
+command! -nargs=? -range=% Notes :call Notes()
 let &cpo = s:cpo_save
 " }}}1
+
+map <Leader>nn  :Note<CR>
+map <Leader>nl  :Notes<CR>
 
 " vim:set ft=vim ts=8 sw=4 sts=4:
