@@ -661,18 +661,6 @@ function! Find(pattern)
 endfunction
 command! -nargs=1 Find :call Find(<q-args>)
 
-
-
-function! Notes()
-  exe "e ~/Notes/"
-endfunction
-command! -nargs=0 Notes :call Notes()
-
-function! Note(name)
-  exe "e ~/Notes/".a:name."*"
-endfunction
-command! -nargs=1 Note :call Note(<q-args>)
-
 let g:jekyll_path = "/Users/csexton/src/personal/csexton.github.com"
 map <Leader>jn  :JekyllPost<CR>
 map <Leader>jl  :JekyllList<CR>
