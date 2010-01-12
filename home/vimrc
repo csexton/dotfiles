@@ -673,3 +673,6 @@ function! Note(name)
 endfunction
 command! -nargs=1 Note :call Note(<q-args>)
 
+let g:jekyll_path = "/Users/csexton/src/personal/csexton.github.com"
+map <Leader>p  :JekyllPost<CR>
+map <Leader>j  :JekyllList<CR>
