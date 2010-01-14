@@ -48,7 +48,7 @@ else
   set lazyredraw
 endif
 "let &listchars="tab:\<M-;>\<M-7>,trail:\<M-7>"
-set listchars=tab:>\ ,trail:-
+set listchars=tab:⇥\ ,trail:-
 set listchars+=extends:>,precedes:<
 if version >= 700
   set listchars+=nbsp:+
@@ -540,7 +540,7 @@ if has("autocmd")
   augroup FTOptions " {{{2
     autocmd!
     autocmd BufNewFile,BufRead *.kml        setlocal ts=2 noet
-    autocmd FileType c,cpp,cs,java          setlocal ai et sta sw=4 sts=4 cin
+    autocmd FileType c,cpp,cs,java          setlocal ai et sta sw=4 sts=4 cin noexpandtab tabstop=4 shiftwidth=4
     autocmd FileType sh,csh,tcsh,zsh        setlocal ai et sta sw=4 sts=4
     autocmd FileType tcl,perl,python        setlocal ai et sta sw=4 sts=4
     autocmd FileType javascript             setlocal ai et sta sw=4 sts=4 cin isk+=$
