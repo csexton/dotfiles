@@ -61,7 +61,7 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight Search        guifg=Black ctermfg=Black guibg=Yellow1 ctermbg=Yellow
   highlight SignColumn    guifg=#AAAA77 guibg=#111111 ctermfg=Yellow ctermbg=Black
   highlight Special       guifg=#33AA00 ctermfg=Green
-  highlight SpecialKey    guifg=#404040 ctermfg=DarkGrey
+  highlight SpecialKey    guifg=#202020 ctermfg=DarkGrey
   highlight SpellBad      cterm=underline ctermbg=none ctermfg=Red
   highlight Statement     guifg=#FF6600 gui=none ctermfg=214 cterm=none
   highlight StatusLine    guibg=#111111 guifg=White gui=italic ctermfg=231 ctermbg=235 cterm=none
