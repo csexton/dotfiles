@@ -636,7 +636,7 @@ if (&t_Co > 2 || has("gui_running")) && has("syntax")
     autocmd GUIEnter *  set background=dark title icon cmdheight=1 lines=50 columns=150
     autocmd GUIEnter *  if has("diff") && &diff | set columns=165 | endif
     autocmd GUIEnter *  call s:initialize_font()
-    autocmd VimEnter *  colorscheme ristoink
+    "autocmd VimEnter *  colorscheme ristoink
     autocmd Syntax css  syn sync minlines=50
     autocmd Syntax csh  hi link cshBckQuote Special | hi link cshExtVar PreProc | hi link cshSubst PreProc | hi link cshSetVariables Identifier
   augroup END
