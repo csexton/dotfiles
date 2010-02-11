@@ -15,6 +15,10 @@ if (exists("g:loaded_ztemplate") && g:loaded_ztemplate) || &cp
 endif
 let g:loaded_ztemplate = 1
 
+if !exists('templates_dir')
+  let templates_dir = substitute(globpath(&rtp, 'templates/'), "\n", ',', 'g')
+endif
+
 augroup ZTemplate$$
   autocmd!
   autocmd BufNewFile * call s:LoadFilename(expand("<amatch>"))
@@ -110,10 +114,8 @@ function s:author()
 endfunction
 
 function! s:TemplateFind(filename)
-  if filereadable(expand("~/.vim/template/".a:filename))
-    return "~/.vim/template/".a:filename
-  elseif filereadable(expand("~/.vim/templates/".a:filename))
-    return "~/.vim/templates/".a:filename
+  if filereadable(expand(g:templates_dir.a:filename))
+    return g:templates_dir.a:filename
   else
     return ""
   endif
