@@ -90,7 +90,7 @@ else
   highlight Constant      ctermfg=Cyan        cterm=none
   highlight Cursor        ctermfg=Black       ctermbg=White
   highlight CursorColumn  ctermbg=DarkBlue
-  highlight CursorLine    ctermbg=DarkBlue
+  highlight CursorLine    ctermbg=DarkBlue cterm=none
   highlight Directory     none
   highlight ErrorMsg      ctermfg=NONE        ctermbg=Red
   highlight FoldColumn    none
