@@ -33,6 +33,12 @@ def linux?
   RUBY_PLATFORM =~ /linux/i
 end
 
+desc "Update submodules"
+task :submodules do
+  `git submodule init`
+  `git submodule update`
+end
+
 desc "create simlinks to the files in the user's home dir"
 task :home do
   puts_blue "linking files"
