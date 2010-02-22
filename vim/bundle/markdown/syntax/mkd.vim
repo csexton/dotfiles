@@ -81,6 +81,10 @@ syn region htmlH6       start="^\s*######"              end="\($\|#\+\)" contain
 syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
+" jekyll
+"syn region jekyllYamlFrontmatter start=/\%^---$/ end=/^---$/ contains=@Spell
+"HtmlHiLink jekyllYamlFrontmatter Comment
+
 "highlighting for Markdown groups
 HtmlHiLink mkdString	    String
 HtmlHiLink mkdCode          String
