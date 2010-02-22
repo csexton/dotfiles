@@ -430,9 +430,6 @@ noremap  <S-Insert> <MiddleMouse>
 noremap! <S-Insert> <MiddleMouse>
 
 map \\              <Plug>NERDCommenterInvert
-map <Leader>l       <Plug>CapsLockToggle
-imap <C-L>          <Plug>CapsLockToggle
-imap <C-G>c         <Plug>CapsLockToggle
 nmap du             <Plug>SpeedDatingNowUTC
 nmap dx             <Plug>SpeedDatingNowLocal
 " Merge consecutive empty lines and clean up trailing whitespace
