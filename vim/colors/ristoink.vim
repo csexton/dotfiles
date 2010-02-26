@@ -190,6 +190,7 @@ high link projectFlags projectText
 high link projectFlagsEntry projectText
 high link projectFlagsValues projectText
 high link projectFlagsError projectError
+high link markdownCodeBlock String
 
 if !has("gui_mac")
   " Mac GUI degrades italics to ugly underlining.

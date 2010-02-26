@@ -531,7 +531,6 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.txt,README,INSTALL,NEWS,TODO if &ft == ""|set ft=text|endif
     autocmd BufNewFile,BufRead *.erb set ft=eruby
     autocmd BufNewFile,BufRead *.pl.erb let b:eruby_subtype = 'perl'|set ft=eruby
-    autocmd BufNewFile,BufRead *.mkd,*.markdown set filetype=mkd
   augroup END " }}}2
   augroup FTOptions " {{{2
     autocmd!
