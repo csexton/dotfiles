@@ -4,8 +4,10 @@ Chris's Dot Files
 To install download or clone the project to where you would like to store it.  I keep things in ~/.dotfiles, for fun.
 
 <pre>
-git clone git://github.com/csexton/dotfiles.git ~/.dotfiles
+git clone http://github.com/csexton/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+git submodule init
+git submodule update
 rake symlink
 </pre>
 
