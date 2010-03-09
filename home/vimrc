@@ -537,7 +537,8 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.kml        setlocal ts=2 noet
     autocmd FileType c,cpp,cs,java          setlocal ai et sta sw=4 sts=4 cin noexpandtab tabstop=4 shiftwidth=4
     autocmd FileType sh,csh,tcsh,zsh        setlocal ai et sta sw=4 sts=4
-    autocmd FileType tcl,perl,python        setlocal ai et sta sw=4 sts=4
+    autocmd FileType tcl,perl               setlocal ai et sta sw=4 sts=4
+    autocmd FileType python                 setlocal ai et sta sw=4 sts=4 noexpandtab
     autocmd FileType javascript             setlocal ai et sta sw=4 sts=4 cin isk+=$
     autocmd FileType php,aspperl,aspvbs,vb  setlocal ai et sta sw=4 sts=4
     autocmd FileType apache,sql,vbnet       setlocal ai et sta sw=4 sts=4
