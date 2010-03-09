@@ -69,13 +69,13 @@ hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 
 ##    Keybindings    ##
-bindkey -k k7 detach
-bindkey -k k8 kill
+#bindkey -k k7 detach
+#bindkey -k k8 kill
 # space in keyboard
 #bindkey -k k; screen
-bindkey -k k9 title
-bindkey -k F1 prev
-bindkey -k F2 next
+#bindkey -k k9 title
+#bindkey -k F1 prev
+#bindkey -k F2 next
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 
