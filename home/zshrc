@@ -27,7 +27,7 @@ bindtc ()
 
 findin ()
 {
-  find . | grep -v .git | grep -v .svn | grep -v "\/log\/" | xargs grep $1
+  find . | grep -v .git | grep -v .svn | grep -v "\/log\/" | xargs grep -n $1
 }
 
 # Let backtab cycle through completions in reverse
