@@ -21,8 +21,13 @@ bindkey "^[[3~" delete-char
 # usage: bindtc <cap> <fallback> <zsh-command>
 bindtc () 
 {
-	local keyval=$(echotc "$1" 2>&-)
-	bindkey "${keyval:-$2}" "$3"
+  local keyval=$(echotc "$1" 2>&-)
+  bindkey "${keyval:-$2}" "$3"
+}
+
+findin ()
+{
+  find . | grep -v .git | grep -v .svn | grep -v "\/log\/" | xargs grep $1
 }
 
 # Let backtab cycle through completions in reverse
