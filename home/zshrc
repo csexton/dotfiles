@@ -45,5 +45,15 @@ bindtc kd "^[[B" down-line-or-history
 bindtc kr "^[[C" forward-char
 bindtc kl "^[[D" backward-char
 
+# Emacs style for vi mode
+#set -o vi
+#bindkey -v # vi mode line editting
+#bindkey '^A' beginning-of-line
+#bindkey '^E' end-of-line
+#bindkey '^K' kill-line
+#bindkey '^U' kill-whole-line
+#bindkey -M viins '^O' copy-prev-shell-word
+#bindkey '^L' push-line # push current command into a buffer, allows you to do another command then returns to previous command
+
 # Ruby Version Manager path mangling
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi

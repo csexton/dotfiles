@@ -3,35 +3,36 @@
 
 . .profile
 ## Completion Scripts
-# port install bash-completion
+# Mac ports
 if [ -f /opt/local/etc/bash_completion ]; then
 . /opt/local/etc/bash_completion
 fi
 
-if which git-completion.bash >/dev/null; then
-. git-completion.bash
+#if which git-completion.bash >/dev/null; then
+#. git-completion.bash
+#fi
+
+# Ubuntu
+if [ -f /etc/bash_completion ]; then
+. /etc/bash_completion
 fi
 
-#if [ -f /opt/local/etc/bash_completion.d/git ]; then
-#. /opt/local/etc/bash_completion.d/git
-#fi
-
-#if [ -f /opt/local/etc/bash_completion.d/subversion ]; then
-#. /opt/local/etc/bash_completion.d/subversion
-#fi
+# Installed from src
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
+    . /usr/local/git/contrib/completion/git-completion.bas
+fi
 
 scm_ps1() {
     local s=
     if [[ -d ".svn" ]] ; then
         s=\(svn\)
     else
-	if which git-completion.bash >/dev/null; then # Only show if compleation is there
-          s=$(__git_ps1 "(git:%s)")
+        if [[ $(declare -f __git_ps1) ]]; then # Only show if completionompleation is there
+            s=$(__git_ps1 "(git:%s)")
         fi
     fi
     echo -n "$s"
 }
+
 export PS1="\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h:\[\033[01;34m\]\w \[\033[31m\]\$(scm_ps1)\[\033[00m\]$\[\033[00m\] "
 
-#export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007"'
-export PROMPT_COMMAND='echo -ne "\033]0;bash\007"'
