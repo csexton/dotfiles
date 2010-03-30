@@ -442,9 +442,9 @@ inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M
 vnoremap < <gv
 vnoremap > >gv
 
-if has("ruby")
-  map <leader>t :FuzzyFinderTextMate<CR>
-endif
+"if has("ruby")
+"  map <leader>t :FuzzyFinderTextMate<CR>
+"endif
 " Section: Autocommands {{{1
 " --------------------------
 
