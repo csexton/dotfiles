@@ -1,17 +1,20 @@
-Chris's Dot Files
-=================
+** I am easily satisfied with the very best.** --Winston Churchill
+
+# Chris's Dot Files
 
 To install download or clone the project to where you would like to store it.  I keep things in ~/.dotfiles, for fun.
 
-<pre>
-git clone http://github.com/csexton/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-git submodule init
-git submodule update
-rake symlink
-</pre>
+    git clone http://github.com/csexton/dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles
+    git submodule init
+    git submodule update
+    rake home
 
-My vim configuration
---------------------
+# Vim configuration
 
-While the rc files are pretty haphazard, I have actually spent some time on the vim files.  I don't keep anything in my .vimrc file, instead I use a plugin/risto.vim file that fills that role. Normally I just touch .vimrc and leave it be.  The only exception is if I need something specific to a machine.
+Everything should be ready to go except for the [command-t](http://github.com/wincent/Command-T) plugin, if you want that to work you will have to build the C extension.
+
+    cd ~/.dotfiles/vim/bundle/command-t/ruby/command-t
+    ruby extconf.rb && make
+    make install
+
