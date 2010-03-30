@@ -95,9 +95,9 @@ else
   highlight ErrorMsg      ctermfg=NONE        ctermbg=Red
   highlight FoldColumn    none
   highlight Folded        ctermfg=DarkGrey    ctermbg=Black
-  highlight Identifier    ctermfg=DarkYellow  cterm=none
+  highlight Identifier    ctermfg=Grey  cterm=none
   highlight IncSearch     ctermfg=White       ctermbg=Black
-  highlight Keyword       ctermfg=DarkYellow
+  highlight Keyword       ctermfg=Yellow
   highlight LineNr        ctermfg=DarkGrey    ctermbg=Black
   highlight MoreMsg       ctermfg=Green
   highlight NonText       ctermfg=DarkGrey
