@@ -74,7 +74,7 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight Type          guifg=#AAAA77 gui=none ctermfg=144
   highlight vertsplit     guibg=#111111 guifg=#AAAA77 gui=none ctermbg=235 ctermfg=235
   "highlight Visual        guibg=#050573 ctermbg=17 cterm=none
-  highlight Visual        guibg=#294134 ctermbg=17 cterm=none
+  highlight Visual        guibg=#294134 ctermbg=DarkBlue ctermfg=White cterm=none
   highlight VisualNOS     guifg=#444444 gui=none
   highlight WarningMsg    guifg=Red ctermfg=Red
   highlight WildMenu      guifg=Black guibg=#FFFF00 gui=bold ctermfg=Black ctermbg=Yellow cterm=none
@@ -123,7 +123,7 @@ else
   highlight Title         ctermfg=Magenta
   highlight Type          ctermfg=DarkYellow
   highlight vertsplit     ctermbg=Black       ctermfg=DarkGrey
-  highlight Visual        ctermbg=DarkBlue
+  highlight Visual        ctermbg=DarkBlue    ctermfg=White
   highlight VisualNOS     none
   highlight WarningMsg    ctermfg=Red
   highlight WildMenu      ctermfg=Black ctermbg=Yellow cterm=none
