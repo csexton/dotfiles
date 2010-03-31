@@ -15,6 +15,5 @@ To install download or clone the project to where you would like to store it.  I
 Everything should be ready to go except for the [command-t](http://github.com/wincent/Command-T) plugin, if you want that to work you will have to build the C extension.
 
     cd ~/.dotfiles/vim/bundle/command-t/ruby/command-t
-    ruby extconf.rb && make
-    make install
+    ruby extconf.rb && make && make install
 
