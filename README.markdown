@@ -6,8 +6,7 @@ To install download or clone the project to where you would like to store it.  I
 
     git clone http://github.com/csexton/dotfiles.git ~/.dotfiles
     cd ~/.dotfiles
-    git submodule init
-    git submodule update
+    rake submodules
     rake home
 
 # Vim configuration

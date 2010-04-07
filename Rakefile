@@ -33,10 +33,21 @@ def linux?
   RUBY_PLATFORM =~ /linux/i
 end
 
-desc "Update submodules"
-task :submodules do
-  `git submodule init`
-  `git submodule update`
+desc "Init and update submodules"
+task :submodule do
+  system "git submodule init"
+  system "git submodule update"
+end
+
+desc "Compile Command-T plugin for vim"
+task :"command-t" do
+  if File.exists? "vim/bundle/command-t"
+    if system "cd vim/bundle/command-t/ruby/command-t && ruby extconf.rb && make && make install"
+      puts_green "Command-T installed. You win!"
+    end
+  else
+    puts_red "Command T submodule not found, run `rake submodule` to fetch it"
+  end
 end
 
 desc "create simlinks to the files in the user's home dir"
