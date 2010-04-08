@@ -1,5 +1,6 @@
 vim/tmp/
 bin/p4
+bin/mate
 bin/nobu*
 vim/.VimballRecord
 bin/silly*
