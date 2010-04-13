@@ -19,7 +19,7 @@ fi
 
 # Installed from src
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
-    . /usr/local/git/contrib/completion/git-completion.bas
+    . /usr/local/git/contrib/completion/git-completion.bash
 fi
 
 scm_ps1() {
