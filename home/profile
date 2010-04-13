@@ -14,7 +14,10 @@ case "$PLATFORM" in
   export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/usr/local/mysql/bin:$PATH"
   export PATH=/usr/local/git/libexec/git-core:$PATH
   export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
-  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+  if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
+  then
+    alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+  fi
   alias gvim="mvim"
   alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
