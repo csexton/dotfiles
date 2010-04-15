@@ -47,6 +47,7 @@ task :home do
   end
 
   symlink_home('vim', '.vim')
+  symlink_home('bin', 'bin')
 end
 
 desc "create simlinks to the xcode color scheme in the user's Library/Application Support"
