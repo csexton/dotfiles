@@ -11,7 +11,6 @@ if exists("syntax_on")
 endif
 
 let colors_name = "ristoink"
-"set t_Co=256 "Should I try to detect the terminal and set this better?
 
 if has("gui_running")
     set background=dark
@@ -30,6 +29,8 @@ else
         set t_Co=256
     elseif &term == "xterm"
         set t_Co=256
+    else
+        set t_Co=16
     end
 endif
 
@@ -66,16 +67,16 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight Statement     guifg=#FF6600 gui=none ctermfg=214 cterm=none
   highlight StatusLine    guibg=#111111 guifg=White gui=italic ctermfg=231 ctermbg=235 cterm=none
   highlight StatusLineNC  guibg=#111111 guifg=#AAAA77 gui=none ctermfg=235 ctermbg=144
-  highlight String        guifg=#66FF00 ctermfg=Green cterm=none
-  highlight TabLine       gui=underline guifg=#BBBBBB guibg=#333333 term=underline
-  highlight TabLineFill   gui=underline guifg=#BBBBBB guibg=#808080
+  highlight String        guifg=#66FF00 ctermfg=34 cterm=none
+  highlight TabLine       guifg=#BBBBBB guibg=#333333
+  highlight TabLineFill   guifg=#BBBBBB guibg=#808080
   highlight TabLineSel    guibg=Black guifg=White ctermfg=White ctermbg=Black
   highlight Title         guifg=Magenta ctermfg=Magenta
-  highlight Type          guifg=#AAAA77 gui=none ctermfg=144
+  highlight Type          guifg=#AAAA77 gui=none ctermfg=220
   highlight vertsplit     guibg=#111111 guifg=#AAAA77 gui=none ctermbg=235 ctermfg=235
   "highlight Visual        guibg=#050573 ctermbg=17 cterm=none
-  highlight Visual        guibg=#294134 ctermbg=17 cterm=none
-  highlight VisualNOS     guifg=#444444 gui=none
+  highlight Visual        guibg=#294134 ctermbg=DarkBlue ctermfg=White cterm=none
+  highlight VisualNOS     guifg=#444444 gui=none term=none
   highlight WarningMsg    guifg=Red ctermfg=Red
   highlight WildMenu      guifg=Black guibg=#FFFF00 gui=bold ctermfg=Black ctermbg=Yellow cterm=none
 
@@ -95,9 +96,9 @@ else
   highlight ErrorMsg      ctermfg=NONE        ctermbg=Red
   highlight FoldColumn    none
   highlight Folded        ctermfg=DarkGrey    ctermbg=Black
-  highlight Identifier    ctermfg=DarkYellow  cterm=none
+  highlight Identifier    ctermfg=Grey  cterm=none
   highlight IncSearch     ctermfg=White       ctermbg=Black
-  highlight Keyword       ctermfg=DarkYellow
+  highlight Keyword       ctermfg=Yellow
   highlight LineNr        ctermfg=DarkGrey    ctermbg=Black
   highlight MoreMsg       ctermfg=Green
   highlight NonText       ctermfg=DarkGrey
@@ -117,13 +118,12 @@ else
   highlight StatusLine    ctermfg=DarkGrey    ctermbg=Black     cterm=none
   highlight StatusLineNC  ctermfg=Grey        ctermbg=DarkGrey
   highlight String        ctermfg=LightGreen                    cterm=none
-  highlight TabLine       term=underline
   highlight TabLineFill   none
   highlight TabLineSel    ctermfg=White       ctermbg=Black
   highlight Title         ctermfg=Magenta
-  highlight Type          ctermfg=DarkYellow
+  highlight Type          ctermfg=Yellow
   highlight vertsplit     ctermbg=Black       ctermfg=DarkGrey
-  highlight Visual        ctermbg=DarkBlue
+  highlight Visual        ctermbg=DarkBlue    ctermfg=White
   highlight VisualNOS     none
   highlight WarningMsg    ctermfg=Red
   highlight WildMenu      ctermfg=Black ctermbg=Yellow cterm=none
