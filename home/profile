@@ -12,7 +12,7 @@ PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
   export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/usr/local/mysql/bin:$PATH"
-  export PATH=/usr/local/git/libexec/git-core:$PATH
+  export PATH=$HOME/bin:/usr/local/git/libexec/git-core:$PATH
   export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
   alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
   alias gvim="mvim"
