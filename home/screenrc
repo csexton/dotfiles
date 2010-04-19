@@ -1,81 +1,16 @@
-# vim: syntax=screen
-#shell -$SHELL
-#shell -/bin/bash
-startup_message off
-#escape ``
-escape ^\\
-hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
-#msgwait 1
-#bindkey -d -k kb stuff "\010"
-
-# hardstatus alwayslastline "%w"
-# hardstatus alwayslastline "%?%F%{.R.}%?%3n %t%? [%h]%?"
-# hardstatus  on
-# hardstatus alwayslastline
-
-
-### Created by Brad Sims <tanfj@yahoo.com> 25/06/2004
-
-### I got tired of .screenrc's on the internet being so
-### poorly commented... So being a good GNUbie I took matters
-### into my own hands; and wrote this dotfile.
-
-##    Explanation of hardstatus line    ##
-
-# Ignore the ' marks if you use these examples for yourself
-
-# Note that if you want to use the color brown under konsole
-# You actually use bright yellow (%{Y}).
-
-# Note the embeded space after the colon, I feel
-#  it just looks nicer with a blank between the
-#  text and console edge:
-#   '%{=b}%{G} Screens: '
-
-# This prints the window listing in blue:
-#   '%{b}%w'
-
-# This right-aligns what follows:
-#   '%='
-
-# This displays the time (hours and minutes) in 12hr format
-# and adds an AM/PM flag, in bold green:
-#   '%{G}%C%A'
-
-# This displays the day of the week:
-#   '%D'
-
-#This displays the date in Mon/day/year format:
-# and again I embeded a space to give me one space
-# between the text and console edge:
-#  '%M/%d/%Y '
-
-# The resultsing command give you a status line that
-#  looks like this:
-#   | Screens: 0* bash  <blanks zapped>         5:30PM  Fri, Jun/25/2004 |
-#  (The pipes indicate the edges of the xterm/console).
-
-# Green text, time, and date; windows in blue:
-
-# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
-
-##    Some general options    ##
-
-# Turn off start message:
-#startup_message off
-
-# Set messages timeout to one second:
-
-# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
-
-##    Keybindings    ##
-#bindkey -k k7 detach
-#bindkey -k k8 kill
-# space in keyboard
-#bindkey -k k; screen
-#bindkey -k k9 title
-#bindkey -k F1 prev
-#bindkey -k F2 next
-
-# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
-
+setenv                    LC_CTYPE en_US.UTF-8
+# screenrc
+escape                    ^\\
+shell                     zsh
+defutf8                   on
+autodetach                on
+crlf                      off
+hardcopy_append           on
+startup_message           off
+vbell                     off
+defscrollback             10000
+silencewait               15
+hardstatus                off
+activity                  "%c activity -> %n%f %t"
+bell                      "%c bell -> %n%f %t^G"
+hardstatus alwayslastline "%{=b Kk}screen: %{=b Kk}%w "
