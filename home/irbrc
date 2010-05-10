@@ -1,29 +1,39 @@
-require 'rubygems'
-require 'wirble'
-Wirble.init
-Wirble.colorize
-
-def hirb
-  require 'hirb'
-  Hirb.enable
-  "Hirb enabled!"
-end
-
-class Integer
-  def to_binary_s
-    bits = self.to_s(2)
-    prepend = (8 - bits.length % 8)
-    bits = ('0' * prepend) + bits
-    return [bits].pack('B*')
+%w|rubygems ap wirble hirb|.each do|lib|
+  begin
+    require lib
+  rescue LoadError => err
+    warn "Couldn't load an irb gem: #{err}"
   end
 end
-class String
-  def read_hex_s
-    self.gsub(" ", "").hex.to_binary_s
-  end
 
-  def to_hex_s
-    self.unpack("H*")[0]
+begin
+  # wirble (colors)
+  Wirble.init
+  Wirble.colorize
+
+  # hirb (active record)
+  Hirb::View.enable
+
+  # IRB Options
+  IRB.conf[:AUTO_INDENT] = true
+
+  class Integer
+    def to_binary_s
+      bits = self.to_s(2)
+      prepend = (8 - bits.length % 8)
+      bits = ('0' * prepend) + bits
+      return [bits].pack('B*')
+    end
   end
+  class String
+    def read_hex_s
+      self.gsub(" ", "").hex.to_binary_s
+    end
+
+    def to_hex_s
+      self.unpack("H*")[0]
+    end
+  end
+rescue
 end
 
