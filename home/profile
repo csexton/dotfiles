@@ -11,9 +11,8 @@ export P4CONFIG=".p4config"
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
-  export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/usr/local/mysql/bin:$PATH"
-  export PATH=$HOME/bin:/usr/local/git/libexec/git-core:$PATH
-  export MANPATH=/opt/local/share/man:/usr/local/share/man:$MANPATH
+  export PATH=$HOME/bin:$PATH
+  export MANPATH=/usr/local/share/man:$MANPATH
   if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
   then
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
@@ -21,10 +20,7 @@ case "$PLATFORM" in
   alias gvim="mvim"
   alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
-  alias yay="growlnotify -m Yay!"
-  alias boo="growlnotify -m Boo!"
   alias xcode="open *.xcodeproj"
-  #export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
   echo "Dotfiles Engage!"
 ;;
 "Linux")
