@@ -12,6 +12,7 @@
         co = checkout
         st = status
         lol = log --pretty=oneline --abbrev-commit --graph --decorate
+        sup = submodule update
         input = read name && echo $name
 [apply]
         whitespace = strip
@@ -21,3 +22,5 @@
         summary = true
 [push]
         default = matching
+[diff "ruby"]
+	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
