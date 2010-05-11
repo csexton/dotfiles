@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require "fileutils"
+include FileUtils
+FileUtils.chdir("#{ENV['HOME']}/.dotfiles") do
+  %x[git pull]
+  %x[git submodule init]
+  %x[git submodule update]
+end
+puts "For new hewtness please restart your shell. Oven mitts recommended."
