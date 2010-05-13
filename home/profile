@@ -21,7 +21,7 @@ case "$PLATFORM" in
   alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
   alias xcode="open *.xcodeproj"
-  echo "Dotfiles Engage!"
+  echo -e "\e[00;31mDotfiles Engage!\e[00m"
 ;;
 "Linux")
   echo "Dotfiles Engage!"
