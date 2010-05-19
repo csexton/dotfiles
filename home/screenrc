@@ -10,7 +10,7 @@ startup_message           off
 vbell                     off
 defscrollback             10000
 silencewait               15
-hardstatus                off
+#hardstatus                off
 activity                  "%c activity -> %n%f %t"
 bell                      "%c bell -> %n%f %t^G"
-hardstatus alwayslastline "%{=b Kk}screen: %{=b Kk}%w "
+hardstatus alwayslastline "%{=b Kk}screen: %{= Kw}%-w%{=b kg}%n %t%{-}%+w %-="
