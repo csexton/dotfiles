@@ -6,7 +6,6 @@ export CLICOLOR=1
 export EDITOR="vim"
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
-alias screen='TERM=screen screen'
 export P4CONFIG=".p4config"
 
 PLATFORM=`uname -s`
