@@ -1,16 +1,33 @@
 setenv                    LC_CTYPE en_US.UTF-8
-# screenrc
+## screenrc
 escape                    ^\\
-shell                     zsh
-defutf8                   on
-autodetach                on
-crlf                      off
-hardcopy_append           on
-startup_message           off
-vbell                     off
-defscrollback             10000
-silencewait               15
-#hardstatus                off
-activity                  "%c activity -> %n%f %t"
-bell                      "%c bell -> %n%f %t^G"
-hardstatus alwayslastline "%{=b Kk}screen: %{= Kw}%-w%{=b kg}%n %t%{-}%+w %-="
+#shell                     zsh
+#defutf8                   on
+#autodetach                on
+#crlf                      off
+#hardcopy_append           on
+#startup_message           off
+#vbell                     off
+#defscrollback             10000
+#silencewait               15
+##hardstatus                off
+#activity                  "%c activity -> %n%f %t"
+#bell                      "%c bell -> %n%f %t^G"
+hardstatus alwayslastline
+hardstatus string "%{=b Kk}screen: %{= Kw}%-w%{=b kg}%n %t%{-}%+w %-="
+
+startup_message off
+vbell off
+msgwait 1
+defutf8 on
+#termcapinfo xterm* ti@:te@
+altscreen on
+attrcolor b ".I"
+defbce "on"
+defscrollback 10000
+##hardstatus alwayslastline
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d%{W}%c %{g}]'
+#attrcolor b ".I"
+#defbce "on"
+#termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+

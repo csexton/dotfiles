@@ -59,5 +59,9 @@ bindtc kl "^[[D" backward-char
 #bindkey -M viins '^O' copy-prev-shell-word
 #bindkey '^L' push-line # push current command into a buffer, allows you to do another command then returns to previous command
 
+
+function tree {
+  find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+}
 # Ruby Version Manager path mangling
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
