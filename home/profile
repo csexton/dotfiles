@@ -2,6 +2,7 @@
 # -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
+export CLICOLOR=1
 export EDITOR="vim"
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
