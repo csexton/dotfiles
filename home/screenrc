@@ -1,33 +1,27 @@
-setenv                    LC_CTYPE en_US.UTF-8
 ## screenrc
-escape                    ^\\
-#shell                     zsh
-#defutf8                   on
-#autodetach                on
-#crlf                      off
-#hardcopy_append           on
-#startup_message           off
-#vbell                     off
-#defscrollback             10000
-#silencewait               15
-##hardstatus                off
-#activity                  "%c activity -> %n%f %t"
-#bell                      "%c bell -> %n%f %t^G"
-hardstatus alwayslastline
-hardstatus string "%{=b Kk}screen: %{= Kw}%-w%{=b kg}%n %t%{-}%+w %-="
-
-startup_message off
-vbell off
-msgwait 1
-defutf8 on
-#termcapinfo xterm* ti@:te@
-altscreen on
-attrcolor b ".I"
-defbce "on"
+activity      "%c activity -> %n%f %t"
+#altscreen     on
+attrcolor     b ".I"
+autodetach    on
+bell          "%c bell -> %n%f %t^G"
+bind          b windowlist -b
+crlf          off
+defbce        "on"
 defscrollback 10000
-##hardstatus alwayslastline
-#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d%{W}%c %{g}]'
-#attrcolor b ".I"
-#defbce "on"
+defutf8       on
+escape        ^\\
+#hardstatus   alwayslastline
+#hardcopy_append           on
+#hardstatus   off
+#hardstatus   string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d%{W}%c %{g}]'
+hardstatus    alwayslastline
+hardstatus    string "%{=b kk}screen: %{= kw}%-w%{=b kg}%n %t%{-}%+w %-="
+msgwait       1
+setenv        LC_CTYPE en_US.UTF-8
+#shell        zsh
+#silencewait  15
+startup_message off
 #termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
-
+#termcapinfo xterm* 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
+vbell         off
+vbell_msg     "ouch"
