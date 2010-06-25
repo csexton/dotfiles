@@ -52,3 +52,6 @@
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = http://github.com/wincent/Command-T.git
+[submodule "vim/bundle/rvm"]
+	path = vim/bundle/rvm
+	url = git://github.com/csexton/rvm.vim.git
