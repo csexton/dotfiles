@@ -515,6 +515,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.tt,*.tt2         set ft=tt2html
     autocmd BufNewFile,BufRead *.pdf              set ft=pdf
     autocmd BufNewFile,BufRead *.CBL,*.COB,*.LIB  set ft=cobol
+    autocmd BufNewFile,BufRead *.json             set ft=javascript
     autocmd BufNewFile,BufRead /var/www/*
           \ let b:url=expand("<afile>:s?^/var/www/?http://localhost/?")
     autocmd BufNewFile,BufRead /etc/udev/*.rules set ft=udev
@@ -531,6 +532,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.txt,README,INSTALL,NEWS,TODO if &ft == ""|set ft=text|endif
     autocmd BufNewFile,BufRead *.erb set ft=eruby
     autocmd BufNewFile,BufRead *.pl.erb let b:eruby_subtype = 'perl'|set ft=eruby
+
   augroup END " }}}2
   augroup FTOptions " {{{2
     autocmd!
