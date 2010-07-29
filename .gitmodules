@@ -58,3 +58,6 @@
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = http://github.com/ervandew/supertab.git
+[submodule "vim/bundle/coffee-script"]
+	path = vim/bundle/coffee-script
+	url = http://github.com/kchmck/vim-coffee-script.git
