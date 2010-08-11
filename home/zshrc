@@ -32,7 +32,7 @@ bindtc ()
 
 findin ()
 {
-  find . | grep -v .git | grep -v .svn | grep -v "\/log\/" | xargs grep -n $1
+  find . 2>/dev/null |grep -v 'No such file or directory' | grep -v 'permission denied' | grep -v .git | grep -v .svn | grep -v "\/log\/" | xargs grep -n $1 2>/dev/null
 }
 
 # Let backtab cycle through completions in reverse
@@ -60,6 +60,8 @@ bindtc kl "^[[D" backward-char
 #bindkey -M viins '^O' copy-prev-shell-word
 #bindkey '^L' push-line # push current command into a buffer, allows you to do another command then returns to previous command
 
+
+export LESS="-r"
 
 function tree {
   find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
