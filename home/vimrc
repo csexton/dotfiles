@@ -544,7 +544,7 @@ if has("autocmd")
     autocmd FileType javascript             setlocal ai et sta sw=4 sts=4 cin isk+=$
     autocmd FileType php,aspperl,aspvbs,vb  setlocal ai et sta sw=4 sts=4
     autocmd FileType apache,sql,vbnet       setlocal ai et sta sw=4 sts=4
-    autocmd FileType tex,css                setlocal ai et sta sw=2 sts=2
+    autocmd FileType tex,css,scss           setlocal ai et sta sw=2 sts=2
     autocmd FileType html,xhtml,wml,cf      setlocal ai et sta sw=2 sts=2
     autocmd FileType xml,xsd,xslt           setlocal ai et sta sw=2 sts=2
     autocmd FileType eruby,yaml,ruby        setlocal ai et sta sw=2 sts=2
@@ -562,7 +562,7 @@ if has("autocmd")
     autocmd FileType bst  setlocal smartindent cinkeys-=0# ai sta sw=2 sts=2 comments=:% commentstring=%%s
     autocmd FileType cobol setlocal ai et sta sw=4 sts=4 tw=72 makeprg=cobc\ -x\ -Wall\ %
     autocmd FileType cs   silent! compiler cs | setlocal makeprg=gmcs\ %
-    autocmd FileType css  silent! setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType css,scss  silent! setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType gitcommit setlocal spell
     autocmd FileType gitrebase nnoremap <buffer> S :Cycle<CR>
     autocmd FileType haml let b:surround_45 = "- \r"|let b:surround_61 = "= \r"
