@@ -603,8 +603,10 @@ if (&t_Co > 2 || has("gui_running")) && has("syntax")
   function! s:initialize_font()
     if exists("&guifont")
       if has("mac")
-       set guifont=Envy\ Code\ R:h13,Monaco:h11
-       set noantialias
+       "set guifont=Monaco:h11
+       "set antialias
+       set guifont=Anonymous\ Pro:h14
+       set antialias
       elseif has("unix")
         if &guifont == ""
           set guifont=bitstream\ vera\ sans\ mono\ 11
@@ -634,7 +636,6 @@ if (&t_Co > 2 || has("gui_running")) && has("syntax")
     autocmd GUIEnter *  set background=dark title icon cmdheight=1 lines=50 columns=150
     autocmd GUIEnter *  if has("diff") && &diff | set columns=165 | endif
     autocmd GUIEnter *  call s:initialize_font()
-    "autocmd VimEnter *  colorscheme ristoink
     autocmd Syntax css  syn sync minlines=50
     autocmd Syntax csh  hi link cshBckQuote Special | hi link cshExtVar PreProc | hi link cshSubst PreProc | hi link cshSetVariables Identifier
   augroup END
@@ -658,6 +659,14 @@ function! Find(pattern)
   exe "cw"
 endfunction
 command! -nargs=1 Find :call Find(<q-args>)
+
+function! Preso()
+  set background=light
+  colorscheme pyte
+  set guifont=Monaco:h24
+  set antialias
+endfunction
+command! Preso :call Preso()
 
 let g:jekyll_path = "/Users/csexton/src/personal/csexton.github.com"
 map <Leader>jn  :JekyllPost<CR>
