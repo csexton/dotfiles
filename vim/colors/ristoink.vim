@@ -45,7 +45,7 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight Directory     none
   highlight ErrorMsg      guifg=Red guibg=Black ctermfg=Red ctermbg=Black
   highlight FoldColumn    none
-  highlight Folded        guifg=#AAAA77 guibg=#111111 ctermfg=DarkGrey ctermbg=Black
+  highlight Folded        guifg=DarkGrey guibg=#1a1a1a ctermfg=DarkGrey ctermbg=Black
   highlight Identifier    guifg=#FFCC00 ctermfg=202 cterm=none
   highlight IncSearch     guifg=White guibg=Black ctermfg=White ctermbg=Yellow
   highlight Keyword       guifg=#FF6600 ctermfg=202
@@ -65,8 +65,8 @@ if ((&t_Co == 256) || has("gui_running"))
   highlight SpecialKey    guifg=#202020 ctermfg=DarkGrey
   highlight SpellBad      cterm=underline ctermbg=none ctermfg=Red
   highlight Statement     guifg=#FF6600 gui=none ctermfg=214 cterm=none
-  highlight StatusLine    guibg=#111111 guifg=White gui=italic ctermfg=231 ctermbg=235 cterm=none
-  highlight StatusLineNC  guibg=#111111 guifg=#AAAA77 gui=none ctermfg=235 ctermbg=144
+  highlight StatusLine    guibg=#111111 guifg=#216f00 gui=italic ctermfg=231 ctermbg=235 cterm=none
+  highlight StatusLineNC  guibg=#111111 guifg=#444444 gui=none ctermfg=235 ctermbg=144
   highlight String        guifg=#66FF00 ctermfg=34 cterm=none
   highlight TabLine       guifg=#BBBBBB guibg=#333333
   highlight TabLineFill   guifg=#BBBBBB guibg=#808080
