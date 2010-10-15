@@ -85,3 +85,14 @@ task :zsh do
   end
 
 end
+
+desc "Update all bundles"
+task :updatebundle do
+  dir = File.dirname(__FILE__)
+  Dir["vim/bundle/*"].each do |n|
+    puts "Updating #{n}"
+    `cd #{n};git pull; cd #{dir}`
+  end
+
+end
+
