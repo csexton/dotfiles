@@ -668,6 +668,6 @@ function! Preso()
 endfunction
 command! Preso :call Preso()
 
-let g:jekyll_path = "/Users/csexton/src/personal/csexton.github.com"
+let g:jekyll_path = "/Users/csexton/src/codeography.com"
 map <Leader>jn  :JekyllPost<CR>
 map <Leader>jl  :JekyllList<CR>
