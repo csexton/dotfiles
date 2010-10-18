@@ -77,6 +77,11 @@ filetype plugin indent on
 augroup settings
   autocmd!
 
+  " Restore cursor position
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" | endif
+
+
   autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
         \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 

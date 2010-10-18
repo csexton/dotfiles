@@ -1,4 +1,4 @@
-%w|rubygems ap wirble hirb|.each do|lib|
+%w|rubygems ap wirble hirb interactive_editor|.each do|lib|
   begin
     require lib
   rescue LoadError => err
