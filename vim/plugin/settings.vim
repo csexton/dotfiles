@@ -78,7 +78,7 @@ augroup settings
   autocmd!
 
   " Restore cursor position
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
+  autocmd BufReadPost *.rb if line("'\"") > 1 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" | endif
 
 

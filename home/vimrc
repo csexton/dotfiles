@@ -20,10 +20,11 @@ set incsearch       " Incremental search
 set joinspaces
 set laststatus=2    " Always show status line
 set list            " show trailing whiteshace and tabs
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:+    " ,eol:¬
 set modelines=5     " Debian likes to disable this
 set mousemodel=popup
 set pastetoggle=<F2>
+"set relativenumber
 set scrolloff=1     " Minimal number of screen lines to keep above and below the cursor.
 set showcmd         " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
@@ -46,7 +47,9 @@ syntax on
 filetype plugin indent on
 
 """ Mappings
-map Y       y$
+nnoremap          j gj
+nnoremap          k gk
+map               Y y$
 nnoremap <silent> <C-L> :nohls<CR><C-L>
 inoremap          <C-C> <Esc>`^
 cnoremap          <C-O> <Up>
@@ -70,7 +73,6 @@ cnoremap          <C-F> <Right>
 " Enable TAB indent and SHIFT-TAB unindent
 vnoremap <silent> <TAB> >gv
 vnoremap <silent> <S-TAB> <gv
-
 
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
