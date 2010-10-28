@@ -1,19 +1,11 @@
-%w|rubygems ap wirble hirb interactive_editor|.each do|lib|
+%w|rubygems irbtools irbtools/more|.each do|lib|
   begin
     require lib
   rescue LoadError => err
     warn "Couldn't load an irb gem: #{err}"
   end
 end
-
 begin
-  # wirble (colors)
-  Wirble.init
-  Wirble.colorize
-
-  # hirb (active record)
-  Hirb::View.enable
-
   # IRB Options
   IRB.conf[:AUTO_INDENT] = true
 
@@ -35,5 +27,5 @@ begin
     end
   end
 rescue
+  warn "Your .irbrc is sad"
 end
-
