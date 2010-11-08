@@ -1,0 +1,5 @@
+--type-set=rails=.rb,.css,.erb,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.spec,.xml,.rxml,.yml
+--type-set=scala=.scala
+--color-match=green
+--color-lineno=yellow
+--color-filename=yellow
