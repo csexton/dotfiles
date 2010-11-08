@@ -46,6 +46,9 @@ let g:jekyll_path = "/Users/csexton/src/codeography.com"
 map <Leader>jn  :JekyllPost<CR>
 map <Leader>jl  :JekyllList<CR>
 
+
+map <Leader>w  :set nowrap!<CR>
+
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>
 
@@ -85,6 +88,7 @@ augroup settings
   autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
         \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
+  autocmd BufNewFile,BufRead *.md               set ft=markdown
   autocmd BufNewFile,BufRead *.haml             set ft=haml
   autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
   autocmd BufRead * if ! did_filetype() && getline(1)." ".getline(2).
@@ -126,4 +130,4 @@ endfunction
 command! Preso :call Preso()
 
 colorscheme ristoink
-autocmd GuiEnter * set guifont=Anonymous\ Pro:h14,Monaco:h11,Consolas:h11
+autocmd GuiEnter * set guifont=Anonymous\ Pro:h16,Monaco:h16

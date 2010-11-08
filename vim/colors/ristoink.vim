@@ -116,7 +116,7 @@ else
   highlight SpellBad      ctermbg=none        ctermfg=Red       cterm=underline
   highlight Statement     ctermfg=Yellow      cterm=none
   highlight StatusLine    ctermfg=Green         ctermbg=Black     cterm=none
-  highlight StatusLineNC  ctermfg=Grey        ctermbg=DarkGrey
+  highlight StatusLineNC  ctermfg=Grey        ctermbg=Black
   highlight String        ctermfg=LightGreen                    cterm=none
   highlight TabLineFill   none
   highlight TabLineSel    ctermfg=White       ctermbg=Black
