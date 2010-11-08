@@ -139,3 +139,6 @@
 [submodule "irblack"]
 	path = irblack
 	url = http://github.com/wgibbs/vim-irblack.git
+[submodule "vim/bundle/ack"]
+	path = vim/bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
