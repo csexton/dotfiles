@@ -15,6 +15,7 @@ set gdefault        " When on, the ":substitute" flag 'g' is default on.
 set guioptions-=T
 set guioptions-=T   " Get rid of toolbar
 set hidden          " Allow dirty unsaved buffers
+set hlsearch        " Highlight searches
 set ignorecase      " Ignore case in searches.
 set incsearch       " Incremental search
 set joinspaces
