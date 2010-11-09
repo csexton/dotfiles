@@ -90,8 +90,8 @@ else
   highlight Comment       ctermfg=DarkMagenta
   highlight Constant      ctermfg=Cyan        cterm=none
   highlight Cursor        ctermfg=Black       ctermbg=White
-  highlight CursorColumn  ctermbg=DarkBlue
-  highlight CursorLine    ctermbg=DarkBlue cterm=none
+  highlight CursorColumn  ctermfg=Black ctermbg=5
+  highlight CursorLine    ctermfg=Black ctermbg=5  cterm=none
   highlight Directory     none
   highlight ErrorMsg      ctermfg=NONE        ctermbg=Red
   highlight FoldColumn    none
@@ -102,28 +102,28 @@ else
   highlight LineNr        ctermfg=DarkGrey    ctermbg=Black
   highlight MoreMsg       ctermfg=Green
   highlight NonText       ctermfg=DarkGrey
-  highlight Pmenu         ctermfg=White       ctermbg=DarkBlue cterm=none
-  highlight PmenuSbar     ctermbg=Grey
-  highlight PmenuSel      ctermfg=White       ctermbg=Blue     cterm=none
+  highlight Pmenu         ctermfg=White       ctermbg=13 cterm=none
+  highlight PmenuSbar     ctermfg=Black ctermbg=Grey
+  highlight PmenuSel      ctermfg=White       ctermbg=5 cterm=none 
   highlight PmenuThumb    ctermbg=Blue
   highlight PreProc       ctermfg=DarkCyan    cterm=none
   highlight Question      ctermfg=Red
   highlight Regexp        ctermfg=Cyan
-  highlight Search        ctermfg=NONE        ctermbg=Yellow
+  highlight Search        ctermfg=Black        ctermbg=Yellow
   highlight SignColumn    ctermfg=Yellow      ctermbg=Black
   highlight Special       ctermfg=Green
   highlight SpecialKey    ctermfg=DarkGrey
   highlight SpellBad      ctermbg=none        ctermfg=Red       cterm=underline
-  highlight Statement     ctermfg=Yellow      cterm=none
-  highlight StatusLine    ctermfg=Green         ctermbg=Black     cterm=none
-  highlight StatusLineNC  ctermfg=Grey        ctermbg=Black
+  highlight Statement     ctermfg=DarkRed         cterm=none
+  highlight StatusLine    ctermfg=White ctermbg=DarkGrey cterm=none
+  highlight StatusLineNC  ctermbg=DarkGrey ctermfg=Black cterm=none
   highlight String        ctermfg=LightGreen                    cterm=none
   highlight TabLineFill   none
   highlight TabLineSel    ctermfg=White       ctermbg=Black
   highlight Title         ctermfg=Magenta
   highlight Type          ctermfg=Yellow
-  highlight vertsplit     ctermbg=Black       ctermfg=DarkGrey
-  highlight Visual        ctermbg=DarkBlue    ctermfg=White
+  highlight VertSplit     ctermbg=DarkGrey ctermfg=Black cterm=none
+  highlight Visual        ctermbg=Blue    ctermfg=White
   highlight VisualNOS     none
   highlight WarningMsg    ctermfg=Red
   highlight WildMenu      ctermfg=Black ctermbg=Yellow cterm=none
