@@ -3,3 +3,4 @@
 --color-match=green
 --color-lineno=yellow
 --color-filename=yellow
+--smart-case
