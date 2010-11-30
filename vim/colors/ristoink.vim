@@ -82,7 +82,7 @@ if (has("gui_running"))
   highlight railsUserClass     guifg=#AAAAAA
   highlight rubyNumber         guifg=#CCFF33
   highlight railsUserMethod    guifg=#AACCFF
-  highlight railsMethod        guifg=#EE1122
+  highlight railsMethod        guifg=#FF5500                        gui=bold
 else
   " cterm 16
   highlight Comment            ctermfg=DarkMagenta
