@@ -122,7 +122,7 @@ else
   highlight Title              ctermfg=Magenta
   highlight Type               ctermfg=Yellow
   highlight VertSplit          ctermbg=DarkGrey    ctermfg=Black     cterm=none
-  highlight Visual             ctermbg=DarkGreen   ctermfg=White
+  highlight Visual             ctermbg=DarkGreen   ctermfg=White     cterm=none
   highlight VisualNOS          none
   highlight WarningMsg         ctermfg=Red
   highlight WildMenu           ctermfg=Black       ctermbg=Yellow    cterm=none
