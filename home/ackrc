@@ -1,6 +1,7 @@
---type-set=rails=.rb,.css,.erb,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.spec,.xml,.rxml,.yml
+--type-set=rails=.rb,.css,.erb,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.scss,.spec,.xml,.rxml,.yml
 --type-set=scala=.scala
 --color-match=green
 --color-lineno=yellow
 --color-filename=yellow
 --smart-case
+--ignore-dir=public/assets
