@@ -16,6 +16,7 @@ case "$PLATFORM" in
   if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
   then
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+    export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
   fi
   alias gvim="mvim"
   alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"

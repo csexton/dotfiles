@@ -145,3 +145,6 @@
 [submodule "vim/bundle/autoclose"]
 	path = vim/bundle/autoclose
 	url = http://github.com/Townk/vim-autoclose.git
+[submodule "vim/bundle/showmarks"]
+	path = vim/bundle/showmarks
+	url = http://github.com/harleypig/ShowMarks.git
