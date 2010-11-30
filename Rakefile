@@ -91,7 +91,7 @@ task :updatebundle do
   dir = File.dirname(__FILE__)
   Dir["vim/bundle/*"].each do |n|
     puts "Updating #{n}"
-    `cd #{n};git pull; cd #{dir}`
+    `cd #{n};git checkout master; git pull; cd #{dir}`
   end
 
 end
