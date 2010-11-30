@@ -132,3 +132,8 @@ command! Preso :call Preso()
 
 colorscheme ristoink
 autocmd GuiEnter * set guifont=Anonymous\ Pro:h16,Monaco:h16
+
+" Command-T configuration
+let g:CommandTMaxHeight=20
+
+

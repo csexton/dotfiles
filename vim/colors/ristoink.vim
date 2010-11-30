@@ -1,7 +1,7 @@
 " Vim color scheme
 " Name: ristoink.vim
 " Author: Christopher Sexton
-" Based on the vivid Chalk theme by Tim Pope 
+" Based on the vivid Chalk theme by Tim Pope
 " Based on the Vibrank Ink theme for TextMate
 " Distributable under the same terms as Vim itself (see :help license)
 
@@ -34,100 +34,99 @@ else
     end
 endif
 
-if ((&t_Co == 256) || has("gui_running"))
-  "GUI / 256 colors
-  highlight Normal        guifg=#EEEEEE guibg=Black ctermfg=White ctermbg=16
-  highlight Comment       guifg=#AA66FF ctermfg=92
-  highlight Constant      guifg=#339999 ctermfg=73 cterm=none
-  "highlight Cursor        guifg=Black guibg=White ctermfg=Black ctermbg=White
-  highlight CursorColumn  guifg=NONE guibg=#1A1A8A ctermbg=DarkBlue
-  highlight CursorLine    guifg=NONE guibg=#1A1A8A ctermbg=DarkBlue
-  highlight Directory     none
-  highlight ErrorMsg      guifg=Red guibg=Black ctermfg=Red ctermbg=Black
-  highlight FoldColumn    none
-  highlight Folded        guifg=DarkGrey guibg=#1a1a1a ctermfg=DarkGrey ctermbg=Black
-  highlight Identifier    guifg=#FFCC00 ctermfg=202 cterm=none
-  highlight IncSearch     guifg=White guibg=Black ctermfg=White ctermbg=Yellow
-  highlight Keyword       guifg=#FF6600 ctermfg=202
-  highlight LineNr        guifg=#333333 guibg=Black ctermfg=144 ctermbg=16
-  highlight MoreMsg       guifg=#00AA00 ctermfg=Green
-  highlight NonText       guifg=#404040 ctermfg=DarkGrey
-  highlight Pmenu         guifg=White guibg=#000099 gui=bold ctermfg=White ctermbg=DarkBlue cterm=none
-  highlight PmenuSbar     guibg=#5555ff ctermbg=Black
-  highlight PmenuSel      guifg=White guibg=#5555ff gui=bold ctermfg=White ctermbg=Blue cterm=none
-  highlight PmenuThumb    guibg=White ctermbg=Blue
-  highlight PreProc       guifg=#AAFFFF ctermfg=75 cterm=none
-  highlight Question      none
-  highlight Regexp        guifg=#44B4CC ctermfg=Cyan
-  highlight Search        guifg=Black ctermfg=Black guibg=Yellow1 ctermbg=Yellow
-  highlight SignColumn    guifg=#AAAA77 guibg=#111111 ctermfg=Yellow ctermbg=Black
-  highlight Special       guifg=#33AA00 ctermfg=Green
-  highlight SpecialKey    guifg=#202020 ctermfg=DarkGrey
-  highlight SpellBad      cterm=underline ctermbg=none ctermfg=Red
-  highlight Statement     guifg=#FF6600 gui=none ctermfg=214 cterm=none
-  highlight StatusLine    guibg=#111111 guifg=#216f00 gui=italic ctermfg=231 ctermbg=235 cterm=none
-  highlight StatusLineNC  guibg=#111111 guifg=#444444 gui=none ctermfg=235 ctermbg=144
-  highlight String        guifg=#66FF00 ctermfg=34 cterm=none
-  highlight TabLine       guifg=#BBBBBB guibg=#333333
-  highlight TabLineFill   guifg=#BBBBBB guibg=#808080
-  highlight TabLineSel    guibg=Black guifg=White ctermfg=White ctermbg=Black
-  highlight Title         guifg=Magenta ctermfg=Magenta
-  highlight Type          guifg=#AAAA77 gui=none ctermfg=220
-  highlight vertsplit     guibg=#111111 guifg=#AAAA77 gui=none ctermbg=235 ctermfg=235
-  "highlight Visual        guibg=#050573 ctermbg=17 cterm=none
-  highlight Visual        guibg=#294134 ctermbg=DarkBlue ctermfg=White cterm=none
-  highlight VisualNOS     guifg=#444444 gui=none term=none
-  highlight WarningMsg    guifg=Red ctermfg=Red
-  highlight WildMenu      guifg=Black guibg=#FFFF00 gui=bold ctermfg=Black ctermbg=Yellow cterm=none
-
-  highlight rubyMethod          guifg=#DDE93D ctermfg=184
-  highlight railsUserClass      guifg=#AAAAAA
-  highlight rubyNumber          guifg=#CCFF33
-  highlight railsUserMethod     guifg=#AACCFF
-  "highlight railsMethod       guifg=#EE1122 ctermfg=1
+if (has("gui_running"))
+  " GUI
+  highlight Normal             guifg=#EEEEEE      guibg=Black
+  highlight Comment            guifg=#AA66FF
+  highlight Constant           guifg=#339999
+ "highlight Cursor             guifg=Black        guibg=White
+  highlight CursorColumn       guifg=NONE         guibg=#1A1A8A
+  highlight CursorLine         guifg=NONE         guibg=#1A1A8A
+  highlight Directory          none
+  highlight ErrorMsg           guifg=Red          guibg=Black
+  highlight FoldColumn         none
+  highlight Folded             guifg=DarkGrey     guibg=#1a1a1a
+  highlight Identifier         guifg=#FFCC00
+  highlight IncSearch          guifg=White        guibg=Black
+  highlight Keyword            guifg=#FF6600
+  highlight LineNr             guifg=#333333      guibg=Black
+  highlight MatchParen         guibg=#135B00      guifg=#85EB6A
+  highlight MoreMsg            guifg=#00AA00
+  highlight NonText            guifg=#404040
+  highlight Pmenu              guifg=White        guibg=#004000      gui=bold
+  highlight PmenuSbar          guibg=#5555ff
+  highlight PmenuSel           guifg=White        guibg=#48A048      gui=bold
+  highlight PmenuThumb         guibg=White
+  highlight PreProc            guifg=#AAFFFF
+  highlight Question           none
+  highlight Regexp             guifg=#44B4CC
+  highlight Search             guifg=Black        guibg=Yellow1
+  highlight SignColumn         guifg=#AAAA77      guibg=#111111
+  highlight Special            guifg=#33AA00
+  highlight SpecialKey         guifg=#202020
+  highlight Statement          guifg=#FF6600                        gui=none
+  highlight StatusLine         guibg=#111111      guifg=#216f00     gui=italic
+  highlight StatusLineNC       guibg=#111111      guifg=#444444     gui=none
+  highlight String             guifg=#66FF00
+  highlight TabLine            guifg=#BBBBBB      guibg=#333333
+  highlight TabLineFill        guifg=#BBBBBB      guibg=#808080
+  highlight TabLineSel         guibg=Black        guifg=White
+  highlight Title              guifg=Magenta
+  highlight Type               guifg=#AAAA77                        gui=none
+  highlight vertsplit          guibg=#111111      guifg=#AAAA77     gui=none
+  highlight Visual             guibg=#004000      guifg=#48A048
+  highlight VisualNOS          guifg=#444444                        gui=none 
+  highlight WarningMsg         guifg=Red
+  highlight WildMenu           guifg=Black        guibg=#FFFF00     gui=bold
+  highlight rubyMethod         guifg=#DDE93D
+  highlight railsUserClass     guifg=#AAAAAA
+  highlight rubyNumber         guifg=#CCFF33
+  highlight railsUserMethod    guifg=#AACCFF
+  highlight railsMethod        guifg=#EE1122
 else
   " cterm 16
-  highlight Comment       ctermfg=DarkMagenta
-  highlight Constant      ctermfg=Cyan        cterm=none
-  highlight Cursor        ctermfg=Black       ctermbg=White
-  highlight CursorColumn  ctermfg=Black ctermbg=5
-  highlight CursorLine    ctermfg=Black ctermbg=5  cterm=none
-  highlight Directory     none
-  highlight ErrorMsg      ctermfg=NONE        ctermbg=Red
-  highlight FoldColumn    none
-  highlight Folded        ctermfg=DarkGrey    ctermbg=Black
-  highlight Identifier    ctermfg=Grey  cterm=none
-  highlight IncSearch     ctermfg=White       ctermbg=Black
-  highlight Keyword       ctermfg=Yellow
-  highlight LineNr        ctermfg=DarkGrey    ctermbg=Black
-  highlight MoreMsg       ctermfg=Green
-  highlight NonText       ctermfg=DarkGrey
-  highlight Pmenu         ctermfg=White       ctermbg=13 cterm=none
-  highlight PmenuSbar     ctermfg=Black ctermbg=Grey
-  highlight PmenuSel      ctermfg=White       ctermbg=5 cterm=none 
-  highlight PmenuThumb    ctermbg=Blue
-  highlight PreProc       ctermfg=DarkCyan    cterm=none
-  highlight Question      ctermfg=Red
-  highlight Regexp        ctermfg=Cyan
-  highlight Search        ctermfg=Black        ctermbg=Yellow
-  highlight SignColumn    ctermfg=Yellow      ctermbg=Black
-  highlight Special       ctermfg=Green
-  highlight SpecialKey    ctermfg=DarkGrey
-  highlight SpellBad      ctermbg=none        ctermfg=Red       cterm=underline
-  highlight Statement     ctermfg=DarkRed         cterm=none
-  highlight StatusLine    ctermfg=White ctermbg=DarkGrey cterm=none
-  highlight StatusLineNC  ctermbg=DarkGrey ctermfg=Black cterm=none
-  highlight String        ctermfg=LightGreen                    cterm=none
-  highlight TabLineFill   none
-  highlight TabLineSel    ctermfg=White       ctermbg=Black
-  highlight Title         ctermfg=Magenta
-  highlight Type          ctermfg=Yellow
-  highlight VertSplit     ctermbg=DarkGrey ctermfg=Black cterm=none
-  highlight Visual        ctermbg=Blue    ctermfg=White
-  highlight VisualNOS     none
-  highlight WarningMsg    ctermfg=Red
-  highlight WildMenu      ctermfg=Black ctermbg=Yellow cterm=none
-endif 
+  highlight Comment            ctermfg=DarkMagenta
+  highlight MatchParen         ctermfg=Black       ctermbg=1
+  highlight Constant           ctermfg=Cyan                          cterm=none
+  highlight Cursor             ctermfg=Black       ctermbg=White
+  highlight CursorColumn       ctermfg=Black       ctermbg=5
+  highlight CursorLine         ctermfg=Black       ctermbg=5         cterm=none
+  highlight Directory          none
+  highlight ErrorMsg           ctermfg=NONE        ctermbg=Red
+  highlight FoldColumn         none
+  highlight Folded             ctermfg=DarkGrey    ctermbg=Black
+  highlight Identifier         ctermfg=Grey                          cterm=none
+  highlight IncSearch          ctermfg=White       ctermbg=Black
+  highlight Keyword            ctermfg=Yellow
+  highlight LineNr             ctermfg=DarkGrey    ctermbg=Black
+  highlight MoreMsg            ctermfg=Green
+  highlight NonText            ctermfg=DarkGrey
+  highlight Pmenu              ctermfg=White       ctermbg=DarkGreen cterm=none
+  highlight PmenuSbar          ctermfg=Black       ctermbg=Green
+  highlight PmenuSel           ctermfg=Black       ctermbg=LightGreen cterm=none
+  highlight PmenuThumb         ctermbg=Blue
+  highlight PreProc            ctermfg=DarkCyan                      cterm=none
+  highlight Question           ctermfg=Red
+  highlight Regexp             ctermfg=Cyan
+  highlight Search             ctermfg=Black       ctermbg=Yellow
+  highlight SignColumn         ctermfg=Yellow      ctermbg=Black
+  highlight Special            ctermfg=Green
+  highlight SpecialKey         ctermfg=DarkGrey
+  highlight SpellBad           ctermbg=none        ctermfg=Red       cterm=underline
+  highlight Statement          ctermfg=DarkRed                       cterm=none
+  highlight StatusLine         ctermfg=White       ctermbg=DarkGrey  cterm=none
+  highlight StatusLineNC       ctermfg=Black       ctermbg=DarkGrey  cterm=none
+  highlight String             ctermfg=LightGreen                    cterm=none
+  highlight TabLineFill        none
+  highlight TabLineSel         ctermfg=White       ctermbg=Black
+  highlight Title              ctermfg=Magenta
+  highlight Type               ctermfg=Yellow
+  highlight VertSplit          ctermbg=DarkGrey    ctermfg=Black     cterm=none
+  highlight Visual             ctermbg=DarkGreen   ctermfg=White
+  highlight VisualNOS          none
+  highlight WarningMsg         ctermfg=Red
+  highlight WildMenu           ctermfg=Black       ctermbg=Yellow    cterm=none
+endif
 
 " For the showmark plugin
 " http://www.vim.org/scripts/script.php?script_id=152
@@ -138,59 +137,56 @@ highlight default ShowMarksHLo guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=Dark
 highlight default ShowMarksHLm guifg=#AAAA77 guibg=#111111 gui=bold ctermfg=DarkGrey ctermbg=Black
 
 " For the project plugin
-highlight projectText guifg=#CECE9A guibg=Black gui=bold ctermfg=DarkGrey ctermbg=Black
-highlight projectError guifg=DarkRed guibg=Black gui=bold ctermfg=DarkRed ctermbg=Black
-highlight projectFoldText guifg=Blue guibg=Black gui=bold ctermfg=DarkGrey ctermbg=Black
+highlight projectText          guifg=#CECE9A guibg=Black   gui=bold ctermfg=DarkGrey ctermbg=Black
+highlight projectError         guifg=DarkRed guibg=Black   gui=bold ctermfg=DarkRed  ctermbg=Black
+highlight projectFoldText      guifg=Blue    guibg=Black   gui=bold ctermfg=DarkGrey ctermbg=Black
 
 " For the VimOutliner plugin
 highlight OL1 ctermfg=15 guifg=white
 highlight OL2 ctermfg=12 guifg=DarkViolet
-highlight OL3 ctermfg=9 guifg=lightblue
+highlight OL3 ctermfg=9  guifg=lightblue
 highlight OL4 ctermfg=13 guifg=darkviolet
 highlight OL5 ctermfg=15 guifg=white
 
-" For trailing whitespace
-"highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen  
-
 
 " Links
-high link Directory     Identifier
-high link FoldColumn    Folded
-high link Question      MoreMsg
-high link railsMethod         PreProc
-high link rubyDefine          Keyword
-high link rubySymbol          Constant
-high link rubyAccess          rubyMethod
-high link rubyAttribute       rubyMethod
-high link rubyEval            rubyMethod
-high link rubyException       rubyMethod
-high link rubyInclude         rubyMethod
-high link rubyStringDelimiter rubyString
-high link rubyRegexp          Regexp
-high link rubyRegexpDelimiter rubyRegexp
-"high link rubyConstant        Variable
-"high link rubyGlobalVariable  Variable
-"high link rubyClassVariable   Variable
-"high link rubyInstanceVariable Variable
+high link Directory              Identifier
+high link FoldColumn             Folded
+high link Question               MoreMsg
+high link railsMethod            PreProc
+high link rubyDefine             Keyword
+high link rubySymbol             Constant
+high link rubyAccess             rubyMethod
+high link rubyAttribute          rubyMethod
+high link rubyEval               rubyMethod
+high link rubyException          rubyMethod
+high link rubyInclude            rubyMethod
+high link rubyStringDelimiter    rubyString
+high link rubyRegexp             Regexp
+high link rubyRegexpDelimiter    rubyRegexp
+"high link rubyConstant          Variable
+"high link rubyGlobalVariable    Variable
+"high link rubyClassVariable     Variable
+"high link rubyInstanceVariable  Variable
 high link javascriptRegexpString Regexp
-high link javascriptNumber    Number
-high link javascriptNull      Constant
-high link projectDescription projectText
-high link projectWhiteError projectError
-high link projectDescriptionDir projectText
-high link projectDirectory projectText
-high link projectScriptinout projectText
-high link projectComment projectText
-high link projectCD projectText
-high link projectFilterError projectError
-high link projectFilter projectText
-high link projectFilterRegexp projectText
-high link projectFilterEntry projectText
-high link projectFlags projectText
-high link projectFlagsEntry projectText
-high link projectFlagsValues projectText
-high link projectFlagsError projectError
-high link markdownCodeBlock String
+high link javascriptNumber       Number
+high link javascriptNull         Constant
+high link projectDescription     projectText
+high link projectWhiteError      projectError
+high link projectDescriptionDir  projectText
+high link projectDirectory       projectText
+high link projectScriptinout     projectText
+high link projectComment         projectText
+high link projectCD              projectText
+high link projectFilterError     projectError
+high link projectFilter          projectText
+high link projectFilterRegexp    projectText
+high link projectFilterEntry     projectText
+high link projectFlags           projectText
+high link projectFlagsEntry      projectText
+high link projectFlagsValues     projectText
+high link projectFlagsError      projectError
+high link markdownCodeBlock      String
 
 if !has("gui_mac")
   " Mac GUI degrades italics to ugly underlining.

@@ -1,10 +1,27 @@
-%w|rubygems irbtools irbtools/more|.each do|lib|
-  begin
-    require lib
-  rescue LoadError => err
-    warn "Couldn't load an irb gem: #{err}"
-  end
+require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
+#%w|rubygems irbtools irbtools/more|.each do|lib|
+#  begin
+#    require lib
+#  rescue LoadError => err
+#    warn "Couldn't load an irb gem: #{err}"
+#  end
+#end
+
+begin
+  require 'irbtools/configure'
+  Irbtools.remove_library 'fancy_irbt'
+  Irbtools.init
+rescue LoadError => err
+  puts "Irbtools not installed"
 end
+
+begin
+  require 'bond'
+  Bond.start
+rescue LoadError => err
+  #puts "Bond not installed"
+end
+
 begin
   # IRB Options
   IRB.conf[:AUTO_INDENT] = true
