@@ -47,7 +47,7 @@ if (has("gui_running"))
   highlight FoldColumn         none
   highlight Folded             guifg=DarkGrey     guibg=#1a1a1a
   highlight Identifier         guifg=#FFCC00
-  highlight IncSearch          guifg=White        guibg=Black
+  highlight IncSearch          guifg=Black        guibg=Yellow1
   highlight Keyword            guifg=#FF6600
   highlight LineNr             guifg=#333333      guibg=Black
   highlight MatchParen         guibg=#135B00      guifg=#85EB6A
@@ -96,7 +96,7 @@ else
   highlight FoldColumn         none
   highlight Folded             ctermfg=DarkGrey    ctermbg=Black
   highlight Identifier         ctermfg=Grey                          cterm=none
-  highlight IncSearch          ctermfg=White       ctermbg=Black
+  highlight IncSearch          ctermfg=Black       ctermbg=3         cterm=none
   highlight Keyword            ctermfg=Yellow
   highlight LineNr             ctermfg=DarkGrey    ctermbg=Black
   highlight MoreMsg            ctermfg=Green
@@ -108,7 +108,7 @@ else
   highlight PreProc            ctermfg=DarkCyan                      cterm=none
   highlight Question           ctermfg=Red
   highlight Regexp             ctermfg=Cyan
-  highlight Search             ctermfg=Black       ctermbg=Yellow
+  highlight Search             ctermfg=Black       ctermbg=3          cterm=none
   highlight SignColumn         ctermfg=Yellow      ctermbg=Black
   highlight Special            ctermfg=Green
   highlight SpecialKey         ctermfg=DarkGrey
