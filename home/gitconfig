@@ -14,6 +14,7 @@
         lol = log --pretty=oneline --abbrev-commit --graph --decorate
         sup = submodule update
         input = read name && echo $name
+        oops = reset --soft "HEAD^"
 [apply]
         whitespace = strip
 [github]

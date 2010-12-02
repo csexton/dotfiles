@@ -351,3 +351,4 @@ puts "#{red "NOTE"}: working directory contains modified files." if modified
 puts "#{red "NOTE"}: staging area contains staged but uncommitted files." if uncommitted
 
 # the end!
+
