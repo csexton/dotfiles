@@ -74,6 +74,8 @@ cnoremap          <C-F> <Right>
 " Enable TAB indent and SHIFT-TAB unindent
 vnoremap <silent> <TAB> >gv
 vnoremap <silent> <S-TAB> <gv
+vnoremap <silent> >> >gv
+vnoremap <silent> << <gv
 
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
