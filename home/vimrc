@@ -4,7 +4,7 @@ set autoindent
 set autoread
 set autowrite       " Automatically save before commands like :next and :make
 set backspace=indent,eol,start
-"set backup          " Do keep a backup file
+""set backup          " Do keep a backup file
 set backupskip+=*.tmp,crontab.*
 set cmdheight=1
 set complete-=i     " Searching includes can be slow
@@ -12,7 +12,7 @@ set dictionary+=/usr/share/dict/words
 set display=lastline " When lines are cropped at the screen bottom, show as much as possible
 set expandtab
 set gdefault        " When on, the ":substitute" flag 'g' is default on.
-set guioptions=aAcg " Get rid of the scrollbar and toolbar
+set guioptions=cg   " Get rid of the scrollbar and toolbar
 set hidden          " Allow dirty unsaved buffers
 set hlsearch        " Highlight searches
 set ignorecase      " Ignore case in searches.
