@@ -74,8 +74,8 @@ cnoremap          <C-F> <Right>
 " Enable TAB indent and SHIFT-TAB unindent
 vnoremap <silent> <TAB> >gv
 vnoremap <silent> <S-TAB> <gv
-vnoremap <silent> >> >gv
-vnoremap <silent> << <gv
+"vnoremap <silent> >> >gv
+"vnoremap <silent> << <gv
 
 " Command-T configuration
 let g:CommandTMaxHeight=20

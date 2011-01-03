@@ -65,8 +65,8 @@ if (has("gui_running"))
   highlight Special            guifg=#33AA00
   highlight SpecialKey         guifg=#202020
   highlight Statement          guifg=#FF6600                        gui=none
-  highlight StatusLine         guibg=#111111      guifg=#216f00     gui=italic
-  highlight StatusLineNC       guibg=#111111      guifg=#444444     gui=none
+  highlight StatusLine         guibg=#111111      guifg=#216f00     gui=underline
+  highlight StatusLineNC       guibg=#111111      guifg=#444444     gui=underline
   highlight String             guifg=#66FF00
   highlight TabLine            guifg=#BBBBBB      guibg=#333333
   highlight TabLineFill        guifg=#BBBBBB      guibg=#808080
@@ -113,6 +113,7 @@ else
   highlight Special            ctermfg=Green
   highlight SpecialKey         ctermfg=DarkGrey
   highlight SpellBad           ctermbg=none        ctermfg=Red       cterm=underline
+  highlight SpellLocal         ctermbg=none        ctermfg=1         cterm=underline
   highlight Statement          ctermfg=DarkRed                       cterm=none
   highlight StatusLine         ctermfg=White       ctermbg=DarkGrey  cterm=none
   highlight StatusLineNC       ctermfg=Black       ctermbg=DarkGrey  cterm=none

@@ -51,6 +51,9 @@ map <Leader>w  :set nowrap!<CR>
 map <Leader>l  :set nonumber!<CR>
 map <Leader>n  :set nonumber!<CR>
 
+map <Leader>e  :BufExplorer<CR>
+nnoremap <D-e> :BufExplorer<CR>
+
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>
 
