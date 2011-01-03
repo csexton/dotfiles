@@ -1,0 +1,12 @@
+#!/bin/bash
+
+OPTIONS="-e ssh --relative --compress --archive --delete-excluded --progress --human-readable "
+SERVER="backup.remote:cs-talos"
+
+cd /Users/csexton
+
+rsync $OPTIONS Projects Documents $SERVER \
+  --exclude="OmniFocus Backups" \
+  --exclude="*vmwarevm" \
+  --exclude="Apple Marketing Material" \
+  --exclude="*DS_Store" 
