@@ -39,9 +39,9 @@ if (has("gui_running"))
   highlight Normal             guifg=#EEEEEE      guibg=Black
   highlight Comment            guifg=#AA66FF
   highlight Constant           guifg=#339999
- "highlight Cursor             guifg=Black        guibg=White
+  highlight Cursor             guifg=Black        guibg=Green
   highlight CursorColumn       guifg=NONE         guibg=#1A1A8A
-  highlight CursorLine         guifg=NONE         guibg=#1A1A8A
+  highlight CursorLine         guifg=NONE         guibg=#333333
   highlight Directory          none
   highlight ErrorMsg           guifg=Red          guibg=Black
   highlight FoldColumn         none
@@ -65,15 +65,15 @@ if (has("gui_running"))
   highlight Special            guifg=#33AA00
   highlight SpecialKey         guifg=#202020
   highlight Statement          guifg=#FF6600                        gui=none
-  highlight StatusLine         guibg=#111111      guifg=#216f00     gui=underline
-  highlight StatusLineNC       guibg=#111111      guifg=#444444     gui=underline
+  highlight StatusLine         guibg=#333333      guifg=#34D800     gui=none
+  highlight StatusLineNC       guibg=#333333      guifg=#A8A8A8     gui=none
   highlight String             guifg=#66FF00
   highlight TabLine            guifg=#BBBBBB      guibg=#333333
   highlight TabLineFill        guifg=#BBBBBB      guibg=#808080
   highlight TabLineSel         guibg=Black        guifg=White
   highlight Title              guifg=Magenta
   highlight Type               guifg=#AAAA77                        gui=none
-  highlight vertsplit          guibg=#111111      guifg=#AAAA77     gui=none
+  highlight VertSplit          guibg=#333333      guifg=#333333     gui=none
   highlight Visual             guibg=#004000      guifg=#48A048
   highlight VisualNOS          guifg=#444444                        gui=none 
   highlight WarningMsg         guifg=Red
