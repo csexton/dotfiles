@@ -15,10 +15,12 @@
         sup = submodule update
         input = read name && echo $name
         oops = reset --soft "HEAD^"
+	unadd = reset HEAD
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [apply]
         whitespace = strip
 [github]
-        user = csexton
+	user = csexton
 [merge]
         summary = true
 [push]

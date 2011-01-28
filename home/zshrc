@@ -67,6 +67,9 @@ function tree {
   find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 }
 
+src(){cd ~/src/$1;}
+compctl -W ~/src -/ src
+
 unsetopt auto_name_dirs
 # Ruby Version Manager path mangling
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
