@@ -142,3 +142,9 @@
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/javascript"]
+	path = vim/bundle/javascript
+	url = http://github.com/pangloss/vim-javascript.git
+[submodule "vim/bundle/jslint"]
+	path = vim/bundle/jslint
+	url = http://github.com/hallettj/jslint.vim.git
