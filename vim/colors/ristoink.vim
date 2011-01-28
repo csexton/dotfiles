@@ -83,6 +83,7 @@ if (has("gui_running"))
   highlight rubyNumber         guifg=#CCFF33
   highlight railsUserMethod    guifg=#AACCFF
   highlight railsMethod        guifg=#FF5500                        gui=bold
+"elseif ( &t_Co > 255 )
 else
   " cterm 16
   highlight Comment            ctermfg=DarkMagenta
