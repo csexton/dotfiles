@@ -36,7 +36,7 @@ endif
 
 if (has("gui_running"))
   " GUI
-  highlight Normal             guifg=#EEEEEE      guibg=Black
+  highlight Normal             guifg=#EEEEEE      guibg=#111111
   highlight Comment            guifg=#AA66FF
   highlight Constant           guifg=#339999
   highlight Cursor             guifg=Black        guibg=Green
