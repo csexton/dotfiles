@@ -7,42 +7,44 @@ require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
 #  end
 #end
 
+require 'wirble'
 begin
   require 'irbtools/configure'
   Irbtools.remove_library 'fancy_irbt'
+  Irbtools.remove_library 'guessmethod'
   Irbtools.init
 rescue LoadError => err
   puts "Irbtools not installed"
 end
-
-begin
-  require 'bond'
-  Bond.start
-rescue LoadError => err
-  #puts "Bond not installed"
-end
-
-begin
-  # IRB Options
-  IRB.conf[:AUTO_INDENT] = true
-
-  class Integer
-    def to_binary_s
-      bits = self.to_s(2)
-      prepend = (8 - bits.length % 8)
-      bits = ('0' * prepend) + bits
-      return [bits].pack('B*')
-    end
-  end
-  class String
-    def read_hex_s
-      self.gsub(" ", "").hex.to_binary_s
-    end
-
-    def to_hex_s
-      self.unpack("H*")[0]
-    end
-  end
-rescue
-  warn "Your .irbrc is sad"
-end
+#
+#begin
+#  require 'bond'
+#  Bond.start
+#rescue LoadError => err
+#  #puts "Bond not installed"
+#end
+#
+#begin
+#  # IRB Options
+#  IRB.conf[:AUTO_INDENT] = true
+#
+#  class Integer
+#    def to_binary_s
+#      bits = self.to_s(2)
+#      prepend = (8 - bits.length % 8)
+#      bits = ('0' * prepend) + bits
+#      return [bits].pack('B*')
+#    end
+#  end
+#  class String
+#    def read_hex_s
+#      self.gsub(" ", "").hex.to_binary_s
+#    end
+#
+#    def to_hex_s
+#      self.unpack("H*")[0]
+#    end
+#  end
+#rescue
+#  warn "Your .irbrc is sad"
+#end

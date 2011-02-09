@@ -11,12 +11,12 @@
         ci = commit
         co = checkout
         st = status
-        lol = log --pretty=oneline --abbrev-commit --graph --decorate
+        ll = log --pretty=oneline --abbrev-commit --graph --decorate
         sup = submodule update
         input = read name && echo $name
         oops = reset --soft "HEAD^"
 	unadd = reset HEAD
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
 [apply]
         whitespace = strip
 [github]
