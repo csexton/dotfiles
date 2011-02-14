@@ -1,20 +1,13 @@
 require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
-#%w|rubygems irbtools irbtools/more|.each do|lib|
-#  begin
-#    require lib
-#  rescue LoadError => err
-#    warn "Couldn't load an irb gem: #{err}"
-#  end
-#end
 
-require 'wirble'
+#require 'wirble'
 begin
   require 'irbtools/configure'
   Irbtools.remove_library 'fancy_irbt'
   Irbtools.remove_library 'guessmethod'
   Irbtools.init
 rescue LoadError => err
-  puts "Irbtools not installed"
+  puts "Irbtools load error: #{err}"
 end
 #
 #begin

@@ -57,7 +57,7 @@ nnoremap <D-e> :BufExplorer<CR>
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>
 
-runtime! plugin/matchit.vim
+"runtime! plugin/matchit.vim
 runtime! macros/matchit.vim
 
 
@@ -109,8 +109,8 @@ augroup settings
 
   autocmd Syntax   css  syn sync minlines=50
 
-  autocmd User Rails nnoremap <buffer> <D-r> :<C-U>Rake<CR>
-  autocmd User Rails nnoremap <buffer> <D-R> :<C-U>.Rake<CR>
+  "autocmd User Rails nnoremap <buffer> <D-r> :<C-U>Rake<CR>
+  "autocmd User Rails nnoremap <buffer> <D-R> :<C-U>.Rake<CR>
   autocmd User Rails Rnavcommand uploader app/uploaders -suffix=_uploader.rb -default=model()
   autocmd User Rails Rnavcommand steps features/step_definitions -suffix=_steps.rb -default=web
   autocmd User Rails Rnavcommand blueprint spec/blueprints -suffix=_blueprint.rb -default=model()
