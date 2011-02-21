@@ -25,6 +25,8 @@ if $TERM == '^\%(screen\|xterm-color\)$' && t_Co == 8
   set t_Co=16
 endif
 
+let g:CommandTMaxHeight=20
+
 let g:is_bash = 1 " Highlight all .sh files as if they were bash
 let g:ruby_minlines = 500
 let g:rubycomplete_buffer_loading = 1
@@ -93,6 +95,8 @@ augroup settings
   autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
         \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
+  autocmd BufNewFile,BufRead *.scss             set ft=scss.css
+  "au BufRead,BufNewFile *.scss set filetype=scss.css
   autocmd BufNewFile,BufRead *.md               set ft=markdown
   autocmd BufNewFile,BufRead *.haml             set ft=haml
   autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
@@ -117,6 +121,7 @@ augroup settings
   autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
   autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
   autocmd User Rails Rnavcommand support spec/support features/support -default=env
+  autocmd User Rails Rnavcommand sass app/sass -suffix=.scss -default=model()
   autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>
 augroup END
 
@@ -134,7 +139,7 @@ function! Preso()
 endfunction
 command! Preso :call Preso()
 
-colorscheme ristoink
+colorscheme risto
 autocmd GuiEnter * set guifont=Anonymous\ Pro:h16,Monaco:h16
 
 

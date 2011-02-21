@@ -1,5 +1,5 @@
 " Vim color scheme
-" Name: ristoink.vim
+" Name: risto.vim
 " Author: Christopher Sexton
 " Based on the vivid Chalk theme by Tim Pope
 " Based on the Vibrank Ink theme for TextMate
@@ -10,7 +10,7 @@ if exists("syntax_on")
    syntax reset
 endif
 
-let colors_name = "ristoink"
+let g:colors_name = "risto"
 
 if has("gui_running")
     set background=dark
@@ -75,7 +75,7 @@ if (has("gui_running"))
   highlight Type               guifg=#AAAA77                        gui=none
   highlight VertSplit          guibg=#333333      guifg=#333333     gui=none
   highlight Visual             guibg=#004000      guifg=#48A048
-  highlight VisualNOS          guifg=#444444                        gui=none 
+  highlight VisualNOS          guifg=#444444                        gui=none
   highlight WarningMsg         guifg=Red
   highlight WildMenu           guifg=Black        guibg=#FFFF00     gui=bold
   highlight rubyMethod         guifg=#DDE93D
@@ -89,7 +89,7 @@ else
   highlight Comment            ctermfg=DarkMagenta
   highlight MatchParen         ctermfg=Black       ctermbg=1
   highlight Constant           ctermfg=Cyan                          cterm=none
-  highlight Cursor             ctermfg=Black       ctermbg=White
+  highlight Cursor             ctermfg=Black       ctermbg=Green
   highlight CursorColumn       ctermfg=Black       ctermbg=5
   highlight CursorLine         ctermfg=Black       ctermbg=5         cterm=none
   highlight Directory          none
@@ -150,6 +150,27 @@ highlight OL3 ctermfg=9  guifg=lightblue
 highlight OL4 ctermfg=13 guifg=darkviolet
 highlight OL5 ctermfg=15 guifg=white
 
+" htmlBoldUnderline
+" htmlBoldItalic
+" htmlBold
+" htmlBoldUnderlineItalic
+" htmlBoldItalicUnderline
+" htmlUnderlineBold
+" htmlUnderlineItalic
+" htmlUnderline
+" htmlUnderlineBoldItalic
+" htmlUnderlineItalicBold
+" htmlItalicBold
+" htmlItalicUnderline
+" htmlItalic
+" htmlItalicBoldUnderline
+" htmlItalicUnderlineBold
+" htmlH1
+" htmlH2
+" htmlH3
+" htmlH4
+" htmlH5
+" htmlH6
 
 " Links
 high link Directory              Identifier
@@ -190,11 +211,11 @@ high link projectFlagsValues     projectText
 high link projectFlagsError      projectError
 high link markdownCodeBlock      String
 
-if !has("gui_mac")
-  " Mac GUI degrades italics to ugly underlining.
-  highlight Comment gui=NONE
-  highlight railsUserClass  gui=NONE
-  highlight railsUserMethod gui=NONE
-  highlight StatusLine gui=NONE
-endif
+"if !has("gui_mac")
+"  " Mac GUI degrades italics to ugly underlining.
+"  highlight Comment gui=NONE
+"  highlight railsUserClass  gui=NONE
+"  highlight railsUserMethod gui=NONE
+"  highlight StatusLine gui=NONE
+"endif
 

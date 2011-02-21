@@ -11,6 +11,7 @@ set complete-=i     " Searching includes can be slow
 set dictionary+=/usr/share/dict/words
 set display=lastline " When lines are cropped at the screen bottom, show as much as possible
 set expandtab
+set nofoldenable
 set gdefault        " When on, the ":substitute" flag 'g' is default on.
 set guioptions=cg   " Get rid of the scrollbar and toolbar
 set hidden          " Allow dirty unsaved buffers
@@ -77,9 +78,6 @@ vnoremap <silent> <S-TAB> <gv
 "vnoremap <silent> >> >gv
 "vnoremap <silent> << <gv
 
-" Command-T configuration
-let g:CommandTMaxHeight=20
-
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
   call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
@@ -88,4 +86,5 @@ endif
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
+
 
