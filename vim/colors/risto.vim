@@ -1,9 +1,19 @@
 " Vim color scheme
 " Name: risto.vim
 " Author: Christopher Sexton
-" Based on the vivid Chalk theme by Tim Pope
-" Based on the Vibrank Ink theme for TextMate
 " Distributable under the same terms as Vim itself (see :help license)
+"
+" Suggested terminal colors
+"
+"           Colors      Bright Colors
+" Black     #000000     #686868 
+" Red       #C0190D     #FD7B1C
+" Green     #27C11C     #6BF86D
+" Yellow    #F5D127     #FFDE58
+" Blue      #50B6B7     #6876FC
+" Magenta   #A56FFC     #FB7AFD
+" Cyan      #14C5C6     #6BFDFE
+" White     #C7C7C7     #FFFFFF
 
 hi clear
 if exists("syntax_on")
@@ -38,16 +48,19 @@ if (has("gui_running"))
   " GUI
   highlight Normal             guifg=#EEEEEE      guibg=#111111
   highlight Comment            guifg=#AA66FF
+  "highlight Comment            guifg=#7C7C7C
   highlight Constant           guifg=#339999
-  highlight Cursor             guifg=Black        guibg=Green
-  highlight CursorColumn       guifg=NONE         guibg=#1A1A8A
+  "highlight Constant           guifg=#BDD6E9
+  highlight Cursor             guifg=Black        guibg=White       gui=NONE
+  highlight CursorColumn       guifg=NONE         guibg=#333333
   highlight CursorLine         guifg=NONE         guibg=#333333
   highlight Directory          none
   highlight ErrorMsg           guifg=Red          guibg=Black
   highlight FoldColumn         none
   highlight Folded             guifg=DarkGrey     guibg=#1a1a1a
-  highlight Identifier         guifg=#FFCC00
-  highlight IncSearch          guifg=Black        guibg=Yellow1
+  "highlight Identifier         guifg=#FFCC00
+  highlight Identifier         guifg=#FFF15B
+  highlight IncSearch          guifg=Black        guibg=Yellow1      gui=none
   highlight Keyword            guifg=#FF6600
   highlight LineNr             guifg=#333333      guibg=Black
   highlight MatchParen         guibg=#135B00      guifg=#85EB6A
@@ -72,13 +85,15 @@ if (has("gui_running"))
   highlight TabLineFill        guifg=#BBBBBB      guibg=#808080
   highlight TabLineSel         guibg=Black        guifg=White
   highlight Title              guifg=Magenta
-  highlight Type               guifg=#AAAA77                        gui=none
+  "highlight Type               guifg=#EEFFA3                        gui=none
+  "highlight Type               guifg=#cccccc
+  highlight Type               guifg=#FFDE58                        gui=none
   highlight VertSplit          guibg=#333333      guifg=#333333     gui=none
-  highlight Visual             guibg=#004000      guifg=#48A048
-  highlight VisualNOS          guifg=#444444                        gui=none
+  "highlight Visual             guibg=#FFF15B      guifg=#111111
+  highlight Visual             guifg=NONE        guibg=#555555      gui=NONE
   highlight WarningMsg         guifg=Red
   highlight WildMenu           guifg=Black        guibg=#FFFF00     gui=bold
-  highlight rubyMethod         guifg=#DDE93D
+  highlight rubyMethod         guifg=#FF9900
   highlight railsUserClass     guifg=#AAAAAA
   highlight rubyNumber         guifg=#CCFF33
   highlight railsUserMethod    guifg=#AACCFF
@@ -89,9 +104,9 @@ else
   highlight Comment            ctermfg=DarkMagenta
   highlight MatchParen         ctermfg=Black       ctermbg=1
   highlight Constant           ctermfg=Cyan                          cterm=none
-  highlight Cursor             ctermfg=Black       ctermbg=Green
-  highlight CursorColumn       ctermfg=Black       ctermbg=5
-  highlight CursorLine         ctermfg=Black       ctermbg=5         cterm=none
+  highlight Cursor             ctermfg=Black       ctermbg=White
+  highlight CursorColumn       ctermfg=White       ctermbg=8
+  highlight CursorLine         ctermfg=White       ctermbg=8         cterm=none
   highlight Directory          none
   highlight ErrorMsg           ctermfg=NONE        ctermbg=Red
   highlight FoldColumn         none
@@ -125,7 +140,6 @@ else
   highlight Type               ctermfg=Yellow
   highlight VertSplit          ctermbg=DarkGrey    ctermfg=Black     cterm=none
   highlight Visual             ctermbg=DarkGreen   ctermfg=White     cterm=none
-  highlight VisualNOS          none
   highlight WarningMsg         ctermfg=Red
   highlight WildMenu           ctermfg=Black       ctermbg=Yellow    cterm=none
 endif
@@ -173,7 +187,7 @@ highlight OL5 ctermfg=15 guifg=white
 " htmlH6
 
 " Links
-high link Directory              Identifier
+high link Directory              Constant
 high link FoldColumn             Folded
 high link Question               MoreMsg
 high link railsMethod            PreProc
@@ -184,9 +198,10 @@ high link rubyAttribute          rubyMethod
 high link rubyEval               rubyMethod
 high link rubyException          rubyMethod
 high link rubyInclude            rubyMethod
-high link rubyStringDelimiter    rubyString
+high link rubyStringDelimiter    Special
 high link rubyRegexp             Regexp
 high link rubyRegexpDelimiter    rubyRegexp
+high link rubyInterpolationDelimiter Special
 "high link rubyConstant          Variable
 "high link rubyGlobalVariable    Variable
 "high link rubyClassVariable     Variable
@@ -210,6 +225,52 @@ high link projectFlagsEntry      projectText
 high link projectFlagsValues     projectText
 high link projectFlagsError      projectError
 high link markdownCodeBlock      String
+
+
+high NERDTree guifg=#555555 ctermfg=DarkGrey
+"high link NERDTreeFlag          
+high link NERDTreeUp     NERDTree
+high link NERDTreeClosable NERDTree
+high link NERDTreeOpenable NERDTree
+high link NERDTreePart   NERDTree
+high link NERDTreePartFile NERDTree
+high link NERDTreeHelpKey NERDTree
+"high link NERDTreeHelpTitle 
+"high link NERDTreeToggleOn 
+"high link NERDTreeToggleOff 
+"high link NERDTreeHelpCommand 
+"high link NERDTreeHelp   
+"high link NERDTreeBookmark 
+"high link NERDTreeRO     
+high link NERDTreeDirSlash NERDTree
+"high link NERDTreeLink   
+"high link NERDTreeDir Constant
+high link NERDTreeExecFile Keyword
+high link NERDTreeFile   Normal
+high link NERDTreeCWD    NERDTree
+"high link NERDTreeBookmarksLeader 
+"high link NERDTreeBookmarksHeader 
+"high link NERDTreeBookmarkName 
+"high link NERDTreeCurrentNode
+
+high link bufExplorerSortBy String
+high link bufExplorerMapping NonText
+high link bufExplorerTitle NonText
+high link bufExplorerSortType bufExplorerSortBy
+high link bufExplorerToggleSplit bufExplorerSplit
+high link bufExplorerToggleOpen bufExplorerOpenIn
+high link bufExplorerHelp Special
+high link bufExplorerOpenIn Normal
+high link bufExplorerSplit NonText
+high link bufExplorerBufNbr Number
+high link bufExplorerModBuf Exception
+high link bufExplorerLockedBuf Special
+high link bufExplorerHidBuf Constant
+high link bufExplorerActBuf Identifier
+high link bufExplorerCurBuf Type
+high link bufExplorerAltBuf String
+high link bufExplorerUnlBuf Comment
+
 
 "if !has("gui_mac")
 "  " Mac GUI degrades italics to ugly underlining.

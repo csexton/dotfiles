@@ -25,8 +25,6 @@ if $TERM == '^\%(screen\|xterm-color\)$' && t_Co == 8
   set t_Co=16
 endif
 
-let g:CommandTMaxHeight=20
-
 let g:is_bash = 1 " Highlight all .sh files as if they were bash
 let g:ruby_minlines = 500
 let g:rubycomplete_buffer_loading = 1
@@ -36,6 +34,9 @@ let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
 let g:NERDShutUp = 1
 let g:VCSCommandDisableMappings = 1
+
+let g:bufExplorerShowRelativePath=1
+
 
 let g:surround_{char2nr('s')} = " \r"
 let g:surround_{char2nr(':')} = ":\r"
@@ -51,10 +52,11 @@ map <Leader>jl  :JekyllList<CR>
 
 map <Leader>w  :set nowrap!<CR>
 map <Leader>l  :set nonumber!<CR>
-map <Leader>n  :set nonumber!<CR>
 
 map <Leader>e  :BufExplorer<CR>
 nnoremap <D-e> :BufExplorer<CR>
+
+map <Leader>n  :NERDTreeToggle<CR>
 
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>

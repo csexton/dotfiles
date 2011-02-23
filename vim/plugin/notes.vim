@@ -47,7 +47,7 @@ command! -nargs=? -range=% Notes :call Notes()
 let &cpo = s:cpo_save
 " }}}1
 
-map <Leader>nn  :Note<CR>
-map <Leader>nl  :Notes<CR>
+"map <Leader>nn  :Note<CR>
+"map <Leader>nl  :Notes<CR>
 
 " vim:set ft=vim ts=8 sw=4 sts=4:
