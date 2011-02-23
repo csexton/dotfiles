@@ -6,7 +6,7 @@
 " Suggested terminal colors
 "
 "           Colors      Bright Colors
-" Black     #000000     #686868 
+" Black     #000000     #686868
 " Red       #C0190D     #FD7B1C
 " Green     #27C11C     #6BF86D
 " Yellow    #F5D127     #FFDE58
@@ -227,49 +227,49 @@ high link projectFlagsError      projectError
 high link markdownCodeBlock      String
 
 
-high NERDTree guifg=#555555 ctermfg=DarkGrey
-"high link NERDTreeFlag          
-high link NERDTreeUp     NERDTree
-high link NERDTreeClosable NERDTree
-high link NERDTreeOpenable NERDTree
-high link NERDTreePart   NERDTree
-high link NERDTreePartFile NERDTree
-high link NERDTreeHelpKey NERDTree
-"high link NERDTreeHelpTitle 
-"high link NERDTreeToggleOn 
-"high link NERDTreeToggleOff 
-"high link NERDTreeHelpCommand 
-"high link NERDTreeHelp   
-"high link NERDTreeBookmark 
-"high link NERDTreeRO     
-high link NERDTreeDirSlash NERDTree
-"high link NERDTreeLink   
-"high link NERDTreeDir Constant
-high link NERDTreeExecFile Keyword
-high link NERDTreeFile   Normal
-high link NERDTreeCWD    NERDTree
-"high link NERDTreeBookmarksLeader 
-"high link NERDTreeBookmarksHeader 
-"high link NERDTreeBookmarkName 
+high NERDTree guifg=DarkGrey ctermfg=DarkGrey
+"high link NERDTreeFlag
+high link NERDTreeUp              NERDTree
+high link NERDTreeClosable        NERDTree
+high link NERDTreeOpenable        NERDTree
+high link NERDTreePart            NERDTree
+high link NERDTreePartFile        NERDTree
+high link NERDTreeHelpKey         NERDTree
+high link NERDTreeHelpTitle       Type
+"high link NERDTreeToggleOn
+"high link NERDTreeToggleOff
+high link NERDTreeHelpCommand     String
+high link NERDTreeHelp            Comment
+"high link NERDTreeBookmark
+"high link NERDTreeRO
+high link NERDTreeDirSlash        NERDTree
+"high link NERDTreeLink
+"high link NERDTreeDir             Constant
+high link NERDTreeExecFile        Keyword
+high link NERDTreeFile            Normal
+high link NERDTreeCWD             Constant
+"high link NERDTreeBookmarksLeader
+"high link NERDTreeBookmarksHeader
+"high link NERDTreeBookmarkName
 "high link NERDTreeCurrentNode
 
-high link bufExplorerSortBy String
-high link bufExplorerMapping NonText
-high link bufExplorerTitle NonText
-high link bufExplorerSortType bufExplorerSortBy
-high link bufExplorerToggleSplit bufExplorerSplit
-high link bufExplorerToggleOpen bufExplorerOpenIn
-high link bufExplorerHelp Special
-high link bufExplorerOpenIn Normal
-high link bufExplorerSplit NonText
-high link bufExplorerBufNbr Number
-high link bufExplorerModBuf Exception
-high link bufExplorerLockedBuf Special
-high link bufExplorerHidBuf Constant
-high link bufExplorerActBuf Identifier
-high link bufExplorerCurBuf Type
-high link bufExplorerAltBuf String
-high link bufExplorerUnlBuf Comment
+high link bufExplorerSortBy       Comment
+high link bufExplorerMapping      String
+high link bufExplorerTitle        String
+high link bufExplorerSortType     bufExplorerSortBy
+high link bufExplorerToggleSplit  bufExplorerSplit
+high link bufExplorerToggleOpen   bufExplorerOpenIn
+high link bufExplorerHelp         Comment
+high link bufExplorerOpenIn       Normal
+high link bufExplorerSplit        NonText
+high link bufExplorerBufNbr       Number
+high link bufExplorerModBuf       Exception
+high link bufExplorerLockedBuf    Special
+high link bufExplorerHidBuf       Constant
+high link bufExplorerActBuf       Identifier
+high link bufExplorerCurBuf       Type
+high link bufExplorerAltBuf       String
+high link bufExplorerUnlBuf       Comment
 
 
 "if !has("gui_mac")
