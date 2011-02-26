@@ -57,6 +57,8 @@ map <Leader>e  :BufExplorer<CR>
 nnoremap <D-e> :BufExplorer<CR>
 
 map <Leader>n  :NERDTreeToggle<CR>
+map <Leader>g  :GundoToggle<CR>
+command! Gundo :GundoToggle
 
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>
