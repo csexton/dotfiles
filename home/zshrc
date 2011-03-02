@@ -8,7 +8,7 @@ export ZSH_THEME="risto"
 
 export DISABLE_AUTO_UPDATE="true"
 
-plugins=(git tab ruby rails bookmark)
+plugins=(git brew svn ruby rails)
 
 source $ZSH/oh-my-zsh.sh
 
