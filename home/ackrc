@@ -1,6 +1,6 @@
 --type-set=rails=.rb,.css,.erb,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.scss,.spec,.xml,.rxml,.yml
 --type-set=scala=.scala
---type-set=zsh=.zsh,.sh
+--type-set=zsh=.zsh,.sh,.zsh-theme
 --type-set=markdown=.md,.markdown,.txt
 --color-match=green
 --color-lineno=yellow
