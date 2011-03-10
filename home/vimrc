@@ -22,7 +22,8 @@ set incsearch       " Incremental search
 set joinspaces
 set laststatus=2    " Always show status line
 set list            " show trailing whiteshace and tabs
-set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:+    " ,eol:¬
+"set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:+    " ,eol:¬
+set listchars=tab:»\ ,trail:·,extends:→,precedes:←,nbsp:‗
 set modelines=5     " Debian likes to disable this
 set mousemodel=popup
 set pastetoggle=<F2>
