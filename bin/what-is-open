@@ -1,0 +1,5 @@
+#!/bin/sh
+# https://github.com/Chealion/chealion/tree/master/Shell
+#
+# -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
+lsof -F n | grep '^n/Volumes/' | sed 's/n\/Volumes\///g' | sort -f
