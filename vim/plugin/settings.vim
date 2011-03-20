@@ -1,7 +1,21 @@
 " settings.vim
 " vim:set ft=vim et tw=78 sw=2:
 
-command! -bar -range=% Trim :<line1>,<line2>s/\s\+$//e
+
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+command! -bar -range=% Trim :call StripTrailingWhitespace()
+"nmap <silent> <Leader><space> :call StripTrailingWhitespace()<CR>
+
 
 function! HTry(function, ...)
   if exists('*'.a:function)
@@ -36,6 +50,7 @@ let g:NERDShutUp = 1
 let g:VCSCommandDisableMappings = 1
 
 let g:bufExplorerShowRelativePath=1
+let g:gist_clip_command = 'pbcopy'
 
 
 let g:surround_{char2nr('s')} = " \r"
