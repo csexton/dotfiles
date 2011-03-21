@@ -1,22 +1,6 @@
 " settings.vim
 " vim:set ft=vim et tw=78 sw=2:
 
-
-function! StripTrailingWhitespace()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-command! -bar -range=% Trim :call StripTrailingWhitespace()
-"nmap <silent> <Leader><space> :call StripTrailingWhitespace()<CR>
-
-
 function! HTry(function, ...)
   if exists('*'.a:function)
     return call(a:function, a:000)
