@@ -1,11 +1,14 @@
 #!/bin/sh
 # -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
 
-export LSCOLORS="exfxcxdxbxegedabagacad"
+#export LSCOLORS="exfxcxdxbxegedabagacad"
+export LSCOLORS="ExGxBxDxbxEgEdxbxgacba"
 export CLICOLOR=1
 export EDITOR="vim"
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
+alias :q="exit"
+alias :wq="exit"
 export P4CONFIG=".p4config"
 
 PLATFORM=`uname -s`
