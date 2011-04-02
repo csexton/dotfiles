@@ -59,6 +59,8 @@ map <Leader>n  :NERDTreeToggle<CR>
 map <Leader>g  :GundoToggle<CR>
 command! Gundo :GundoToggle
 
+map <Leader>b  :edit %:h<CR>
+
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>
 
