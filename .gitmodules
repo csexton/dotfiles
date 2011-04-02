@@ -37,9 +37,6 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/snipmate"]
-	path = vim/bundle/snipmate
-	url = http://github.com/csexton/snipmate.vim.git
 [submodule "vim/bundle/jekyll"]
 	path = vim/bundle/jekyll
 	url = http://github.com/csexton/jekyll.vim.git
