@@ -1,22 +1,36 @@
-require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
+#require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
 
-#require 'wirble'
-begin
-  require 'irbtools/configure'
-  Irbtools.remove_library 'fancy_irbt'
-  Irbtools.remove_library 'guessmethod'
-  Irbtools.init
-rescue LoadError => err
-  puts "Irbtools load error: #{err}"
+def wirble
+  begin
+    require 'rubygems'
+    require 'wirble'
+    Wirble.init
+    Wirble.colorize
+    "Wirble Engage!"
+  rescue LoadError => err
+    puts "Wirble not installed"
+  end
 end
-#
+
+def irbtools
+  begin
+    require 'irbtools/configure'
+    Irbtools.remove_library 'fancy_irbt'
+    Irbtools.remove_library 'guessmethod'
+    Irbtools.init
+    "IRB Tools Engage!"
+  rescue LoadError => err
+    puts "Irbtools load error: #{err}"
+  end
+end
+
 #begin
 #  require 'bond'
 #  Bond.start
 #rescue LoadError => err
 #  #puts "Bond not installed"
 #end
-#
+
 #begin
 #  # IRB Options
 #  IRB.conf[:AUTO_INDENT] = true
