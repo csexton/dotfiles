@@ -46,12 +46,12 @@ endif
 
 if (has("gui_running") || ( &t_Co > 255 ))
   " GUI
-  highlight Normal             guifg=#EEEEEE    ctermfg=7      guibg=#111111    ctermbg=233
+  highlight Normal             guifg=#EEEEEE    ctermfg=7      guibg=#111111    ctermbg=232
   highlight Comment            guifg=#AA66FF    ctermfg=135
   highlight Constant           guifg=#339999    ctermfg=66
   highlight Cursor             guifg=#000000    ctermfg=0      guibg=#FFFFFF    ctermbg=15    gui=none cterm=none
-  highlight CursorColumn       guifg=NONE       guibg=#333333  ctermbg=236
-  highlight CursorLine         guifg=NONE       guibg=#333333  ctermbg=236
+  highlight CursorColumn       guifg=NONE       guibg=#333333  ctermbg=236 cterm=none
+  highlight CursorLine         guifg=NONE       guibg=#333333  ctermbg=236 cterm=none
   highlight Directory          none
   highlight ErrorMsg           guifg=#EA2C2B    ctermfg=160    guibg=#000000    ctermbg=0
   highlight FoldColumn         none
@@ -84,7 +84,7 @@ if (has("gui_running") || ( &t_Co > 255 ))
   highlight Title              guifg=#FF00FF    ctermfg=13
   highlight Type               guifg=#FFDE58    ctermfg=221    gui=none cterm=none
   highlight VertSplit          guibg=#333333    ctermbg=236    guifg=#333333    ctermfg=236    gui=none cterm=none
-  highlight Visual             guifg=NONE       guibg=#555555  ctermbg=240    gui=none cterm=none
+  highlight Visual             guifg=NONE       guibg=#555555  ctermbg=238    gui=none cterm=none
   highlight WarningMsg         guifg=#EA2C2B    ctermfg=160
   highlight WildMenu           guifg=#000000    ctermfg=0       guibg=#FFFF00    ctermbg=11    gui=bold
   highlight rubyMethod         guifg=#FF9900    ctermfg=208
