@@ -44,62 +44,55 @@ else
     end
 endif
 
-if (has("gui_running"))
+if (has("gui_running") || ( &t_Co > 255 ))
   " GUI
-  highlight Normal             guifg=#EEEEEE      guibg=#111111
-  highlight Comment            guifg=#AA66FF
-  "highlight Comment            guifg=#7C7C7C
-  highlight Constant           guifg=#339999
-  "highlight Constant           guifg=#BDD6E9
-  highlight Cursor             guifg=Black        guibg=White       gui=NONE
-  highlight CursorColumn       guifg=NONE         guibg=#333333
-  highlight CursorLine         guifg=NONE         guibg=#333333
+  highlight Normal             guifg=#EEEEEE    ctermfg=7      guibg=#111111    ctermbg=233
+  highlight Comment            guifg=#AA66FF    ctermfg=135
+  highlight Constant           guifg=#339999    ctermfg=66
+  highlight Cursor             guifg=#000000    ctermfg=0      guibg=#FFFFFF    ctermbg=15    gui=none cterm=none
+  highlight CursorColumn       guifg=NONE       guibg=#333333  ctermbg=236
+  highlight CursorLine         guifg=NONE       guibg=#333333  ctermbg=236
   highlight Directory          none
-  highlight ErrorMsg           guifg=Red          guibg=Black
+  highlight ErrorMsg           guifg=#EA2C2B    ctermfg=160    guibg=#000000    ctermbg=0
   highlight FoldColumn         none
-  highlight Folded             guifg=DarkGrey     guibg=#1a1a1a
-  "highlight Identifier         guifg=#FFCC00
-  highlight Identifier         guifg=#FFF15B
-  highlight IncSearch          guifg=Black        guibg=Yellow1      gui=none
-  highlight Keyword            guifg=#FF6600
-  highlight LineNr             guifg=#333333      guibg=Black
-  highlight MatchParen         guibg=#135B00      guifg=#85EB6A
-  highlight MoreMsg            guifg=#00AA00
-  highlight NonText            guifg=#404040
-  highlight Pmenu              guifg=White        guibg=#004000      gui=bold
-  highlight PmenuSbar          guibg=#5555ff
-  highlight PmenuSel           guifg=White        guibg=#48A048      gui=bold
-  highlight PmenuThumb         guibg=White
-  highlight PreProc            guifg=#AAFFFF
+  highlight Folded             guifg=#A9A9A9    ctermfg=248    guibg=#1a1a1a    ctermbg=234
+  highlight Identifier         guifg=#FFF15B    ctermfg=227
+  highlight IncSearch          guifg=#000000    ctermfg=0      guibg=#FFFF00    ctermbg=11    gui=none  cterm=none
+  highlight Keyword            guifg=#FF6600    ctermfg=202
+  highlight LineNr             guifg=#333333    ctermfg=236    guibg=#000000    ctermbg=0
+  highlight MatchParen         guibg=#135B00    ctermbg=22     guifg=#85EB6A    ctermfg=113
+  highlight MoreMsg            guifg=#00AA00    ctermfg=34
+  highlight NonText            guifg=#404040    ctermfg=238
+  highlight Pmenu              guifg=#FFFFFF    ctermfg=15     guibg=#004000    ctermbg=22   gui=bold
+  highlight PmenuSbar          guibg=#5555FF    ctermbg=12
+  highlight PmenuSel           guifg=#FFFFFF    ctermfg=15     guibg=#48A048    ctermbg=71   gui=bold
+  highlight PmenuThumb         guibg=#FFFFFF    ctermbg=15
+  highlight PreProc            guifg=#AAFFFF    ctermfg=159
   highlight Question           none
-  highlight Regexp             guifg=#44B4CC
-  highlight Search             guifg=Black        guibg=Yellow1
-  highlight SignColumn         guifg=#AAAA77      guibg=#111111
-  highlight Special            guifg=#33AA00
-  highlight SpecialKey         guifg=#202020
-  highlight Statement          guifg=#FF6600                        gui=none
-  highlight StatusLine         guibg=#333333      guifg=#34D800     gui=none
-  highlight StatusLineNC       guibg=#333333      guifg=#A8A8A8     gui=none
-  highlight String             guifg=#66FF00
-  highlight TabLine            guifg=#BBBBBB      guibg=#333333
-  highlight TabLineFill        guifg=#BBBBBB      guibg=#808080
-  highlight TabLineSel         guibg=Black        guifg=White
-  highlight Title              guifg=Magenta
-  "highlight Type               guifg=#EEFFA3                        gui=none
-  "highlight Type               guifg=#cccccc
-  highlight Type               guifg=#FFDE58                        gui=none
-  highlight VertSplit          guibg=#333333      guifg=#333333     gui=none
-  "highlight Visual             guibg=#FFF15B      guifg=#111111
-  highlight Visual             guifg=NONE        guibg=#555555      gui=NONE
-  highlight WarningMsg         guifg=Red
-  highlight WildMenu           guifg=Black        guibg=#FFFF00     gui=bold
-  highlight rubyMethod         guifg=#FF9900
-  highlight railsUserClass     guifg=#AAAAAA
-  highlight rubyNumber         guifg=#CCFF33
-  highlight railsUserMethod    guifg=#AACCFF
-  highlight railsMethod        guifg=#FF5500                        gui=bold
-"elseif ( &t_Co > 255 )
-else
+  highlight Regexp             guifg=#44B4CC    ctermfg=74
+  highlight Search             guifg=#000000    ctermfg=0      guibg=#FFFF00    ctermbg=11
+  highlight SignColumn         guifg=#AAAA77    ctermfg=144    guibg=#111111    ctermbg=233
+  highlight Special            guifg=#33AA00    ctermfg=70
+  highlight SpecialKey         guifg=#202020    ctermfg=234
+  highlight Statement          guifg=#FF6600    ctermfg=202    gui=none cterm=none
+  highlight StatusLine         guibg=#333333    ctermbg=236    guifg=#34D800    ctermfg=76    gui=none cterm=none
+  highlight StatusLineNC       guibg=#333333    ctermbg=236    guifg=#A8A8A8    ctermfg=248   gui=none cterm=none
+  highlight String             guifg=#66FF00    ctermfg=82
+  highlight TabLine            guifg=#BBBBBB    ctermfg=250    guibg=#333333    ctermbg=236
+  highlight TabLineFill        guifg=#BBBBBB    ctermfg=250    guibg=#808080    ctermbg=244
+  highlight TabLineSel         guibg=#000000    ctermbg=0      guifg=#FFFFFF    ctermfg=15
+  highlight Title              guifg=#FF00FF    ctermfg=13
+  highlight Type               guifg=#FFDE58    ctermfg=221    gui=none cterm=none
+  highlight VertSplit          guibg=#333333    ctermbg=236    guifg=#333333    ctermfg=236    gui=none cterm=none
+  highlight Visual             guifg=NONE       guibg=#555555  ctermbg=240    gui=none cterm=none
+  highlight WarningMsg         guifg=#EA2C2B    ctermfg=160
+  highlight WildMenu           guifg=#000000    ctermfg=0       guibg=#FFFF00    ctermbg=11    gui=bold
+  highlight rubyMethod         guifg=#FF9900    ctermfg=208
+  highlight railsUserClass     guifg=#AAAAAA    ctermfg=248
+  highlight rubyNumber         guifg=#CCFF33    ctermfg=191
+  highlight railsUserMethod    guifg=#AACCFF    ctermfg=153
+  highlight railsMethod        guifg=#FF5500    ctermfg=202    gui=bold
+else " GUI and Decent Terminals
   " cterm 16
   highlight Comment            ctermfg=DarkMagenta
   highlight MatchParen         ctermfg=Black       ctermbg=1
