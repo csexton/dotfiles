@@ -24,7 +24,7 @@ bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
 
 # usage: bindtc <cap> <fallback> <zsh-command>
-bindtc () 
+bindtc ()
 {
   local keyval=$(echotc "$1" 2>&-)
   bindkey "${keyval:-$2}" "$3"
@@ -69,6 +69,36 @@ function tree {
 
 src(){cd ~/src/$1;}
 compctl -W ~/src -/ src
+
+
+rack() { ack $* app/* lib/* config/* db/migrate/* test/* }
+
+function prompt-dissapoint {
+  export PROMPT="%{$fg[green]%}ಠ_ಠ %{$reset_color%}"
+}
+function prompt-ahh {
+  export PROMPT="%{$fg[green]%}٩◔̯◔۶ %{$reset_color%}"
+}
+function prompt-roll {
+  export PROMPT="%{$fg[green]%}◔_◔ %{$reset_color%}"
+}
+function prompt-yay {
+  export PROMPT="%{$fg[green]%}(｡◕‿◕｡) %{$reset_color%}"
+}
+function prompt-gasp {
+  export PROMPT="%{$fg[green]%}⊙▃ ⊙ %{$reset_color%}"
+}
+function prompt-happy {
+  export PROMPT="%{$fg[green]%}(•‿•) %{$reset_color%}"
+}
+
+
+
+
+
+
+
+
 
 unsetopt auto_name_dirs
 # Ruby Version Manager path mangling
