@@ -14,6 +14,7 @@ if &grepprg ==# 'grep -n $* /dev/null'
 endif
 if has("gui_running")
   set showbreak=⤥
+  set background=dark
 endif
 if &statusline == ''
   set statusline=[%n]\ %<%.99f\ %h%w%m%r%{HTry('CapsLockStatusline')}%y%{HTry('rails#statusline')}%{HTry('fugitive#statusline')}%{HTry('rvm#statusline')}%#ErrorMsg#%{HTry('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
@@ -145,7 +146,7 @@ endfunction
 command! Preso :call Preso()
 
 " colorscheme risto
-set background=dark
+"set background=dark
 let g:solarized_visibility="low" " Let trailer trash handle whitespace
 colorscheme solarized
 autocmd GuiEnter * set guifont=Anonymous\ Pro:h16,Monaco:h16
