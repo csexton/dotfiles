@@ -71,7 +71,7 @@ src(){cd ~/src/$1;}
 compctl -W ~/src -/ src
 
 
-rack() { ack $* app/* lib/* config/* db/migrate/* test/* }
+ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 
 function prompt-dissapoint {
   export PROMPT="%{$fg[green]%}ಠ_ಠ %{$reset_color%}"
