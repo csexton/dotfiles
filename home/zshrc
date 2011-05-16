@@ -70,6 +70,11 @@ function tree {
 src(){cd ~/src/$1;}
 compctl -W ~/src -/ src
 
+kapow(){
+  touch ~/.pow/$1/tmp/restart.txt;
+  if [ $? -eq 0 ]; then; echo "pow: restarting $1" ; fi
+}
+compctl -W ~/.pow -/ kapow
 
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 
