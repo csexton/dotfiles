@@ -70,9 +70,33 @@ function tree {
 src(){cd ~/src/$1;}
 compctl -W ~/src -/ src
 
+_rack_root_detect(){
+  setopt chaselinks
+  local orgdir=$(pwd)
+  local basedir=$(pwd)
+
+  while [[ $basedir != '/' ]]; do
+    test -e "$basedir/config.ru" && break
+    builtin cd ".." 2>/dev/null
+    basedir="$(pwd)"
+  done
+
+  builtin cd $orgdir 2>/dev/null
+  [[ ${basedir} == "/" ]] && return 1
+  echo `basename $basedir | sed -E "s/.(com|net|org)//"`
+}
 kapow(){
-  touch ~/.pow/$1/tmp/restart.txt;
-  if [ $? -eq 0 ]; then; echo "pow: restarting $1" ; fi
+  local vhost=$1
+  [ ! -n "$vhost" ] && vhost=$(_rack_root_detect)
+  if [ ! -h ~/.pow/$vhost ]
+  then
+    echo "pow: This domain isn’t set up yet. Symlink your application to ${vhost} first."
+    return 1
+  fi
+
+  [ ! -d "~/.pow/${vhost}/tmp" ] &&  mkdir -p "~/.pow/$vhost/tmp"
+  touch ~/.pow/$vhost/tmp/restart.txt;
+  [ $? -eq 0 ] &&  echo "pow: restarting $vhost.dev"
 }
 compctl -W ~/.pow -/ kapow
 
