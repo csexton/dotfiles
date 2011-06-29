@@ -3,7 +3,7 @@ export ZSH=$HOME/.dotfiles/oh-my-zsh
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
-#export ZSH_THEME="maran"
+#export ZSH_THEME="random"
 export ZSH_THEME="risto"
 
 export DISABLE_AUTO_UPDATE="true"
@@ -99,6 +99,9 @@ kapow(){
   [ $? -eq 0 ] &&  echo "pow: restarting $vhost.dev"
 }
 compctl -W ~/.pow -/ kapow
+
+# View the standard out (puts) from any pow app
+alias kaput="tail -f ~/Library/Logs/Pow/apps/*"
 
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 

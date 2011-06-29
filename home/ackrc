@@ -3,6 +3,7 @@
 --type-set=zsh=.zsh,.sh,.zsh-theme
 --type-set=markdown=.md,.markdown,.txt
 --type-set=html=.htm,.html,.shtml,.xhtml,.html,.erb
+--type-set=sass=.sass,.scss
 --color-match=green
 --color-lineno=yellow
 --color-filename=yellow
