@@ -1,0 +1,13 @@
+echo "vim.local"
+Bundle 'altercation/vim-colors-solarized.git'
+colorscheme solarized
+set nofoldenable
+set nonumber
+set guifont=Anonymous\ Pro:h16,Monaco:h16
+
+Bundle 'csexton/jekyll.vim.git'
+let g:jekyll_path = "/Users/csexton/src/codeography.com"
+map <Leader>jn  :JekyllPost<CR>
+map <Leader>jl  :JekyllList<CR>
+
+

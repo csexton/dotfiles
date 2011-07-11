@@ -8,7 +8,7 @@ export ZSH_THEME="risto"
 
 export DISABLE_AUTO_UPDATE="true"
 
-plugins=(git brew svn ruby rails)
+plugins=(git brew svn ruby rails bundler-exec)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,7 +96,19 @@ kapow(){
 
   [ ! -d "~/.pow/${vhost}/tmp" ] &&  mkdir -p "~/.pow/$vhost/tmp"
   touch ~/.pow/$vhost/tmp/restart.txt;
-  [ $? -eq 0 ] &&  echo "pow: restarting $vhost.dev"
+  if [ $? -eq 0 ]
+  then
+    echo "            --_--"
+    echo "         (  -_    _)."
+    echo "       ( ~       )   )"
+    echo "     (( )  (    )  ()  )"
+    echo "      (.   )) (       )"
+    echo '        ``..     ..``'
+    echo "             | |"
+    echo "           (=| |=)"
+    echo "             | |       Kapow! Restarted $vhost.dev"
+    echo '         (../( )\.))'
+  fi
 }
 compctl -W ~/.pow -/ kapow
 

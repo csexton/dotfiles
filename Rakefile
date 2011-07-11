@@ -21,7 +21,7 @@ def symlink_home(src, dest)
   else
     puts_red "  Unable to symlink #{dest} because it exists and is not a symlink"
   end
-end 
+end
 
 # Detect if this is a mac
 def mac?
@@ -57,7 +57,6 @@ task :home do
     symlink_home("#{f}", ".#{File.basename f}")
   end
 
-  symlink_home('vim', '.vim')
   symlink_home('bin', 'bin')
 end
 
@@ -80,7 +79,7 @@ task :zsh do
     system "chsh -s `which zsh`"
     system "git submodule init oh-my-zsh"
     system "git submodule update oh-my-zsh"
-  else 
+  else
     puts "Error: zsh is not installed on your system, or not in your path."
   end
 
