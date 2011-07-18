@@ -1,6 +1,4 @@
-echo "vim.local"
-Bundle 'altercation/vim-colors-solarized.git'
-colorscheme solarized
+silent! colorscheme solarized
 set nofoldenable
 set nonumber
 set guifont=Anonymous\ Pro:h16,Monaco:h16
