@@ -1,4 +1,7 @@
+set background=dark
 silent! colorscheme solarized
+"hi LineNr cterm=bold ctermbg=7 ctermfg=6
+"autocmd FileType haml setlocal indentkeys=o,O,*<Return>,],0),!^F,=end,=else,=elsif,=rescue,=ensure,=when
 set nofoldenable
 set nonumber
 set guifont=Anonymous\ Pro:h16,Monaco:h16
