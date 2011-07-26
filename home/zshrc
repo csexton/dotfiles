@@ -116,6 +116,8 @@ compctl -W ~/.pow -/ kapow
 # View the standard out (puts) from any pow app
 alias kaput="tail -f ~/Library/Logs/Pow/apps/*"
 
+alias ip="curl -s ip.tpo.pe"
+
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 
 function prompt-dissapoint {
