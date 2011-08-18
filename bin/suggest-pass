@@ -1,0 +1,2 @@
+#!/bin/sh
+cat /usr/share/dict/words | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | head -n 3
