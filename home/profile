@@ -14,7 +14,7 @@ export P4CONFIG=".p4config"
 PLATFORM=`uname -s`
 case "$PLATFORM" in
 "Darwin")
-  export PATH=$HOME/bin:$PATH
+  export PATH=/usr/local/bin:$HOME/bin:$PATH
   export MANPATH=/usr/local/share/man:$MANPATH
   if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
   then

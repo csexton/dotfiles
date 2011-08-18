@@ -1,11 +1,7 @@
 export ZSH=$HOME/.dotfiles/oh-my-zsh
-# Path to your oh-my-zsh configuration.
-
-# Set to the name theme to load.
-# Look in ~/.oh-my-zsh/themes/
 #export ZSH_THEME="random"
-#export ZSH_THEME="risto"
-export ZSH_THEME="risto-light"
+export ZSH_THEME="risto"
+#export ZSH_THEME="risto-light"
 
 export DISABLE_AUTO_UPDATE="true"
 
@@ -14,10 +10,6 @@ plugins=(git brew svn ruby rails bundler-exec)
 source $ZSH/oh-my-zsh.sh
 
 if [[ -s $HOME/.profile ]] ; then source $HOME/.profile ; fi
-
-
-# Customize to your needs...
-#
 
 # This might need to be moved into a mac-specific file in oh-my-zsh
 #stty erase ^H &>/dev/null
@@ -95,7 +87,7 @@ kapow(){
     return 1
   fi
 
-  [ ! -d "~/.pow/${vhost}/tmp" ] &&  mkdir -p "~/.pow/$vhost/tmp"
+  [ ! -d ~/.pow/${vhost}/tmp ] &&  mkdir -p ~/.pow/$vhost/tmp
   touch ~/.pow/$vhost/tmp/restart.txt;
   if [ $? -eq 0 ]
   then
