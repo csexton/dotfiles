@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+f = []
+f.concat Dir["*.xcworkspace"]
+f.concat Dir["*.xcodeproj"]
+
+if f.length > 0
+  puts "opening #{f.first}"
+  `open -a /Developer/Applications/Xcode.app #{f.first}`
+  exit 0
+end
+
+puts "No Xcode projects found"
