@@ -9,7 +9,9 @@ crlf          off
 defbce        "on"
 defscrollback 10000
 defutf8       on
-escape        ^\\
+#escape        ^\\
+escape ^jj
+
 #hardstatus   alwayslastline
 #hardcopy_append           on
 #hardstatus   off
@@ -25,3 +27,5 @@ startup_message off
 #termcapinfo xterm* 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
 vbell         off
 vbell_msg     "ouch"
+
+termcapinfo xterm-color|xterm|xterms|xs|rxvt ti@:te@

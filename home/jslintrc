@@ -1,5 +1,5 @@
 /*jslint browser: true, sloppy:true */
-/*global jQuery: false, $: false, escape: false, unescape: false */
+/*global jQuery: false, $: false, escape: false, unescape: false, Modernizr:false, Backbone:false */
 
 /* vim: set ft=javascript */
 

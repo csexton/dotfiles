@@ -1,8 +1,8 @@
-#require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
+require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
 
-def wirble
+# Load wirble
+def irb_wirble
   begin
-    require 'rubygems'
     require 'wirble'
     Wirble.init
     Wirble.colorize
@@ -12,46 +12,47 @@ def wirble
   end
 end
 
-def irbtools
+# Load irbtools
+def irb_irbtools
   begin
     require 'irbtools/configure'
-    Irbtools.remove_library 'fancy_irbt'
-    Irbtools.remove_library 'guessmethod'
-    Irbtools.init
+    Irbtools.remove_library :paint
+    Irbtools.remove_library :fancy_irb
+    Irbtools.add_library :paint, :late => true do Wirb.load_schema :classic_paint if defined? Wirb end
+    #Irbtools.add_library :fancy_irb, :thread => -1 do FancyIrb.start end
+    Irbtools.start
+
     "IRB Tools Engage!"
   rescue LoadError => err
     puts "Irbtools load error: #{err}"
   end
 end
 
-#begin
-#  require 'bond'
-#  Bond.start
-#rescue LoadError => err
-#  #puts "Bond not installed"
-#end
 
-#begin
-#  # IRB Options
-#  IRB.conf[:AUTO_INDENT] = true
+# Outputing log on the irb script/console
 #
-#  class Integer
-#    def to_binary_s
-#      bits = self.to_s(2)
-#      prepend = (8 - bits.length % 8)
-#      bits = ('0' * prepend) + bits
-#      return [bits].pack('B*')
-#    end
-#  end
-#  class String
-#    def read_hex_s
-#      self.gsub(" ", "").hex.to_binary_s
-#    end
-#
-#    def to_hex_s
-#      self.unpack("H*")[0]
-#    end
-#  end
-#rescue
-#  warn "Your .irbrc is sad"
-#end
+# The if condition checks if the server is running on IRB and reassigns the application logger a new logger that outputs to STDOUT
+def irb_logger
+  config.logger = Logger.new(STDOUT) if "irb" == $0
+end
+
+#   class Integer
+#     def to_binary_s
+#       bits = self.to_s(2)
+#       prepend = (8 - bits.length % 8)
+#       bits = ('0' * prepend) + bits
+#       return [bits].pack('B*')
+#     end
+#   end
+#   class String
+#     def read_hex_s
+#       self.gsub(" ", "").hex.to_binary_s
+#     end
+#     def to_hex_s
+#       self.unpack("H*")[0]
+#     end
+#   end
+
+IRB.conf[:SAVE_HISTORY] = 10000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irbhistory"
+IRB.conf[:EVAL_HISTORY] = 500

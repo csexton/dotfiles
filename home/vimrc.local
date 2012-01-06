@@ -1,14 +1,31 @@
-set background=dark
-silent! colorscheme solarized
+set t_Co=256
+"silent! colorscheme solarized
+"set background=dark
+hi htmlItalic cterm=none
+"hi Visual ctermbg=15
 "hi LineNr cterm=bold ctermbg=7 ctermfg=6
+silent! colorscheme tomorrow-night
+" syntax clear
 "autocmd FileType haml setlocal indentkeys=o,O,*<Return>,],0),!^F,=end,=else,=elsif,=rescue,=ensure,=when
 set nofoldenable
 set nonumber
 set guifont=Anonymous\ Pro:h16,Monaco:h16
 
-Bundle 'csexton/jekyll.vim.git'
-let g:jekyll_path = "/Users/csexton/src/codeography.com"
-map <Leader>jn  :JekyllPost<CR>
-map <Leader>jl  :JekyllList<CR>
+"au BufEnter * cal ctrlp#SetWorkingPath(2)
+
+let g:pathogen_disabled = ["ack.vim"]
+
+"Bundle 'csexton/jekyll.vim.git'
+"let g:jekyll_path = "/Users/csexton/src/codeography.com"
+"map <Leader>jn  :JekyllPost<CR>
+"map <Leader>jl  :JekyllList<CR>
+"
+"let g:viceroy_dont_remap_leader = "true"
 
 
+if has("gui_macvim")
+  nmap <SwipeLeft> :bN<CR>
+  nmap <SwipeRight> :bn<CR>
+endif
+
+au BufEnter *.rb syn keyword error contained FIXME_RAILS3
