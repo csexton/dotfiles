@@ -24,7 +24,7 @@ case "$PLATFORM" in
   alias gvim="mvim"
   alias fpm="/Developer/Applications/Utilities/PackageMaker.app/Contents/Resources/Flat\ Package\ Editor.app/Contents/MacOS/Flat\ Package\ Editor"
   alias mysql.server="sudo /usr/local/mysql/support-files/mysql.server"
-  alias xcode="open -a /Developer/Applications/Xcode.app *.xcodeproj"
+  # alias xcode="open -a /Developer/Applications/Xcode.app *.xcodeproj"
   echo -e "\e[00;31mDotfiles Engage!\e[00m"
 ;;
 "Linux")
