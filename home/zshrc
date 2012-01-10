@@ -117,6 +117,9 @@ setopt always_to_end
 #zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle ':completion:*' menu select
 #zstyle ':completion:*' verbose yes
+
+# Case insensitive and substring matching
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # }}}
 # History {{{
 ## Command history configuration
