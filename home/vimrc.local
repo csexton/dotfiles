@@ -9,7 +9,10 @@ silent! colorscheme tomorrow-night
 "autocmd FileType haml setlocal indentkeys=o,O,*<Return>,],0),!^F,=end,=else,=elsif,=rescue,=ensure,=when
 set nofoldenable
 set nonumber
+
 set guifont=Anonymous\ Pro:h16,Monaco:h16
+"set guifont=Menlo\ for\ Powerline:h14
+let g:Powerline_symbols = 'fancy'
 
 "au BufEnter * cal ctrlp#SetWorkingPath(2)
 
@@ -29,3 +32,14 @@ if has("gui_macvim")
 endif
 
 au BufEnter *.rb syn keyword error contained FIXME_RAILS3
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" set noautoindent
+" set nosmartindent
+" filetype indent off
+
+"set formatoptions-=c
+"set noautoindent
+"set nosmartindent
+"set nocindent

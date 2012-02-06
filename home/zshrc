@@ -66,6 +66,9 @@ bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
 bindkey "\e[3~" delete-char
 
+# stash the current line and run a command, popping it off after
+bindkey "^t" push-line-or-edit
+
 # usage: bindtc <cap> <fallback> <zsh-command>
 bindtc ()
 {
@@ -139,6 +142,7 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
+alias history='fc -l 1'
 
 
 # }}}
@@ -166,6 +170,7 @@ parse_git_dirty() {
 
 # }}}
 # Aliases and Functions {{{
+alias rake="noglob rake" # allows square brackts for rake task invocation
 alias ip="curl -s ip.tpo.pe"
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 function prompt-dissapoint {
@@ -185,6 +190,12 @@ function prompt-gasp {
 }
 function prompt-happy {
   export PROMPT="%{$fg[green]%}(•‿•) %{$reset_color%}"
+}
+function prompt-happy-sad {
+  export PROMPT="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%}) "
+}
+function prompt-preso {
+  export PROMPT="%(?,%{$fg[green]%}◕‿◕%{$reset_color%},%{$fg[red]%}ಠ_ಠ%{$reset_color%}) "
 }
 
 mvim() { /Applications/MacVim.app/Contents/MacOS/Vim -g $* }
