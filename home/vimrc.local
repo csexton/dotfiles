@@ -5,10 +5,11 @@ hi htmlItalic cterm=none
 "hi Visual ctermbg=15
 "hi LineNr cterm=bold ctermbg=7 ctermfg=6
 silent! colorscheme tomorrow-night
+set fillchars=vert:\ ,fold:-
 " syntax clear
 "autocmd FileType haml setlocal indentkeys=o,O,*<Return>,],0),!^F,=end,=else,=elsif,=rescue,=ensure,=when
 set nofoldenable
-set nonumber
+set number
 
 set guifont=Anonymous\ Pro:h16,Monaco:h16
 "set guifont=Menlo\ for\ Powerline:h14
@@ -43,3 +44,20 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 "set noautoindent
 "set nosmartindent
 "set nocindent
+
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :e %%
+"map <leader>es :sp %%
+"map <leader>ev :vsp %%
+
+" Cursorline {{{
+" Only show cursorline in the current window
+
+set cursorline
+augroup cline
+    au!
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
+augroup END
+
+" }}}
