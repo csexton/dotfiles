@@ -5,7 +5,7 @@ SERVER="backup.remote:cs-talos"
 
 cd /Users/csexton
 
-rsync $OPTIONS Projects Documents $SERVER \
+rsync $OPTIONS Projects Pictures Documents $SERVER \
   --exclude="OmniFocus Backups" \
   --exclude="*vmwarevm" \
   --exclude="Apple Marketing Material" \
