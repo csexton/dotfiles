@@ -1,5 +1,23 @@
-/*jslint browser: true, sloppy:true */
-/*global jQuery: false, $: false, escape: false, unescape: false, Modernizr:false, Backbone:false */
+/*jslint vars:true, nomen: true, browser: true, sloppy:true, white:true */
+/*global
+ confirm: false,
+ alert: false,
+ titleize:false,
+ interpolate: false,
+ console:false,
+ Backbone: false,
+ capitalize: false,
+ zl_icon: false,
+ pluralize: false,
+ parse_iso8601_duration:false,
+ lzw_encode: false,
+ lzw_decode: false,
+ Modernizr: false,
+ _gaq: false,
+ _: false,
+ jQuery: false,
+ $: false,
+ escape: false,
+ unescape: false */
 
 /* vim: set ft=javascript */
-
