@@ -4,7 +4,17 @@ set t_Co=256
 hi htmlItalic cterm=none
 "hi Visual ctermbg=15
 "hi LineNr cterm=bold ctermbg=7 ctermfg=6
-silent! colorscheme tomorrow-night
+silent! colorscheme Tomorrow-Night
+
+" A few fixes for Tomorrow-Night
+hi DiffDelete guibg=#2D1F21 guifg=#2D1F21
+hi DiffAdd guibg=#1D3F21
+hi DiffChange guibg=#1D1F41
+hi DiffText guibg=#6D1F21
+hi Normal ctermbg=none
+
+
+
 set fillchars=vert:\ ,fold:-
 " syntax clear
 "autocmd FileType haml setlocal indentkeys=o,O,*<Return>,],0),!^F,=end,=else,=elsif,=rescue,=ensure,=when
@@ -61,3 +71,4 @@ augroup cline
 augroup END
 
 " }}}
+
