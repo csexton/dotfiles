@@ -8,7 +8,7 @@
 ## Probably not without some editing, because people often commit from more
 ## than one address.
 ##
-## git-rank-contributors Copyright 2008 William Morgan <wmorgan-git-wt-add@masanjin.net>. 
+## git-rank-contributors Copyright 2008 William Morgan <wmorgan-git-wt-add@masanjin.net>.
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, either version 3 of the License, or (at
@@ -25,6 +25,8 @@
 class String
   def obfuscate; gsub(/@/, " at the ").gsub(/\.(\w+)(>|$)/, ' dot \1s\2') end
   def htmlize; gsub("&", "&amp;").gsub("<", "&lt;").gsub(">", "&gt;") end
+
+  alias :each_line :each unless method_defined?(:each_line)
 end
 
 lines = {}
@@ -34,7 +36,7 @@ htmlize = ARGV.delete("-h")
 
 author = nil
 state = :pre_author
-`git log -M -C -C -p --no-color`.each do |l|
+`git log -M -C -C -p --no-color`.each_line do |l|
   case
   when (state == :pre_author || state == :post_author) && l =~ /Author: (.*)$/
     author = $1
@@ -49,7 +51,7 @@ state = :pre_author
   end
 end
 
-lines.sort_by { |a, c| -c }.each do |a, c|
+lines.sort_by { |a, c| -c }.each_line do |a, c|
   a = a.obfuscate if obfuscate
   a = a.htmlize if htmlize
   if verbose
