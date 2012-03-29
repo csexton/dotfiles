@@ -3,7 +3,10 @@
 # Configure Mobile Safari on the Simulator allow remote debugging of web pages
 # and open safari to view the inspector.
 #
-#open /Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app
+# If you want to open the Simulator from the command line you might like the
+# following alias:
+# alias iphone-simulator="open /Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
+#
 
 pid=$(ps x | egrep "MobileSafari|Web.app" | grep -v grep | awk '{ print $1 }')
 
@@ -23,6 +26,5 @@ EOS
       do JavaScript "window.open('http://localhost:9999')" in document 1
     end tell
 EOS
-
 
 fi
