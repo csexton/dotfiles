@@ -1,4 +1,4 @@
---type-set=rails=.rb,.css,.erb,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.scss,.spec,.xml,.rxml,.yml,.feature
+--type-set=rails=.rb,.css,.erb,.slim,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.scss,.spec,.xml,.rxml,.yml,.feature
 --type-set=scala=.scala
 --type-set=zsh=.zsh,.sh,.zsh-theme
 --type-set=markdown=.md,.markdown,.txt

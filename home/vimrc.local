@@ -13,7 +13,8 @@ hi DiffChange guibg=#1D1F41
 hi DiffText guibg=#6D1F21
 hi Normal ctermbg=none
 
-
+" Crazyness!
+imap jj <Esc>
 
 set fillchars=vert:\ ,fold:-
 " syntax clear
@@ -72,3 +73,6 @@ augroup END
 
 " }}}
 
+
+" Remap semicolon to be colon
+nmap ; :

@@ -146,6 +146,46 @@ alias history='fc -l 1'
 
 
 # }}}
+# Bundler {{{
+alias be="bundle exec"
+
+# The following is based on https://github.com/gma/bundler-exec
+
+bundled_commands=(annotate cap capify cucumber ey foreman guard heroku middleman nanoc rackup rainbows rails rake rspec ruby shotgun spec spork thin thor unicorn unicorn_rails)
+
+## Functions
+
+_bundler-installed() {
+  which bundle > /dev/null 2>&1
+}
+
+_within-bundled-project() {
+  local check_dir=$PWD
+  while [ $check_dir != "/" ]; do
+    [ -f "$check_dir/Gemfile" ] && return
+    check_dir="$(dirname $check_dir)"
+  done
+  false
+}
+
+_run-with-bundler() {
+  if _bundler-installed && _within-bundled-project; then
+    bundle exec $@
+  else
+    $@
+  fi
+}
+
+## Main program
+for cmd in $bundled_commands; do
+  eval "function bundled_$cmd () { _run-with-bundler $cmd \$@}"
+  alias $cmd=bundled_$cmd
+
+  if which _$cmd > /dev/null 2>&1; then
+        compdef _$cmd bundled_$cmd=$cmd
+  fi
+done
+# }}}
 # Git {{{
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[red]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[red]%}›%{$reset_color%}"
@@ -243,7 +283,7 @@ _rack_root_detect(){
 
   builtin cd $orgdir 2>/dev/null
   [[ ${basedir} == "/" ]] && return 1
-  echo `basename $basedir | sed -E "s/.(com|net|org)//"`
+  echo `basename $basedir | sed -E "s/\.(com|net|org)$//"`
 }
 kapow(){
   local vhost=$1
@@ -282,11 +322,14 @@ bindkey '\C-x\C-e' edit-command-line
 # src Command {{{
 src(){cd ~/src/$1;}
 compctl -W ~/src -/ src
+
+rad(){cd ~/src/radius/$1;}
+compctl -W ~/src/radius -/ rad
 # }}}
 # }}}
 # Prompt {{{
 PROMPT='%{$fg[green]%}%2~ $(git_prompt_info)%{$reset_color%}%(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
-RPROMPT='%{$fg[red]%}$(~/.rvm/bin/rvm-prompt 2> /dev/null)%{$reset_color%}%'
+#RPROMPT='%{$fg[red]%}$(~/.rvm/bin/rvm-prompt 2> /dev/null)%{$reset_color%}%'
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
 
