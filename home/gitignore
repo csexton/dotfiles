@@ -1,0 +1,36 @@
+# .gitignore
+filenametags
+.DS_Store
+log/*.log
+tmp/**/*
+/**/*.swp
+config/database.yml
+db/*.sqlite3
+#db/schema.rb
+*.sw?
+.*~
+.netrwhist
+
+# /cache/
+/cache/*
+
+# /log/
+/log/*
+
+# /sessions/
+/sessions/*
+
+# /tmp/
+/tmp/*
+
+.rvmrc
+/**/*.specification
+
+DELETEME-*
+
+# XCode
+/**/csexton.perspectivev3
+/**/*.xcodeproj/xcuserdata
+
+doc/tags
+.pt
