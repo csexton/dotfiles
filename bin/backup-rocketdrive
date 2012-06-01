@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd /Users/csexton
+
+rsync -auvv --progress --delete /Users/csexton /Volumes/TalosBackup/HomeBackup \
+  --exclude="OmniFocus Backups" \
+  --exclude="Library/Caches" \
+  --exclude="Library/Caches" \
+  --exclude="Downloads" \
+  --exclude="*vmwarevm" \
+  --exclude="*DS_Store" \
+  --exclude="*.git" \
+  --exclude="*.ievms" \
+  --exclude="*.rvm"
