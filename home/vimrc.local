@@ -22,7 +22,7 @@ set fillchars=vert:\ ,fold:-
 set nofoldenable
 set number
 
-set guifont=Anonymous\ Pro:h16,Monaco:h16
+set guifont=Anonymous\ Pro:h14,Monaco:h14
 "set guifont=Menlo\ for\ Powerline:h14
 let g:Powerline_symbols = 'fancy'
 
@@ -64,15 +64,22 @@ map <leader>e :e %%
 " Cursorline {{{
 " Only show cursorline in the current window
 
-set cursorline
-augroup cline
-    au!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
-augroup END
+"set cursorline
+"augroup cline
+"    au!
+"    autocmd WinLeave * set nocursorline
+"    autocmd WinEnter * set cursorline
+"augroup END
 
 " }}}
 
+set clipboard=unnamed
 
 " Remap semicolon to be colon
 nmap ; :
+
+
+" For yankstack
+set macmeta
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_older_paste
