@@ -73,13 +73,15 @@ map <leader>e :e %%
 
 " }}}
 
-set clipboard=unnamed
+"set clipboard=unnamed
+" Copy to the system clipboard when in visual mode
+vnoremap y "+y
+vnoremap <M-y> "+y
 
 " Remap semicolon to be colon
 nmap ; :
 
-
-" For yankstack
-set macmeta
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_older_paste
+"" For yankstack
+"set macmeta
+"nmap <leader>p <Plug>yankstack_substitute_older_paste
+"nmap <leader>P <Plug>yankstack_substitute_older_paste
