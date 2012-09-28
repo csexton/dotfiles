@@ -17,7 +17,12 @@ case "$PLATFORM" in
   export MANPATH=/usr/local/share/man:$MANPATH
   if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
   then
-    alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+      if [[ "screen-256color" == $TERM ]]
+      then
+          alias vim="reattach-to-user-namespace -l /Applications/MacVim.app/Contents/MacOS/Vim"
+      else
+          alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+      fi
     export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
   fi
   alias gvim="mvim"

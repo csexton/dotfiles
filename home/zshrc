@@ -32,6 +32,7 @@ setopt correct_all
 #stty erase ^H &>/dev/null
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
+bindkey '^W' vi-backward-kill-word
 bindkey -e
 
 bindkey '\ew' kill-region
@@ -151,7 +152,7 @@ alias be="bundle exec"
 
 # The following is based on https://github.com/gma/bundler-exec
 
-bundled_commands=(annotate cap capify cucumber ey foreman guard heroku middleman nanoc rackup rainbows rails rake rspec ruby shotgun spec spork thin thor unicorn unicorn_rails)
+bundled_commands=(annotate cap capify cucumber ey foreman guard middleman nanoc rackup rainbows rails rake rspec ruby shotgun spec spork thin thor unicorn unicorn_rails)
 
 ## Functions
 

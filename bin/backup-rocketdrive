@@ -2,7 +2,7 @@
 
 cd /Users/csexton
 
-rsync -auvv --progress --delete /Users/csexton /Volumes/TalosBackup/HomeBackup \
+rsync -auvv --progress --delete /Users/csexton /Volumes/RocketDrive/DewbackRsyncBackup \
   --exclude="OmniFocus Backups" \
   --exclude="Library/Caches" \
   --exclude="Library/Caches" \

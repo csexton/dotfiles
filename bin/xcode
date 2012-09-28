@@ -5,7 +5,7 @@ f.concat Dir["*.xcodeproj"]
 
 if f.length > 0
   puts "opening #{f.first}"
-  `open -a /Developer/Applications/Xcode.app "#{f.first}" --args -ApplePersistenceIgnoreState YES`
+  `open -a /Applications/Xcode.app "#{f.first}" --args -ApplePersistenceIgnoreState YES`
   exit 0
 end
 

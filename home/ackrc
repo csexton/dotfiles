@@ -4,7 +4,7 @@
 --type-set=markdown=.md,.markdown,.txt
 --type-set=html=.htm,.html,.shtml,.xhtml,.html,.erb
 --type-set=sass=.sass,.scss
---type-set=xcode=.xib,.project,.h,.m,.cpp
+--type-set=xcode=.plist,.nib,.xib,.project,.h,.m,.cpp
 --type-set=plist=.plist
 --color-match=green
 --color-lineno=yellow
