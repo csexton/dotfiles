@@ -71,27 +71,3 @@ task :xcode do
   FileUtils.ln_s(File.join(File.dirname(__FILE__), "xcode", "RistoInk.xccolortheme"), color_themes_dir)
 
 end
-
-desc "Configure dotfiles to use zsh"
-task :zsh do
-  if system "which zsh"
-    puts "Change shell to use zsh"
-    system "chsh -s `which zsh`"
-    system "git submodule init oh-my-zsh"
-    system "git submodule update oh-my-zsh"
-  else
-    puts "Error: zsh is not installed on your system, or not in your path."
-  end
-
-end
-
-desc "Update all bundles"
-task :updatebundle do
-  dir = File.dirname(__FILE__)
-  Dir["vim/bundle/*"].each do |n|
-    puts "Updating #{n}"
-    `cd #{n};git checkout master; git pull; cd #{dir}`
-  end
-
-end
-
