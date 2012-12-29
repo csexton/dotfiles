@@ -1,9 +1,12 @@
 set t_Co=256
 "silent! colorscheme solarized
-"set background=dark
 hi htmlItalic cterm=none
 "hi Visual ctermbg=15
 "hi LineNr cterm=bold ctermbg=7 ctermfg=6
+
+"set background=dark
+"let base16colorspace=256
+"colorscheme base16-tomorrow
 silent! colorscheme Tomorrow-Night
 
 " A few fixes for Tomorrow-Night
@@ -24,7 +27,7 @@ set number
 
 "set guifont=Anonymous\ Pro:h14,Monaco:h14
 "set guifont=Menlo\ for\ Powerline:h14
-set guifont=Menlo:h14
+set guifont=Menlo:h12
 let g:Powerline_symbols = 'fancy'
 
 "au BufEnter * cal ctrlp#SetWorkingPath(2)
@@ -47,15 +50,6 @@ endif
 au BufEnter *.rb syn keyword error contained FIXME_RAILS3
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" set noautoindent
-" set nosmartindent
-" filetype indent off
-
-"set formatoptions-=c
-"set noautoindent
-"set nosmartindent
-"set nocindent
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 "map <leader>e :e %%
@@ -88,24 +82,23 @@ set macmeta
 "nmap <leader>p <Plug>yankstack_substitute_newer_paste
 
 " For vimux
-
+let mapleader = ","
 " Run the current file with rspec
-map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-
+map <Leader>p :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
 " Prompt for a command to run
 map <Leader>rp :VimuxPromptCommand<CR>
-
 " Run last command executed by VimuxRunCommand
 map <Leader>rl :VimuxRunLastCommand<CR>
-
 " Inspect runner pane
 map <Leader>ri :VimuxInspectRunner<CR>
-
 " Close all other tmux panes in current window
 map <Leader>rx :VimuxClosePanes<CR>
-
 " Close vim tmux runner opened by VimuxRunCommand
 map <Leader>rq :VimuxCloseRunner<CR>
-
 " Interrupt any command running in the runner pane
-map <Leader>rs :VimuxInterruptRunner<CR>
+map <Leader>rc :VimuxInterruptRunner<CR>
+
+" Fix arrow keys in tmux
+map <Esc>[B <Down>
+
+:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>

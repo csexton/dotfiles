@@ -128,8 +128,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:
 # History {{{
 ## Command history configuration
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 
 setopt append_history
 setopt extended_history
@@ -148,7 +148,6 @@ alias history='fc -l 1'
 
 # }}}
 # Bundler {{{
-alias be="bundle exec"
 
 # The following is based on https://github.com/gma/bundler-exec
 
@@ -212,6 +211,8 @@ parse_git_dirty() {
 # }}}
 # Aliases and Functions {{{
 alias rake="noglob rake" # allows square brackts for rake task invocation
+alias heroku="nocorrect heroku" # allows square brackts for rake task invocation
+alias rails="nocorrect rails" # allows square brackts for rake task invocation
 alias ip="curl -s ip.tpo.pe"
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 function prompt-dissapoint {

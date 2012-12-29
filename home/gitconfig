@@ -17,6 +17,7 @@
         oops = reset --soft "HEAD^"
 	unadd = reset HEAD
 	lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
+	ctags = !.git/hooks/ctags
 [apply]
         whitespace = strip
 [github]
@@ -27,3 +28,5 @@
         default = matching
 [diff "ruby"]
 	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
+[init]
+	templatedir = ~/.git_template
