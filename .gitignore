@@ -1,6 +1,7 @@
 vim/tmp/
 bin/p4
 bin/irc-say
+bin/mr-curl
 bin/mate
 bin/nobu*
 vim/.VimballRecord
