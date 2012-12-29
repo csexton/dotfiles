@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh fuzzymonk_wp@fuzzymonk.com "./backup-thesextons"
