@@ -1,0 +1,121 @@
+#!/usr/bin/env ruby
+require 'open-uri'
+require 'fileutils'
+
+class String
+  def colorize(code); "\e[#{code}m#{self}\e[0m"; end
+  def red; colorize(31); end
+  def green; colorize(32); end
+  def yellow; colorize(33); end
+end
+
+unless Dir.respond_to?(:home)
+  class Dir
+    class << self
+      define_method :home do
+        ENV['HOME']
+      end
+    end
+  end
+end
+
+class Command
+  attr_reader :command, :args
+
+  def initialize(command=nil, args=nil)
+    @command = command
+    @args = args
+  end
+
+  def self.build(command, args)
+    case command.to_sym
+    when :bundle
+      Bundle.new(command, args)
+    else
+      Bad.new(command, args)
+    end
+  end
+
+  class Bundle < Command
+    attr_reader :name, :location
+    def initialize(*params)
+      super
+      @name = File.basename(args[0])
+      @location = File.expand_path("~/.vim/bundle/#{@name}")
+    end
+
+    def install
+      print "Installing #{name}... ".green
+      mkdir "~/.vim/bundle"
+      Dir.chdir "#{ENV['HOME']}/.vim/bundle"
+      system "git clone 'git@github.com:#{args.join}'.git"
+    end
+
+    def update
+      print "Updating #{name}... ".green
+      Dir.chdir @location
+      system "git pull"
+    end
+
+    def call
+      if File.exists? @location
+        update
+      else
+        install
+      end
+    end
+  end
+
+  class Bad < Command
+    def call
+      puts "WARNING: #{command} is not a valid command, ignorning"
+    end
+  end
+
+  class Pathogen < Command
+    def call
+      print "Setting up Pathogen... "
+      mkdir "~/.vim/bundle"
+      #mkdir "~/.vim/autoload"
+      #download "https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim",
+      #     "~/.vim/autoload/pathogen.vim"
+      puts "Done."
+    end
+  end
+
+  protected
+
+  def mkdir(path)
+    FileUtils.mkdir_p(File.expand_path(path))
+  end
+
+  def download(url, path)
+    File.open(File.expand_path(path), "w") do |file|
+      open(url) do |read_file|
+        file.write(read_file.read)
+      end
+    end
+  end
+
+end
+
+module Infect
+  def self.run
+    commands = []
+
+    File.open( "#{ENV['HOME']}/.vimrc" ).each do |line|
+      if line =~ /^"=/
+        command, *args = line.split
+        commands << Command.build(command.gsub('"=', ''), args)
+      end
+    end
+
+    commands.each do |command|
+      command.call
+    end
+  end
+end
+
+if __FILE__ == $0
+  Infect.run
+end
