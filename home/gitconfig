@@ -15,18 +15,20 @@
         sup = submodule update
         input = read name && echo $name
         oops = reset --soft "HEAD^"
-	unadd = reset HEAD
-	lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
-	ctags = !.git/hooks/ctags
+        unadd = reset HEAD
+        lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
+        ctags = !.git/hooks/ctags
+        cleanup = !git-cleanup-merged-branches
+        sweep = !git-sweep
 [apply]
         whitespace = strip
 [github]
-	user = csexton
+        user = csexton
 [merge]
         summary = true
 [push]
         default = matching
 [diff "ruby"]
-	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
+        funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
 [init]
-	templatedir = ~/.git_template
+        templatedir = ~/.git_template
