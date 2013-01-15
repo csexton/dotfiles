@@ -1,0 +1,377 @@
+"
+"
+"
+"
+"
+"
+"             _____
+"         ___/O   O\____
+"        / O        O   \
+"        \______________/
+"   -===|____\///\\\/_____
+"       \----------------/
+"        \______________/  \/
+"         /\__________/    //
+"  >=o\  // //\\   || \\  //
+"     \\o/ //  \o  ||  \o//
+"         //    || ||
+"     /o==o     |o \o==o   LS
+"    //         //     \\
+"    /\        //       /\          csexton's vimrc
+"              /\            - frimmin on the frim fram -
+"
+"
+" Bundles {{{
+" Pathogen is required for any of these plugins to work
+"=bundle tpope/vim-pathogen
+"=bundle tpope/vim-sensible
+"=bundle csexton/trailertrash.vim
+"=bundle csexton/vim-markdown
+"=bundle ervandew/supertab
+"=bundle godlygeek/tabular
+"=bundle kchmck/vim-coffee-script
+"=bundle mattn/webapi-vim
+"=bundle mattn/gist-vim
+"=bundle mileszs/ack.vim
+"=bundle scrooloose/nerdtree
+"=bundle sjl/gundo.vim
+"=bundle tpope/vim-abolish
+"=bundle tpope/vim-bundler
+"=bundle pangloss/vim-javascript
+"=bundle tpope/vim-cucumber
+"=bundle tpope/vim-endwise
+"=bundle tpope/vim-fugitive
+"=bundle tpope/vim-haml
+"=bundle tpope/vim-ragtag
+"=bundle tpope/vim-rails
+"=bundle tpope/vim-rake
+"=bundle tpope/vim-repeat
+"=bundle tpope/vim-surround
+"=bundle tpope/vim-unimpaired
+"=bundle vim-ruby/vim-ruby
+"=bundle vim-scripts/bufexplorer.zip
+"=bundle wincent/Command-T
+"=bundle csexton/tomorrow-theme.vim
+"=bundle slim-template/vim-slim
+"
+"#bundle ap/vim-css-color
+"#bundle csexton/jslint.vim
+"#bundle int3/vim-extradite
+"=bundle kana/vim-textobj-user
+"#bundle msanders/cocoa.vim
+"=bundle nelstrom/vim-textobj-rubyblock
+"=bundle tomtom/tlib_vim
+"=bundle tpope/vim-commentary
+"=bundle tpope/vim-rvm
+"=bundle danro/rename.vim
+"=bundle JulesWang/css.vim
+"
+" }}}
+
+" Pathogen {{{
+source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+" }}}
+
+" Settings {{{
+"
+let mapleader = ","
+set t_Co=256
+hi htmlItalic cterm=none
+"colorscheme base16-tomorrow
+silent! colorscheme Tomorrow-Night
+
+" Crazyness!
+imap jj <Esc>
+
+set fillchars=vert:\ ,fold:-
+set nofoldenable
+set number
+
+set guifont=Anonymous\ Pro:h16,Monaco:h16
+"set guifont=Menlo\ for\ Powerline:h14
+"set guifont=Menlo:h14
+
+"au BufEnter * cal ctrlp#SetWorkingPath(2)
+
+let g:pathogen_disabled = ["ack.vim"]
+
+if has("gui_macvim")
+  nmap <SwipeLeft> :bN<CR>
+  nmap <SwipeRight> :bn<CR>
+endif
+
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+"set clipboard=unnamed
+" Copy to the system clipboard when in visual mode
+vnoremap y "+y
+vnoremap <M-y> "+y
+
+" Remap semicolon to be colon
+nmap ; :
+
+" from settings.vim
+
+set cmdheight=1             " Command like height is forced to one line
+set dictionary+=/usr/share/dict/words
+set gdefault                " When on, the ":substitute" flag 'g' is default on.
+set guioptions=egmtc        " Get rid of the scrollbar, toolbar, and popups
+set hidden                  " Allow dirty unsaved buffers
+set history=1000            " Remember more history
+set hlsearch                " Highlight searches
+set ignorecase              " Ignore case in searches.
+set laststatus=2            " Always show status line
+set list                    " show trailing whiteshace and tabs
+set listchars=tab:»\ ,trail:\ ,extends:→,precedes:←,nbsp:‗ " Show whitespace glyphs
+set modelines=5             " Debian likes to disable this
+set mousemodel=popup        " Right mouse button pops up a menu
+"set relativenumber
+set spelllang=en_us         " Make vim speak 'merican
+set suffixes+=.dvi          " Lower priority in wildcards
+"set tags+=../tags,../../tags,../../../tags,../../../../tags
+set timeoutlen=1200         " A little bit more time for macros
+set virtualedit=block       " Let the cursor go where there is nothing
+set visualbell              " No more ding sounds
+
+" Wildmenu completion
+set wildmenu
+set wildmode=list:longest
+set wildmode=longest:full,full
+set wildignore+=*~
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=migrations                       " Django migrations
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.orig                           " Merge resolution files
+
+" Backups
+set noswapfile                    " It's 2012, Vim.
+set backupskip=/tmp/*,/private/tmp/*" " Make Vim able to edit crontab files again.
+set backupskip+=*.tmp,crontab.*
+
+" Persistant Undo
+if has('persistent_undo')
+  set undodir=~/.vim/tmp/undo//     " undo files
+  set undofile
+  set undolevels=1000               "maximum number of changes that can be undone
+  set undoreload=10000              "maximum number lines to save for undo on a buffer reload
+endif
+
+if has("gui_running")
+  set showbreak=⤥
+  set background=dark
+endif
+
+" Set the grep program
+if &grepprg ==# 'grep -n $* /dev/null'
+  set grepprg=grep\ -rnH\ --exclude='.*.swp'\ --exclude='*~'\ --exclude='*.log'\ --exclude=tags\ $*\ /dev/null
+endif
+
+" Load matchit
+runtime! plugin/matchit.vim
+runtime! macros/matchit.vim
+
+"if $TERM == '^\%(screen\|xterm-color\)$' && t_Co == 8
+"  set t_Co=16
+"endif
+
+command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
+command! -bar -nargs=* -bang W :write<bang> <args>
+
+iabbrev Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+iabbrev o_o ಠ_ಠ
+
+augroup settings
+  autocmd!
+
+  " Restore cursor position
+  autocmd BufReadPost *.rb if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" | endif
+
+  autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+        \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+
+  "autocmd BufNewFile,BufRead *.scss             set ft=scss.css
+  autocmd BufNewFile,BufRead *.md               set ft=markdown
+  autocmd BufNewFile,BufRead *.haml,*.jst       set ft=haml
+  autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
+  autocmd BufRead * if ! did_filetype() && getline(1)." ".getline(2).
+        \ " ".getline(3) =~? '<\%(!DOCTYPE \)\=html\>' | setf html | endif
+
+  autocmd FileType javascript,coffee            setlocal et sw=2 sts=2 isk+=$
+  autocmd FileType html,xhtml,css,scss.css      setlocal et sw=2 sts=2
+  autocmd FileType eruby,yaml,ruby              setlocal et sw=2 sts=2
+  autocmd FileType cucumber                     setlocal et sw=2 sts=2
+  autocmd FileType gitcommit                    setlocal spell
+  autocmd FileType ruby                         setlocal comments=:#\  tw=79
+  autocmd FileType vim                          setlocal et sw=2 sts=2 keywordprg=:help
+  autocmd FileType python                       setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+  autocmd FileType c                            setlocal et sw=2 sts=2
+
+  autocmd Syntax   css  syn sync minlines=50
+
+  autocmd User Rails Rnavcommand uploader app/uploaders -suffix=_uploader.rb -default=model()
+  autocmd User Rails Rnavcommand steps features/step_definitions -suffix=_steps.rb -default=web
+  autocmd User Rails Rnavcommand blueprint spec/blueprints -suffix=_blueprint.rb -default=model()
+  autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
+  autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
+  autocmd User Rails Rnavcommand support spec/support features/support -default=env
+  autocmd User Rails Rnavcommand sass app/sass -suffix=.scss -default=model()
+  autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>
+
+  autocmd FileType ruby imap <C-l> <Space>=><Space>
+augroup END
+
+
+" vim:set ft=vim et tw=78 sw=2 encoding=utf-8
+
+" }}}
+" Mappings {{{
+
+
+nnoremap          j gj
+nnoremap          k gk
+inoremap          <C-C> <Esc>`^
+cnoremap          <C-O> <Up>
+inoremap          ø <C-O>o
+inoremap          <M-o> <C-O>o
+inoremap          <C-X><C-@> <C-A>
+
+" Sacrilege: emacs like bindings in command and insert
+inoremap          <C-A> <C-O>^
+cnoremap          <C-A> <Home>
+cnoremap          <C-X><C-A> <C-A>
+cnoremap          <C-P> <Up>
+cnoremap          <C-N> <Down>
+inoremap          <C-k> <C-O>D
+cnoremap          <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+
+" Inserts the path of the currently edited file into a command
+"cmap <C-F> <C-R>=expand("%:p:h") . "/" <CR>
+
+" If at end of a line of spaces, delete back to the previous line. Otherwise, <Left>
+inoremap <silent> <C-B> <C-R>=getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"<CR>
+cnoremap          <C-B> <Left>
+
+" If at end of line, decrease indent, else <Del>
+inoremap <silent> <C-D> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"<CR>
+cnoremap          <C-D> <Del>
+
+" If at end of line, fix indent, else <Right>
+inoremap <silent> <C-F> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"<CR>
+cnoremap          <C-F> <Right>
+
+" Map Control-E to go to the end of the line in insert mode. However, when
+" completion is active you can use CTRL-E to stop it and go back to the
+" originally typed text.
+inoremap          <C-E> <C-R>=InsCtrlE()<CR>
+function! InsCtrlE()
+    try
+        norm! i
+        return "\<c-o>A"
+    catch
+        return "\<c-e>"
+    endtry
+endfunction
+
+" Toggle line wrapping
+map <Leader>w  :set nowrap!<CR>
+
+" Toggle line numbers
+map <Leader>l  :set nonumber!<CR>
+
+" Browse the directory of the current file
+"map <Leader>b  :edit %:h<CR>
+
+" Jump to the last posistion in the buffer
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+" Jump back to the top on git commit messages
+autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
+" }}}
+" Bundle settings {{{
+
+"" For yankstack
+set macmeta
+"nmap <leader>P <Plug>yankstack_substitute_older_paste
+"nmap <leader>p <Plug>yankstack_substitute_newer_paste
+let g:yankring_history_file = '.vim-yankring-history'
+
+" For vimux
+map <Leader>p :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+map <Leader>rp :VimuxPromptCommand<CR>
+map <Leader>rl :VimuxRunLastCommand<CR>
+map <Leader>ri :VimuxInspectRunner<CR>
+map <Leader>rx :VimuxClosePanes<CR>
+map <Leader>rq :VimuxCloseRunner<CR>
+map <Leader>rc :VimuxInterruptRunner<CR>
+
+" Command-T settings need to be loaded before plugins are
+let g:CommandTMaxHeight=20       " limit to 20 lines0
+
+let g:is_bash = 1                " Highlight all .sh files as if they were bash
+let g:ruby_minlines = 500
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_rails = 1
+
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
+let g:NERDShutUp = 1
+let g:VCSCommandDisableMappings = 1
+
+let g:bufExplorerShowRelativePath=1
+if has('mac')
+  let g:gist_clip_command = 'pbcopy'
+endif
+
+" Surround
+let g:surround_{char2nr('s')} = " \r"
+let g:surround_{char2nr(':')} = ":\r"
+let g:surround_indent = 1
+
+" Vim Clojure
+let vimclojure#HighlightBuiltins = 1 " Highlight Clojure builtins
+let vimclojure#ParenRainbow = 1      " Rainbow parentheses
+
+" SuperTab
+let g:SuperTabMappingForward  = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
+
+" Fix command-t in tmux
+if &term =~ "xterm" || &term =~ "screen"
+  let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
+endif
+
+" Fix arrow keys in tmux
+map <Esc>[B <Down>
+
+" Launch Markedapp
+:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+
+if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
+if isdirectory(g:bundle_dir)
+  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+
+  map <Leader>e  :BufExplorer<CR>
+  nnoremap <D-e> :BufExplorer<CR>
+
+  map <Leader>g  :GundoToggle<CR>
+  map <D-g>  :GundoToggle<CR>
+  command! Gundo :GundoToggle
+
+  map <Leader>t :CommandT<CR>
+  nnoremap <silent> <Leader>y :YRShow<CR>
+  nnoremap <silent> <D-y> :YRShow<CR>
+endif
+
+" }}}
+
+" vim: set foldenable fdm=marker fmr={{{,}}}:
