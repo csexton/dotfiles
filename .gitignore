@@ -5,6 +5,8 @@ bin/mr-curl
 bin/mate
 bin/nobu*
 vim/.VimballRecord
+vim/bundle
+vim/tmp
 bin/silly*
 bin/mac*
 vim/.netrwhist
