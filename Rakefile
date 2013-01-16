@@ -42,7 +42,7 @@ end
 desc "Compile Command-T plugin for vim"
 task :"command-t" do
   if File.exists? "vim/bundle/command-t"
-    if system "cd vim/bundle/command-t/ruby/command-t && ruby extconf.rb && make && make install"
+    if system "cd vim/bundle/command-t/ruby/command-t && /usr/bin/ruby extconf.rb && make"
       puts_green "Command-T installed. You win!"
     end
   else
@@ -57,6 +57,7 @@ task :home do
     symlink_home("#{f}", ".#{File.basename f}")
   end
 
+  symlink_home('vim', '.vim')
   symlink_home('bin', 'bin')
 end
 
