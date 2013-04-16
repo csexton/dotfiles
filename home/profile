@@ -8,6 +8,7 @@ alias ls="ls -GF"
 alias ri="ri -Tf ansi"
 alias :q="exit"
 alias :wq="exit"
+alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 export P4CONFIG=".p4config"
 
 PLATFORM=`uname -s`

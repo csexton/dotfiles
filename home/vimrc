@@ -23,6 +23,7 @@
 "
 " Bundles {{{
 " Pathogen is required for any of these plugins to work
+"=bundle ervandew/ag
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-sensible
 "=bundle csexton/trailertrash.vim
@@ -65,12 +66,13 @@
 "=bundle tpope/vim-rvm
 "=bundle danro/rename.vim
 "=bundle JulesWang/css.vim
+"=bundle vim-scripts/YankRing.vim
 "
 " }}}
 
 " Pathogen {{{
 source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+execute pathogen#incubate()
 syntax on
 filetype plugin indent on
 " }}}
@@ -216,6 +218,8 @@ augroup settings
   autocmd FileType vim                          setlocal et sw=2 sts=2 keywordprg=:help
   autocmd FileType python                       setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
   autocmd FileType c                            setlocal et sw=2 sts=2
+
+  autocmd FileType markdown                     setlocal linebreak formatoptions=1 breakat=\ @-+;:,./?^I
 
   autocmd Syntax   css  syn sync minlines=50
 
@@ -373,5 +377,9 @@ if isdirectory(g:bundle_dir)
 endif
 
 " }}}
+
+au BufEnter *.rb syn match error contained "\<binding.pry\>"
+au BufEnter *.rb syn match error contained "\<debugger\>"
+au BufEnter *.coffee syn match error contained "\<debugger\>"
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:

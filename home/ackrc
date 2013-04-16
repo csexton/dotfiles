@@ -1,5 +1,6 @@
---type-set=rails=.rb,.css,.erb,.slim,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.scss,.spec,.xml,.rxml,.yml,.feature
+--type-set=rails=.rb,.css,.erb,.slim,.haml,.js,.rjs,.rake,.html,.rhtml,.sass,.scss,.spec,.xml,.rxml,.yml,.feature,.coffee,.jbuilder,.builder
 --type-set=scala=.scala
+--type-set=vim=.vim
 --type-set=zsh=.zsh,.sh,.zsh-theme
 --type-set=markdown=.md,.markdown,.txt
 --type-set=html=.htm,.html,.shtml,.xhtml,.html,.erb

@@ -6,16 +6,4 @@ rvm_gemset_create_on_use_flag=1
 
 # rvm_configure_env=(CFLAGS="-march=native -O2 -pipe")
 # rvm_configure_env=(CFLAGS="-march=core2 -O2 -pipe -fomit-frame-pointer")
-
-
-
-export BASILISK_API_KEY="RjztxMbEEQnoBoUDJTUBBqMcWgPYOFZat"
-export BASILISK_HOME=/Users/csexton/src/basilisk
-export BASILISK_HOPPER_DEV=en0
-export BASILISK_ID=chris-dev
-export BASILISK_INSTALL=/tmp
-export BASILISK_MAC=b8f6b1134863
-export BASILISK_SNIFFER_DEV=en0
-export BASILISK_TYPE=mac
-export BASILISK_VER=0.1
 rvm_auto_reload_flag=1

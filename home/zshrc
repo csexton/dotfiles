@@ -16,9 +16,6 @@
 #  `---'  |___|  `---'       Making the Kessel Run in less than twelve parsecs.
 #         `---'
 #
-# RVM {{{
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-# }}}
 # Colors {{{
 autoload -U colors
 colors
@@ -332,8 +329,8 @@ compctl -W ~/src/radius -/ rad
 # Prompt {{{
 PROMPT='%{$fg[green]%}%2~ $(git_prompt_info)%{$reset_color%}%(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
 
-PROMPT='╭ %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
-╰ %(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
+PROMPT='%(?:%{$fg[blue]%}:$fg[red])╭ %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
+%(?:%{$fg[blue]%}:$fg[red])╰ %(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
 
 #RPROMPT='%{$fg[red]%}$(~/.rvm/bin/rvm-prompt 2> /dev/null)%{$reset_color%}%'
 

@@ -2,9 +2,10 @@
         name = Christopher Sexton
         email = csexton@gmail.com
 [color]
-        diff = auto
+	diff = auto
         status = auto
         branch = auto
+	ui = auto
 [core]
         excludesfile = /Users/csexton/.gitignore
 [alias]
@@ -20,8 +21,12 @@
         ctags = !.git/hooks/ctags
         cleanup = !git-cleanup-merged-branches
         sweep = !git-sweep
-[apply]
-        whitespace = strip
+        br = branch
+        df = diff
+        ready = rebase -i @{u}
+        lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+        standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)%an%Creset' --since yesterday --author csexton
+        purr = pull --rebasely
 [github]
         user = csexton
 [merge]
@@ -32,3 +37,7 @@
         funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
 [init]
         templatedir = ~/.git_template
+[diff]
+	algorithm = patience
+[color "diff"]
+	whitespace = red reverse
