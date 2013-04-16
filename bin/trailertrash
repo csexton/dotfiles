@@ -1,0 +1,13 @@
+find .
+       \( -path "*/.git" \) -prune
+       \( -name "*.rb"     \
+      -or -name "*.html"   \
+      -or -name "*.js"     \
+      -or -name "*.coffee" \
+      -or -name "*.css"    \
+      -or -name "*.scss"   \
+      -or -name "*.erb"    \
+      -or -name "*.yml"    \
+      -or -name "*.ru" \)  \
+      -print0 | xargs echo
+       #-0 sed -i '' -E "s/[[:space:]]\+$//"
