@@ -342,4 +342,4 @@ if [[ -s $HOME/.profile ]] ; then source $HOME/.profile ; fi
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -1,3 +1,8 @@
 # RVM {{{
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 # }}}
+# DIRENV {{{
+#eval "$(/usr/local/bin/direnv hook $0)"
+# }}}
+
+# vim: set foldenable fdm=marker fmr={{{,}}}:

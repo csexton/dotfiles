@@ -54,6 +54,7 @@
 "=bundle wincent/Command-T
 "=bundle csexton/tomorrow-theme.vim
 "=bundle slim-template/vim-slim
+"=bundle vim-scripts/vim-pad
 "
 "#bundle ap/vim-css-color
 "#bundle csexton/jslint.vim
@@ -92,7 +93,7 @@ set fillchars=vert:\ ,fold:-
 set nofoldenable
 set number
 
-set guifont=Anonymous\ Pro:h16,Monaco:h16
+set guifont=Anonymous\ Pro:h14,Monaco:h14
 "set guifont=Menlo\ for\ Powerline:h14
 "set guifont=Menlo:h14
 
@@ -154,6 +155,10 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
+
+" Split Settings
+set splitbelow
+set splitright
 
 " Backups
 set noswapfile                    " It's 2012, Vim.
@@ -233,6 +238,10 @@ augroup settings
   autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>
 
   autocmd FileType ruby imap <C-l> <Space>=><Space>
+
+  autocmd BufEnter *.rb syn match error contained "\<binding.pry\>"
+  autocmd BufEnter *.rb syn match error contained "\<debugger\>"
+  autocmd BufEnter *.coffee syn match error contained "\<debugger\>"
 augroup END
 
 
@@ -273,6 +282,12 @@ cnoremap          <C-D> <Del>
 " If at end of line, fix indent, else <Right>
 inoremap <silent> <C-F> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"<CR>
 cnoremap          <C-F> <Right>
+
+" Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Map Control-E to go to the end of the line in insert mode. However, when
 " completion is active you can use CTRL-E to stop it and go back to the
@@ -378,8 +393,6 @@ endif
 
 " }}}
 
-au BufEnter *.rb syn match error contained "\<binding.pry\>"
-au BufEnter *.rb syn match error contained "\<debugger\>"
-au BufEnter *.coffee syn match error contained "\<debugger\>"
+let g:pad_dir="~/Dropbox/Notes"
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
