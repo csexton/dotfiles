@@ -92,6 +92,7 @@ imap jj <Esc>
 set fillchars=vert:\ ,fold:-
 set nofoldenable
 set number
+set nowrap
 
 set guifont=Anonymous\ Pro:h14,Monaco:h14
 "set guifont=Menlo\ for\ Powerline:h14
@@ -268,6 +269,9 @@ cnoremap          <C-N> <Down>
 inoremap          <C-k> <C-O>D
 cnoremap          <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
 
+" Clear incremental search highlight
+nnoremap <silent> <C-L> :nohlsearch<CR><C-l>
+
 " Inserts the path of the currently edited file into a command
 "cmap <C-F> <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -284,10 +288,10 @@ inoremap <silent> <C-F> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Ri
 cnoremap          <C-F> <Right>
 
 " Split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 " Map Control-E to go to the end of the line in insert mode. However, when
 " completion is active you can use CTRL-E to stop it and go back to the
@@ -394,5 +398,4 @@ endif
 " }}}
 
 let g:pad_dir="~/Dropbox/Notes"
-
 " vim: set foldenable fdm=marker fmr={{{,}}}:
