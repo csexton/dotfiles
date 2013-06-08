@@ -237,7 +237,6 @@ function prompt-preso {
   export PROMPT="%(?,%{$fg[green]%}◕‿◕%{$reset_color%},%{$fg[red]%}ಠ_ಠ%{$reset_color%}) "
 }
 
-mvim() { /Applications/MacVim.app/Contents/MacOS/Vim -g $* }
  # }}}
 # Terminal Title {{{
 function title {
@@ -327,12 +326,14 @@ compctl -W ~/src/radius -/ rad
 # }}}
 # }}}
 # Prompt {{{
-PROMPT='%{$fg[green]%}%2~ $(git_prompt_info)%{$reset_color%}%(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
+#PROMPT='%{$fg[green]%}%2~ $(git_prompt_info)%{$reset_color%}%(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
 
-PROMPT='%(?:%{$fg[blue]%}:$fg[red])╭ %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
-%(?:%{$fg[blue]%}:$fg[red])╰ %(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
+#PROMPT='%(?:%{$fg[blue]%}:$fg[red])╭ %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
+#%(?:%{$fg[blue]%}:$fg[red])╰ %(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
 
-#RPROMPT='%{$fg[red]%}$(~/.rvm/bin/rvm-prompt 2> /dev/null)%{$reset_color%}%'
+PROMPT='%(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
+%(!.#.%%) '
+RPROMPT='%{$fg[red]%}$(~/.rvm/bin/rvm-prompt 2> /dev/null)%{$reset_color%}%'
 
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
@@ -341,5 +342,3 @@ SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue
 if [[ -s $HOME/.profile ]] ; then source $HOME/.profile ; fi
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
-
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

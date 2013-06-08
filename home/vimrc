@@ -23,18 +23,20 @@
 "
 " Bundles {{{
 " Pathogen is required for any of these plugins to work
+"=bundle Shougo/vimproc.vim
+"=bundle Shougo/unite.vim
+"=bundle Shougo/neocomplcache.vim
 "=bundle ervandew/ag
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-sensible
+"=bundle tpope/vim-sleuth
 "=bundle csexton/trailertrash.vim
 "=bundle csexton/vim-markdown
-"=bundle ervandew/supertab
+" bundle ervandew/supertab
 "=bundle godlygeek/tabular
 "=bundle kchmck/vim-coffee-script
 "=bundle mattn/webapi-vim
 "=bundle mattn/gist-vim
-"=bundle mileszs/ack.vim
-"=bundle scrooloose/nerdtree
 "=bundle sjl/gundo.vim
 "=bundle tpope/vim-abolish
 "=bundle tpope/vim-bundler
@@ -50,11 +52,11 @@
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-unimpaired
 "=bundle vim-ruby/vim-ruby
-"=bundle vim-scripts/bufexplorer.zip
-"=bundle wincent/Command-T
+" bundle vim-scripts/bufexplorer.zip
+" bundle wincent/Command-T
 "=bundle csexton/tomorrow-theme.vim
 "=bundle slim-template/vim-slim
-"=bundle vim-scripts/vim-pad
+"=bundle AndrewRadev/switch.vim
 "
 "#bundle ap/vim-css-color
 "#bundle csexton/jslint.vim
@@ -67,7 +69,7 @@
 "=bundle tpope/vim-rvm
 "=bundle danro/rename.vim
 "=bundle JulesWang/css.vim
-"=bundle vim-scripts/YankRing.vim
+" bundle vim-scripts/YankRing.vim
 "
 " }}}
 
@@ -86,8 +88,8 @@ hi htmlItalic cterm=none
 "colorscheme base16-tomorrow
 silent! colorscheme Tomorrow-Night
 
-" Crazyness!
-imap jj <Esc>
+"" Crazyness!
+"imap jj <Esc>
 
 set fillchars=vert:\ ,fold:-
 set nofoldenable
@@ -158,8 +160,8 @@ set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
 
 " Split Settings
-set splitbelow
-set splitright
+"set splitbelow
+"set splitright
 
 " Backups
 set noswapfile                    " It's 2012, Vim.
@@ -195,7 +197,7 @@ runtime! macros/matchit.vim
 command! -bar -nargs=0 SudoW   :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 command! -bar -nargs=* -bang W :write<bang> <args>
 
-iabbrev Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+iabbrev lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 iabbrev o_o ಠ_ಠ
 
 augroup settings
@@ -211,6 +213,7 @@ augroup settings
   "autocmd BufNewFile,BufRead *.scss             set ft=scss.css
   autocmd BufNewFile,BufRead *.md               set ft=markdown
   autocmd BufNewFile,BufRead *.haml,*.jst       set ft=haml
+  autocmd BufNewFile,BufRead *.slim             set ft=slim
   autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
   autocmd BufRead * if ! did_filetype() && getline(1)." ".getline(2).
         \ " ".getline(3) =~? '<\%(!DOCTYPE \)\=html\>' | setf html | endif
@@ -368,6 +371,10 @@ let vimclojure#ParenRainbow = 1      " Rainbow parentheses
 let g:SuperTabMappingForward  = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
+" Vimfiler
+let g:vimfiler_as_default_explorer = 1
+
+
 " Fix command-t in tmux
 if &term =~ "xterm" || &term =~ "screen"
   let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
@@ -381,18 +388,38 @@ map <Esc>[B <Down>
 
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
-  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 
-  map <Leader>e  :BufExplorer<CR>
-  nnoremap <D-e> :BufExplorer<CR>
+  "map <Leader>e  :BufExplorer<CR>
+  "nnoremap <D-e> :BufExplorer<CR>
 
   map <Leader>g  :GundoToggle<CR>
   map <D-g>  :GundoToggle<CR>
   command! Gundo :GundoToggle
 
-  map <Leader>t :CommandT<CR>
-  nnoremap <silent> <Leader>y :YRShow<CR>
-  nnoremap <silent> <D-y> :YRShow<CR>
+  "map <Leader>t :CommandT<CR>
+  "nnoremap <silent> <Leader>y :YRShow<CR>
+  "nnoremap <silent> <D-y> :YRShow<CR>
+
+  " Unite
+  let g:unite_source_history_yank_enable = 1
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  nnoremap <leader>t :Unite -no-split -start-insert file_rec/async<cr>
+  nnoremap <leader>f :Unite -no-split -start-insert file<cr>
+  nnoremap <leader>r :Unite -no-split -start-insert file_mru<cr>
+  nnoremap <leader>y :Unite -no-split history/yank<cr>
+  nnoremap <leader>e :Unite -no-split -start-insert buffer<cr>
+
+  " Neocomplete
+  let g:acp_enableAtStartup = 0
+  " Use neocomplcache.
+  let g:neocomplcache_enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplcache_enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplcache_min_syntax_length = 3
+  let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+
 endif
 
 " }}}

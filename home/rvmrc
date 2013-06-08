@@ -7,4 +7,4 @@ rvm_gemset_create_on_use_flag=1
 # rvm_configure_env=(CFLAGS="-march=native -O2 -pipe")
 # rvm_configure_env=(CFLAGS="-march=core2 -O2 -pipe -fomit-frame-pointer")
 rvm_auto_reload_flag=1
-rvm_use_flag=2
+#rvm_use_flag=2
