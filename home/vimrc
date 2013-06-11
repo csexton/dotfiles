@@ -30,7 +30,6 @@
 "=bundle ervandew/ag
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-sensible
-"=bundle tpope/vim-sleuth
 "=bundle csexton/trailertrash.vim
 "=bundle csexton/vim-markdown
 "=bundle ervandew/supertab
@@ -59,12 +58,12 @@
 "=bundle slim-template/vim-slim
 " bundle AndrewRadev/switch.vim
 "
-"#bundle csexton/jslint.vim
-"=bundle kana/vim-textobj-user
-"=bundle nelstrom/vim-textobj-rubyblock
-"=bundle tomtom/tlib_vim
+" bundle csexton/jslint.vim
+" bundle kana/vim-textobj-user
+" bundle nelstrom/vim-textobj-rubyblock
+" bundle tomtom/tlib_vim
 "=bundle tpope/vim-commentary
-"=bundle tpope/vim-rvm
+" bundle tpope/vim-rvm
 "=bundle danro/rename.vim
 "=bundle JulesWang/css.vim
 "
@@ -375,16 +374,18 @@ if isdirectory(g:bundle_dir)
   " Unite
   let g:unite_source_history_yank_enable = 1
   let g:unite_enable_start_insert=1
+  let g:unite_enable_use_short_source_names=1
   let g:unite_split_rule="no"
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   nnoremap <leader>t :Unite -no-split -start-insert file_rec/async:!<cr>
   nnoremap <leader>f :Unite -no-split -start-insert file<cr>
   nnoremap <leader>r :Unite -no-split -start-insert file_mru<cr>
   nnoremap <leader>o :Unite -no-split -start-insert outline<cr>
-  nnoremap <leader>y :Unite -no-split -start-insert history/yank<cr>
-  nnoremap <leader>e :Unite -no-split -start-insert buffer<cr>
+  nnoremap <leader>y :Unite -no-split history/yank<cr>
+  nnoremap <leader>e :Unite -no-split buffer<cr>
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
+    let b:SuperTabDisabled=1
     imap <buffer> <C-j>   <Plug>(unite_select_next_line)
     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   endfunction
