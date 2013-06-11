@@ -15,7 +15,7 @@
 "  >=o\  // //\\   || \\  //
 "     \\o/ //  \o  ||  \o//
 "         //    || ||
-"     /o==o     |o \o==o   LS
+"     /o==o     |o \o==o
 "    //         //     \\
 "    /\        //       /\          csexton's vimrc
 "              /\            - frimmin on the frim fram -
@@ -25,14 +25,15 @@
 " Pathogen is required for any of these plugins to work
 "=bundle Shougo/vimproc.vim
 "=bundle Shougo/unite.vim
-"=bundle Shougo/neocomplcache.vim
+"=bundle h1mesuke/unite-outline
+" bundle Shougo/neocomplcache.vim
 "=bundle ervandew/ag
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-sensible
 "=bundle tpope/vim-sleuth
 "=bundle csexton/trailertrash.vim
 "=bundle csexton/vim-markdown
-" bundle ervandew/supertab
+"=bundle ervandew/supertab
 "=bundle godlygeek/tabular
 "=bundle kchmck/vim-coffee-script
 "=bundle mattn/webapi-vim
@@ -56,20 +57,16 @@
 " bundle wincent/Command-T
 "=bundle csexton/tomorrow-theme.vim
 "=bundle slim-template/vim-slim
-"=bundle AndrewRadev/switch.vim
+" bundle AndrewRadev/switch.vim
 "
-"#bundle ap/vim-css-color
 "#bundle csexton/jslint.vim
-"#bundle int3/vim-extradite
 "=bundle kana/vim-textobj-user
-"#bundle msanders/cocoa.vim
 "=bundle nelstrom/vim-textobj-rubyblock
 "=bundle tomtom/tlib_vim
 "=bundle tpope/vim-commentary
 "=bundle tpope/vim-rvm
 "=bundle danro/rename.vim
 "=bundle JulesWang/css.vim
-" bundle vim-scripts/YankRing.vim
 "
 " }}}
 
@@ -84,9 +81,10 @@ filetype plugin indent on
 "
 let mapleader = ","
 set t_Co=256
-hi htmlItalic cterm=none
 "colorscheme base16-tomorrow
 silent! colorscheme Tomorrow-Night
+hi htmlItalic cterm=none
+hi PmenuSel ctermbg=black
 
 "" Crazyness!
 "imap jj <Esc>
@@ -232,14 +230,16 @@ augroup settings
 
   autocmd Syntax   css  syn sync minlines=50
 
-  autocmd User Rails Rnavcommand uploader app/uploaders -suffix=_uploader.rb -default=model()
-  autocmd User Rails Rnavcommand steps features/step_definitions -suffix=_steps.rb -default=web
-  autocmd User Rails Rnavcommand blueprint spec/blueprints -suffix=_blueprint.rb -default=model()
-  autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
-  autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
-  autocmd User Rails Rnavcommand support spec/support features/support -default=env
-  autocmd User Rails Rnavcommand sass app/sass -suffix=.scss -default=model()
-  autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>
+
+  " Omni completion.
+  autocmd FileType css             setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript      setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python          setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml             setlocal omnifunc=xmlcomplete#CompleteTags
+  autocmd FileType ruby            set omnifunc=rubycomplete#Complete
+  autocmd FileType ruby            let g:rubycomplete_buffer_loading=1
+  autocmd FileType ruby            let g:rubycomplete_classes_in_global=1
 
   autocmd FileType ruby imap <C-l> <Space>=><Space>
 
@@ -247,6 +247,8 @@ augroup settings
   autocmd BufEnter *.rb syn match error contained "\<debugger\>"
   autocmd BufEnter *.coffee syn match error contained "\<debugger\>"
 augroup END
+
+
 
 
 " vim:set ft=vim et tw=78 sw=2 encoding=utf-8
@@ -325,12 +327,6 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 " }}}
 " Bundle settings {{{
 
-"" For yankstack
-set macmeta
-"nmap <leader>P <Plug>yankstack_substitute_older_paste
-"nmap <leader>p <Plug>yankstack_substitute_newer_paste
-let g:yankring_history_file = '.vim-yankring-history'
-
 " For vimux
 map <Leader>p :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
 map <Leader>rp :VimuxPromptCommand<CR>
@@ -340,18 +336,10 @@ map <Leader>rx :VimuxClosePanes<CR>
 map <Leader>rq :VimuxCloseRunner<CR>
 map <Leader>rc :VimuxInterruptRunner<CR>
 
-" Command-T settings need to be loaded before plugins are
-let g:CommandTMaxHeight=20       " limit to 20 lines0
-
 let g:is_bash = 1                " Highlight all .sh files as if they were bash
 let g:ruby_minlines = 500
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
-
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-let g:NERDShutUp = 1
-let g:VCSCommandDisableMappings = 1
 
 let g:bufExplorerShowRelativePath=1
 if has('mac')
@@ -371,15 +359,6 @@ let vimclojure#ParenRainbow = 1      " Rainbow parentheses
 let g:SuperTabMappingForward  = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
-" Vimfiler
-let g:vimfiler_as_default_explorer = 1
-
-
-" Fix command-t in tmux
-if &term =~ "xterm" || &term =~ "screen"
-  let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
-endif
-
 " Fix arrow keys in tmux
 map <Esc>[B <Down>
 
@@ -389,36 +368,26 @@ map <Esc>[B <Down>
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
 
-  "map <Leader>e  :BufExplorer<CR>
-  "nnoremap <D-e> :BufExplorer<CR>
-
   map <Leader>g  :GundoToggle<CR>
   map <D-g>  :GundoToggle<CR>
   command! Gundo :GundoToggle
 
-  "map <Leader>t :CommandT<CR>
-  "nnoremap <silent> <Leader>y :YRShow<CR>
-  "nnoremap <silent> <D-y> :YRShow<CR>
-
   " Unite
   let g:unite_source_history_yank_enable = 1
+  let g:unite_enable_start_insert=1
+  let g:unite_split_rule="no"
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  nnoremap <leader>t :Unite -no-split -start-insert file_rec/async<cr>
+  nnoremap <leader>t :Unite -no-split -start-insert file_rec/async:!<cr>
   nnoremap <leader>f :Unite -no-split -start-insert file<cr>
   nnoremap <leader>r :Unite -no-split -start-insert file_mru<cr>
-  nnoremap <leader>y :Unite -no-split history/yank<cr>
+  nnoremap <leader>o :Unite -no-split -start-insert outline<cr>
+  nnoremap <leader>y :Unite -no-split -start-insert history/yank<cr>
   nnoremap <leader>e :Unite -no-split -start-insert buffer<cr>
-
-  " Neocomplete
-  let g:acp_enableAtStartup = 0
-  " Use neocomplcache.
-  let g:neocomplcache_enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplcache_enable_smart_case = 1
-  " Set minimum syntax keyword length.
-  let g:neocomplcache_min_syntax_length = 3
-  let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
+  autocmd FileType unite call s:unite_settings()
+  function! s:unite_settings()
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  endfunction
 
 endif
 
