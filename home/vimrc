@@ -26,7 +26,6 @@
 "=bundle Shougo/vimproc.vim
 "=bundle Shougo/unite.vim
 "=bundle h1mesuke/unite-outline
-" bundle Shougo/neocomplcache.vim
 "=bundle ervandew/ag
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-sensible
@@ -52,11 +51,9 @@
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-unimpaired
 "=bundle vim-ruby/vim-ruby
-" bundle vim-scripts/bufexplorer.zip
-" bundle wincent/Command-T
 "=bundle csexton/tomorrow-theme.vim
 "=bundle slim-template/vim-slim
-" bundle AndrewRadev/switch.vim
+
 "
 " bundle csexton/jslint.vim
 " bundle kana/vim-textobj-user
@@ -75,7 +72,6 @@ execute pathogen#incubate()
 syntax on
 filetype plugin indent on
 " }}}
-
 " Settings {{{
 "
 let mapleader = ","
@@ -167,8 +163,8 @@ set backupskip+=*.tmp,crontab.*
 
 " Persistant Undo
 if has('persistent_undo')
-  "set undodir=~/.vim/tmp/undo//     " undo files
-  "set undofile
+  set undodir^=~/.vim/undo
+  set undofile
   set undolevels=1000               "maximum number of changes that can be undone
   set undoreload=10000              "maximum number lines to save for undo on a buffer reload
 endif
@@ -291,12 +287,6 @@ cnoremap          <C-D> <Del>
 inoremap <silent> <C-F> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"<CR>
 cnoremap          <C-F> <Right>
 
-" Split navigation
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-
 " Map Control-E to go to the end of the line in insert mode. However, when
 " completion is active you can use CTRL-E to stop it and go back to the
 " originally typed text.
@@ -334,6 +324,7 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 "map <Leader>rx :VimuxClosePanes<CR>
 "map <Leader>rq :VimuxCloseRunner<CR>
 "map <Leader>rc :VimuxInterruptRunner<CR>
+
 
 let g:is_bash = 1                " Highlight all .sh files as if they were bash
 let g:ruby_minlines = 500
@@ -383,13 +374,50 @@ if isdirectory(g:bundle_dir)
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
     let b:SuperTabDisabled=1
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    "imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   endfunction
 
 endif
 
 " }}}
 
-let g:pad_dir="~/Dropbox/Notes"
+" Tmux Pane Nav {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" key mapping for window navigation
+"
+" If you're in tmux it'll keep going to tmux splits if you hit the end of
+" your vim splits.
+"
+" For the tmux side see:
+" https://github.com/aaronjensen/dotfiles/blob/e9c3551b40c43264ac2cd21d577f948192a46aea/tmux.conf#L96-L102
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      " The sleep and & gives time to get back to vim so tmux's focus tracking
+      " can kick in and send us our ^[[O
+      execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
+      redraw!
+    endif
+  endfunction
+
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+else
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
+endif
+" }}}
+
 " vim: set foldenable fdm=marker fmr={{{,}}}:

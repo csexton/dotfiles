@@ -7,6 +7,7 @@ bin/nobu*
 vim/.VimballRecord
 vim/bundle
 vim/tmp
+vim/undo
 bin/silly*
 bin/mac*
 vim/.netrwhist
