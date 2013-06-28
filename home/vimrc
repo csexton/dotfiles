@@ -325,7 +325,6 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 "map <Leader>rq :VimuxCloseRunner<CR>
 "map <Leader>rc :VimuxInterruptRunner<CR>
 
-
 let g:is_bash = 1                " Highlight all .sh files as if they were bash
 let g:ruby_minlines = 500
 let g:rubycomplete_buffer_loading = 1
@@ -365,17 +364,18 @@ if isdirectory(g:bundle_dir)
   " Unite
   let g:unite_source_history_yank_enable = 1
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  nnoremap <leader>t :Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  nnoremap <leader>f :Unite -no-split -buffer-name=files   -start-insert file<cr>
-  nnoremap <leader>r :Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-  nnoremap <leader>o :Unite -no-split -buffer-name=outline -start-insert outline<cr>
-  nnoremap <leader>y :Unite -no-split -buffer-name=yank    history/yank<cr>
-  nnoremap <leader>e :Unite -no-split -buffer-name=buffer  buffer<cr>
+  nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+  nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+  nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+  nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+  nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+  nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  -select=0 buffer<cr>
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
     let b:SuperTabDisabled=1
-    "imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    "imap <buffer> <C-j> <NOP>
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   endfunction
 
 endif
@@ -412,11 +412,11 @@ if exists('$TMUX')
   nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
   nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
   nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-else
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
+"else
+"  map <C-h> <C-w>h
+"  map <C-j> <C-w>j
+"  map <C-k> <C-w>k
+"  map <C-l> <C-w>l
 endif
 " }}}
 

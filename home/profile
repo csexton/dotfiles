@@ -18,7 +18,6 @@ case "$PLATFORM" in
 "Darwin")
   export PATH=/usr/local/bin:$HOME/bin:$PATH
   export MANPATH=/usr/local/share/man:$MANPATH
-  echo -e "\e[00;31mDotfiles Engage!\e[00m"
 ;;
 "Linux")
   echo "Dotfiles Engage!"
@@ -31,5 +30,16 @@ then
   source $HOME/.local_profile
 fi
 
-export PATH="/usr/local/share/npm/bin:$PATH"
+if [ -d /usr/local/share/npm/bin ]
+then
+  export PATH="/usr/local/share/npm/bin:$PATH"
+fi
+
 #curl -s randomfunfacts.com | grep '<i>' | sed -e 's/<[^>]*>//g;s/^ *//g;s/ *$//g;s/&nbsp;//'
+
+#if [ -d $HOME/.rvm]
+#then
+#  export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#fi
+
+if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
