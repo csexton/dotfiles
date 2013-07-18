@@ -23,7 +23,7 @@
 "
 " Bundles {{{
 " Pathogen is required for any of these plugins to work
-"=bundle Shougo/vimproc.vim
+"=bundle Shougo/vimproc.vim build: "make -f make_mac.mak", branch: "joe"
 "=bundle Shougo/unite.vim
 "=bundle csexton/tomorrow-theme.vim
 "=bundle csexton/trailertrash.vim
@@ -35,18 +35,15 @@
 "=bundle kchmck/vim-coffee-script
 "=bundle mattn/gist-vim
 "=bundle mattn/webapi-vim
-"=bundle molok/vim-smartusline.git
 "=bundle pangloss/vim-javascript
 "=bundle sjl/gundo.vim
 "=bundle slim-template/vim-slim
-"=bundle tpope/vim-abolish
 "=bundle tpope/vim-bundler
 "=bundle tpope/vim-cucumber
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-fugitive
 "=bundle tpope/vim-haml
 "=bundle tpope/vim-pathogen
-"=bundle tpope/vim-ragtag
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-rake
 "=bundle tpope/vim-repeat
@@ -54,6 +51,7 @@
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-unimpaired
 "=bundle vim-ruby/vim-ruby
+"=bundle elixir-lang/vim-elixir
 
 "
 " bundle csexton/jslint.vim
@@ -83,7 +81,7 @@ hi htmlItalic cterm=none
 hi PmenuSel ctermbg=black
 
 "" Crazyness!
-"imap jj <Esc>
+imap jk <Esc>
 
 set fillchars=vert:\ ,fold:-
 set nofoldenable
@@ -164,7 +162,9 @@ set backupskip+=*.tmp,crontab.*
 
 " Persistant Undo
 if has('persistent_undo')
-  set undodir^=~/.vim/undo
+  "set undodir^=~/.vim/undo
+  "set undodir^=/Users/csexton/.vim/undo
+  set undodir=~/.vim/undo
   set undofile
   set undolevels=1000               "maximum number of changes that can be undone
   set undoreload=10000              "maximum number lines to save for undo on a buffer reload
@@ -318,9 +318,9 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 " Bundle settings {{{
 
 " smartusline
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-let g:smartusline_hi_insert = 'guibg=#de935f guifg=black ctermbg=yellow ctermfg=black'
-let g:smartusline_hi_normal = 'guibg=#b5bd68 guifg=black ctermbg=green ctermfg=black'
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"let g:smartusline_hi_insert = 'guibg=#6D1F21 guifg=white ctermbg=red ctermfg=black'
+"let g:smartusline_hi_normal = 'guibg=#B5BD68 guifg=black ctermbg=green ctermfg=black'
 
 " For vimux
 "map <Leader>p :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
