@@ -242,6 +242,7 @@ augroup settings
   autocmd BufEnter *.rb syn match error contained "\<binding.pry\>"
   autocmd BufEnter *.rb syn match error contained "\<debugger\>"
   autocmd BufEnter *.coffee syn match error contained "\<debugger\>"
+
 augroup END
 
 
@@ -272,6 +273,7 @@ cnoremap          <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()
 
 " Clear incremental search highlight
 nnoremap <silent> <C-L> :nohlsearch<CR><C-l>
+nnoremap <leader>/ :nohlsearch<CR>
 
 " Inserts the path of the currently edited file into a command
 "cmap <C-F> <C-R>=expand("%:p:h") . "/" <CR>
@@ -403,11 +405,9 @@ endif
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
     let previous_winnr = winnr()
-    execute "wincmd " . a:wincmd
+    silent! execute "wincmd " . a:wincmd
     if previous_winnr == winnr()
-      " The sleep and & gives time to get back to vim so tmux's focus tracking
-      " can kick in and send us our ^[[O
-      execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
+      call system("tmux select-pane -" . a:tmuxdir)
       redraw!
     endif
   endfunction
@@ -420,11 +420,11 @@ if exists('$TMUX')
   nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
   nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
   nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-"else
-"  map <C-h> <C-w>h
-"  map <C-j> <C-w>j
-"  map <C-k> <C-w>k
-"  map <C-l> <C-w>l
+else
+  "map <C-h> <C-w>h
+  "map <C-j> <C-w>j
+  "map <C-k> <C-w>k
+  "map <C-l> <C-w>l
 endif
 " }}}
 
