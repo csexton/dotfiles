@@ -1,11 +1,11 @@
 [user]
         name = Christopher Sexton
-        email = csexton@gmail.com
+        email = github@codeography.com
 [color]
-	diff = auto
+        diff = auto
         status = auto
         branch = auto
-	ui = auto
+        ui = auto
 [core]
         excludesfile = /Users/csexton/.gitignore
 [alias]
@@ -40,6 +40,6 @@
 [init]
         templatedir = ~/.git_template
 [diff]
-	algorithm = patience
+        algorithm = patience
 [color "diff"]
-	whitespace = red reverse
+        whitespace = red reverse
