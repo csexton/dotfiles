@@ -52,6 +52,9 @@
 "=bundle tpope/vim-unimpaired
 "=bundle vim-ruby/vim-ruby
 "=bundle elixir-lang/vim-elixir
+"=bundle tpope/vim-dispatch
+"=bundle tpope/vim-eunuch
+"=bundle thoughtbot/vim-rspec
 
 "
 " bundle csexton/jslint.vim
@@ -60,7 +63,6 @@
 " bundle tomtom/tlib_vim
 "=bundle tpope/vim-commentary
 " bundle tpope/vim-rvm
-"=bundle danro/rename.vim
 "=bundle JulesWang/css.vim
 "
 " }}}
@@ -213,7 +215,7 @@ augroup settings
         \ " ".getline(3) =~? '<\%(!DOCTYPE \)\=html\>' | setf html | endif
 
   autocmd FileType javascript,coffee            setlocal et sw=2 sts=2 isk+=$
-  autocmd FileType html,xhtml,css,scss.css      setlocal et sw=2 sts=2
+  autocmd FileType html,xhtml,css,scss,scss.css setlocal et sw=2 sts=2 isk+=-
   autocmd FileType eruby,yaml,ruby              setlocal et sw=2 sts=2
   autocmd FileType cucumber                     setlocal et sw=2 sts=2
   autocmd FileType gitcommit                    setlocal spell
@@ -360,7 +362,7 @@ let g:SuperTabMappingBackward = '<tab>'
 map <Esc>[B <Down>
 
 " Launch Markedapp
-:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+":nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
@@ -402,30 +404,37 @@ endif
 " For the tmux side see:
 " https://github.com/aaronjensen/dotfiles/blob/e9c3551b40c43264ac2cd21d577f948192a46aea/tmux.conf#L96-L102
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
-    silent! execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
-      call system("tmux select-pane -" . a:tmuxdir)
-      redraw!
-    endif
-  endfunction
-
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
-
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-else
-  "map <C-h> <C-w>h
-  "map <C-j> <C-w>j
-  "map <C-k> <C-w>k
-  "map <C-l> <C-w>l
-endif
+"if exists('$TMUX')
+"  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+"    let previous_winnr = winnr()
+"    silent! execute "wincmd " . a:wincmd
+"    if previous_winnr == winnr()
+"      call system("tmux select-pane -" . a:tmuxdir)
+"      redraw!
+"    endif
+"  endfunction
+"
+"  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+"  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+"  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+"
+"  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+"  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+"  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+"  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+"else
+"  "map <C-h> <C-w>h
+"  "map <C-j> <C-w>j
+"  "map <C-k> <C-w>k
+"  "map <C-l> <C-w>l
+"endif
 " }}}
+
+hi ShowMarksHLl ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
+hi ShowMarksHLu ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
+hi ShowMarksHLo ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
+hi ShowMarksHLm ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
+hi SignColumn   ctermbg=none
+
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
