@@ -42,7 +42,6 @@
 "=bundle tpope/vim-cucumber
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-fugitive
-"=bundle tpope/vim-haml
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-rake
@@ -78,9 +77,8 @@ filetype plugin indent on
 let mapleader = ","
 set t_Co=256
 "colorscheme base16-tomorrow
-silent! colorscheme Tomorrow-Night
-hi htmlItalic cterm=none
-hi PmenuSel ctermbg=black
+"silent! colorscheme Tomorrow-Night
+silent! colorscheme spacemanspiff
 
 "" Crazyness!
 imap jk <Esc>
@@ -135,6 +133,7 @@ set suffixes+=.dvi          " Lower priority in wildcards
 set timeoutlen=1200         " A little bit more time for macros
 set virtualedit=block       " Let the cursor go where there is nothing
 set visualbell              " No more ding sounds
+set winwidth=80             " Keep vsplits at least 80 cols
 
 " Wildmenu completion
 set wildmenu
@@ -211,6 +210,7 @@ augroup settings
   autocmd BufNewFile,BufRead *.haml,*.jst       set ft=haml
   autocmd BufNewFile,BufRead *.slim             set ft=slim
   autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
+  autocmd BufNewFile,BufRead *.coffee           setl foldmethod=indent nofoldenable
   autocmd BufRead * if ! did_filetype() && getline(1)." ".getline(2).
         \ " ".getline(3) =~? '<\%(!DOCTYPE \)\=html\>' | setf html | endif
 
@@ -435,6 +435,5 @@ hi ShowMarksHLu ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLo ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLm ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi SignColumn   ctermbg=none
-
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
