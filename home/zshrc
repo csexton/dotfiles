@@ -167,6 +167,7 @@ _within-bundled-project() {
 
 _run-with-bundler() {
   if _bundler-installed && _within-bundled-project; then
+    echo "$fg[blue]--> bundle exec $@$reset_color"
     bundle exec $@
   else
     $@
@@ -176,7 +177,7 @@ _run-with-bundler() {
 ## Main program
 for cmd in $bundled_commands; do
   eval "function bundled_$cmd () { _run-with-bundler $cmd \$@}"
-  alias $cmd=bundled_$cmd
+  alias $cmd="bundled_$cmd"
 
   if which _$cmd > /dev/null 2>&1; then
         compdef _$cmd bundled_$cmd=$cmd
@@ -207,9 +208,9 @@ parse_git_dirty() {
 
 # }}}
 # Aliases and Functions {{{
-alias rake="noglob rake" # allows square brackts for rake task invocation
+alias rake="noglob bundled_rake" # allows square brackts for rake task invocation
+alias rails="nocorrect bundled_rails" # allows square brackts for rake task invocation
 alias heroku="nocorrect heroku" # allows square brackts for rake task invocation
-alias rails="nocorrect rails" # allows square brackts for rake task invocation
 alias ip="curl -s ip.tpo.pe"
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
 function prompt-dissapoint {
@@ -333,7 +334,7 @@ compctl -W ~/src/radius -/ rad
 
 PROMPT='%(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
 %(!.#.%%) '
-RPROMPT='%{$fg[red]%}$(~/.rvm/bin/rvm-prompt 2> /dev/null)%{$reset_color%}%'
+#RPROMPT='%{$fg[red]%}$(ruby --version | cut -d' ' -f 1-2)%{$reset_color%}%'
 
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
@@ -343,5 +344,5 @@ if [[ -s $HOME/.profile ]] ; then source $HOME/.profile ; fi
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
