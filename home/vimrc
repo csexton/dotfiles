@@ -25,13 +25,10 @@
 " Pathogen is required for any of these plugins to work
 "=bundle Shougo/vimproc.vim build: "make -f make_mac.mak", branch: "joe"
 "=bundle Shougo/unite.vim
-"=bundle csexton/tomorrow-theme.vim
 "=bundle csexton/trailertrash.vim
 "=bundle csexton/vim-markdown
 "=bundle ervandew/ag
 "=bundle ervandew/supertab
-"=bundle godlygeek/tabular
-"=bundle h1mesuke/unite-outline
 "=bundle kchmck/vim-coffee-script
 "=bundle mattn/gist-vim
 "=bundle mattn/webapi-vim
@@ -39,30 +36,26 @@
 "=bundle sjl/gundo.vim
 "=bundle slim-template/vim-slim
 "=bundle tpope/vim-bundler
-"=bundle tpope/vim-cucumber
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-fugitive
 "=bundle tpope/vim-pathogen
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-rake
+"=bundle tpope/vim-haml # for scss
 "=bundle tpope/vim-repeat
 "=bundle tpope/vim-sensible
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-unimpaired
 "=bundle vim-ruby/vim-ruby
-"=bundle elixir-lang/vim-elixir
-"=bundle tpope/vim-dispatch
 "=bundle tpope/vim-eunuch
-"=bundle thoughtbot/vim-rspec
-
 "
+" bundle thoughtbot/vim-rspec
 " bundle csexton/jslint.vim
 " bundle kana/vim-textobj-user
 " bundle nelstrom/vim-textobj-rubyblock
 " bundle tomtom/tlib_vim
-"=bundle tpope/vim-commentary
+" bundle tpope/vim-commentary
 " bundle tpope/vim-rvm
-"=bundle JulesWang/css.vim
 "
 " }}}
 
@@ -436,4 +429,41 @@ hi ShowMarksHLo ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLm ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi SignColumn   ctermbg=none
 
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  echo a:cmdline
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  execute 'VimProcRead '. a:cmdline
+  setlocal nomodifiable
+  1
+endfunction
+
+
+
+command! -complete=shellcmd -nargs=+ VimProcBackground call s:run_vimproc_background(<q-args>)
+function! s:run_vimproc_background(cmdline)
+  let sub = vimproc#popen2(a:cmdline)
+  let res = ''
+  while !sub.stdout.eof
+    let res .= sub.stdout.read()
+  endwhile
+  let [cond, status] = sub.waitpid()
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call append(0, split(res, '\r\n\|\r\|\n') + [string([cond, status])])
+endfunction
+
+command! -complete=shellcmd -nargs=+ Background call s:run_bg(<q-args>)
+function! s:run_bg(cmdline)
+  call vimproc#system_bg(a:cmdline . " >> /tmp/r 2>&1")
+endfunction
+
+let g:rspec_command = "Background rspec --format=Nc --format=doc --tty --color {spec}"
+
+
 " vim: set foldenable fdm=marker fmr={{{,}}}:
+
+
+
+
