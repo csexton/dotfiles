@@ -214,8 +214,9 @@ augroup settings
   autocmd FileType gitcommit                    setlocal spell
   autocmd FileType ruby                         setlocal comments=:#\  tw=79
   autocmd FileType vim                          setlocal et sw=2 sts=2 keywordprg=:help
-  autocmd FileType python                       setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+  autocmd FileType python                       setlocal sts=4 ts=4 shiftwidth=4 textwidth=79
   autocmd FileType c                            setlocal et sw=2 sts=2
+  autocmd FileType objc,objcpp                  setlocal et sw=4 sts=4
 
   autocmd FileType markdown                     setlocal linebreak formatoptions=1 breakat=\ @-+;:,./?^I
 
@@ -266,9 +267,22 @@ cnoremap          <C-N> <Down>
 inoremap          <C-k> <C-O>D
 cnoremap          <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
 
+" Buffer Navigation
+" Move to the previous buffer with "gp"
+nnoremap gp :bp<CR>
+" Move to the next buffer with "gn"
+nnoremap gn :bn<CR>
+" List all possible buffers with "gl"
+nnoremap gl :ls<CR>
+" List all possible buffers with "gb" and accept a new buffer argument [1]
+nnoremap gb :ls<CR>:b
+
 " Clear incremental search highlight
 nnoremap <silent> <C-L> :nohlsearch<CR><C-l>
 nnoremap <leader>/ :nohlsearch<CR>
+
+" Toggle spell checking
+nnoremap <leader>s :set spell!<CR>
 
 " Inserts the path of the currently edited file into a command
 "cmap <C-F> <C-R>=expand("%:p:h") . "/" <CR>
@@ -461,9 +475,8 @@ endfunction
 
 let g:rspec_command = "Background rspec --format=Nc --format=doc --tty --color {spec}"
 
-
 " vim: set foldenable fdm=marker fmr={{{,}}}:
 
 
 
-
+autocmd BufWritePre * :Trim

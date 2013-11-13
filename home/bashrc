@@ -1,3 +1,0 @@
-alias screen='TERM=screen screen'
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

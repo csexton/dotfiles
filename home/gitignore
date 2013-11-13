@@ -11,6 +11,10 @@ db/*.sqlite3
 .*~
 .netrwhist
 
+.bundle
+.powenv
+vendor/bundle
+
 # /cache/
 /cache/*
 
@@ -26,7 +30,7 @@ db/*.sqlite3
 .rvmrc
 /**/*.specification
 
-DELETEME-*
+*DELETEME*
 
 # XCode
 /**/csexton.perspectivev3
@@ -34,3 +38,7 @@ DELETEME-*
 
 doc/tags
 .pt
+
+# Zeus
+custom_plan.rb
+zeus.json
