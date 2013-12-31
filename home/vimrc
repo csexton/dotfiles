@@ -23,6 +23,7 @@
 "
 " Bundles {{{
 " Pathogen is required for any of these plugins to work
+"=bundle justinmk/vim-sneak
 "=bundle Shougo/vimproc.vim build: "make -f make_mac.mak", branch: "joe"
 "=bundle Shougo/unite.vim
 "=bundle csexton/trailertrash.vim
@@ -49,7 +50,7 @@
 "=bundle vim-ruby/vim-ruby
 "=bundle tpope/vim-eunuch
 "
-" bundle thoughtbot/vim-rspec
+"=bundle thoughtbot/vim-rspec
 " bundle csexton/jslint.vim
 " bundle kana/vim-textobj-user
 " bundle nelstrom/vim-textobj-rubyblock
@@ -102,7 +103,7 @@ vnoremap y "+y
 vnoremap <M-y> "+y
 
 " Remap semicolon to be colon
-nmap ; :
+"nmap ; :
 
 " from settings.vim
 
@@ -333,6 +334,9 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 "let g:smartusline_hi_insert = 'guibg=#6D1F21 guifg=white ctermbg=red ctermfg=black'
 "let g:smartusline_hi_normal = 'guibg=#B5BD68 guifg=black ctermbg=green ctermfg=black'
 
+" For sneaky streak
+let g:sneak#streak = 1
+
 " For vimux
 "map <Leader>p :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
 "map <Leader>rp :VimuxPromptCommand<CR>
@@ -382,6 +386,16 @@ if isdirectory(g:bundle_dir)
   let g:unite_source_history_yank_enable = 1
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   call unite#filters#sorter_default#use(['sorter_rank'])
+  " sort file results by length
+  "call unite#custom#source('file', 'sorters', 'sorter_length')
+  "call unite#custom#source('file_rec/async', 'sorters', 'sorter_length')
+  " limit results for recently edited files
+  "call unite#custom#source('file_mru', 'max_candidates', 10)
+  " ignored files for file_mru
+  call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
+  " sort buffers by number
+  "call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
+
   nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
   nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
   nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
@@ -443,40 +457,63 @@ hi ShowMarksHLo ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLm ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi SignColumn   ctermbg=none
 
-command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(cmdline)
-  echo a:cmdline
-  botright new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  execute 'VimProcRead '. a:cmdline
-  setlocal nomodifiable
-  1
-endfunction
+"command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+"function! s:RunShellCommand(cmdline)
+"  echo a:cmdline
+"  botright new
+"  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+"  execute 'VimProcRead '. a:cmdline
+"  setlocal nomodifiable
+"  1
+"endfunction
+"
+"
+"
+"command! -complete=shellcmd -nargs=+ VimProcBackground call s:run_vimproc_background(<q-args>)
+"function! s:run_vimproc_background(cmdline)
+"  let sub = vimproc#popen2(a:cmdline)
+"  let res = ''
+"  while !sub.stdout.eof
+"    let res .= sub.stdout.read()
+"  endwhile
+"  let [cond, status] = sub.waitpid()
+"  botright new
+"  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+"  call append(0, split(res, '\r\n\|\r\|\n') + [string([cond, status])])
+"endfunction
+"
+"command! -complete=shellcmd -nargs=+ Background call s:run_bg(<q-args>)
+"function! s:run_bg(cmdline)
+"  call vimproc#system_bg(a:cmdline . " >> /tmp/r 2>&1")
+"endfunction
+
+"let g:rspec_command = "Background rspec --format=Nc --format=doc --tty --color {spec}"
 
 
+let g:rspec_command = "!bundle exec rspec --format=doc --tty --color {spec}"
+command! -nargs=0 RspecCurrentFile :call RunCurrentSpecFile()
+command! -nargs=0 RspecNearest :call RunNearestSpec()
+command! -nargs=0 RspecLast :call RunLastSpec()
+command! -nargs=0 RspecAll :call RunAllSpecs()
 
-command! -complete=shellcmd -nargs=+ VimProcBackground call s:run_vimproc_background(<q-args>)
-function! s:run_vimproc_background(cmdline)
-  let sub = vimproc#popen2(a:cmdline)
-  let res = ''
-  while !sub.stdout.eof
-    let res .= sub.stdout.read()
-  endwhile
-  let [cond, status] = sub.waitpid()
-  botright new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  call append(0, split(res, '\r\n\|\r\|\n') + [string([cond, status])])
-endfunction
 
-command! -complete=shellcmd -nargs=+ Background call s:run_bg(<q-args>)
-function! s:run_bg(cmdline)
-  call vimproc#system_bg(a:cmdline . " >> /tmp/r 2>&1")
-endfunction
+nnoremap <leader>. :RspecLast<CR>
+nnoremap <Space> :RspecLast<CR>
 
-let g:rspec_command = "Background rspec --format=Nc --format=doc --tty --color {spec}"
+" Increment a column of number. Select a column of numbers (numbers should be
+" the same), then C-a to have them incremented from the first number.
+function! Incr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfu
+
+vnoremap <C-a> :call Incr()<CR>
+
+"Kill Trailer Trash
+autocmd BufWritePre * :Trim
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
-
-
-
-autocmd BufWritePre * :Trim
