@@ -49,6 +49,7 @@
 "=bundle tpope/vim-unimpaired
 "=bundle vim-ruby/vim-ruby
 "=bundle tpope/vim-eunuch
+"=bundle csexton/spacemanspiff.vim
 "
 "=bundle thoughtbot/vim-rspec
 " bundle csexton/jslint.vim
@@ -166,7 +167,7 @@ if has('persistent_undo')
 endif
 
 if has("gui_running")
-  set showbreak=⤥
+  "set showbreak=⤥
   set background=dark
 endif
 
@@ -496,9 +497,14 @@ command! -nargs=0 RspecNearest :call RunNearestSpec()
 command! -nargs=0 RspecLast :call RunLastSpec()
 command! -nargs=0 RspecAll :call RunAllSpecs()
 
+function RspecSpace()
+  :wall
+  :RspecLast
+endfunction
 
 nnoremap <leader>. :RspecLast<CR>
-nnoremap <Space> :RspecLast<CR>
+nnoremap <Space> :wall\|RspecLast<CR>
+
 
 " Increment a column of number. Select a column of numbers (numbers should be
 " the same), then C-a to have them incremented from the first number.
