@@ -43,3 +43,5 @@
         algorithm = patience
 [color "diff"]
         whitespace = red reverse
+[heroku]
+	account = radius
