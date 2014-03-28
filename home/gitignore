@@ -35,6 +35,8 @@ vendor/bundle
 # XCode
 /**/csexton.perspectivev3
 /**/*.xcodeproj/xcuserdata
+/**/csexton.xcuserdatad
+*.xcodeproj/project.xcworkspace/xcshareddata
 
 doc/tags
 .pt
@@ -42,3 +44,4 @@ doc/tags
 # Zeus
 custom_plan.rb
 zeus.json
+

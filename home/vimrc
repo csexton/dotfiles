@@ -411,6 +411,7 @@ if isdirectory(g:bundle_dir)
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
     let b:SuperTabDisabled=1
+    let b:show_trailertrash=0
     imap <buffer> <C-j>   <Plug>(unite_select_next_line)
     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
     nmap <buffer> <ESC> <Plug>(unite_exit)
