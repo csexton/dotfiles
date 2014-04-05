@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+  echo "No username specified"
+fi
+
+curl "https://github.com/$1.keys"
