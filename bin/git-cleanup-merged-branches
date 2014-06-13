@@ -1,2 +1,25 @@
-#!/bin/sh
+#!/bin/bash
+set -e
+
+branch_name=$(git symbolic-ref -q HEAD)
+branch_name=${branch_name##refs/heads/}
+branch_name=${branch_name:-HEAD}
+
+if ! git rev-parse --git-dir > /dev/null 2>&1
+then
+	exit 1
+fi
+
+echo $branch_name
+if [ "$branch_name" != 'master' ]
+then
+	read -p "Current branch is not 'master'. Are you sure? " -n 1 -r
+	if [[ $REPLY =~ ^[Nn]$ ]]
+	then
+		echo
+		echo "KTHXBYE"
+		exit 1
+	fi
+fi
+
 git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
