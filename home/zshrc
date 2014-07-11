@@ -340,6 +340,12 @@ compctl -W ~/src -/ src
 rad(){cd ~/src/radius/$1;}
 compctl -W ~/src/radius -/ rad
 # }}}
+
+# Command {{{
+deriveddata(){cd ~/Library/Developer/Xcode/DerivedData/$1;}
+compctl -W ~/Library/Developer/Xcode/DerivedData -/ deriveddata
+
+# }}}
 # s Command {{{
 s(){
   cd ~

@@ -5,8 +5,17 @@ SERVER="backup.remote:cs-dewback"
 
 cd /Users/csexton
 
-rsync $OPTIONS Projects Pictures Documents $SERVER \
-  --exclude="OmniFocus Backups" \
-  --exclude="*vmwarevm" \
-  --exclude="Apple Marketing Material" \
-  --exclude="*DS_Store"
+# Rsync to Dreamhost
+#rsync $OPTIONS Projects Pictures Documents $SERVER \
+#  --exclude="OmniFocus Backups" \
+#  --exclude="*vmwarevm" \
+#  --exclude="Apple Marketing Material" \
+#  --exclude="*DS_Store"
+
+# S3
+S3_EXCLUDES="--exclude \".DS_Store\" --exclude=\"*.git/*\" --exclude=\"*vmwarevm\" --exclude=\"tmp\" --exclude=\"*.tmp\""
+. ~/.aws/backup.conf
+echo $S3_EXCLUDES
+aws s3 sync ~/Pictures  s3://dewback-backup/Pictures  --delete $S3_EXCLUDES
+aws s3 sync ~/Projects  s3://dewback-backup/Projects  --delete $S3_EXCLUDES
+aws s3 sync ~/Documents s3://dewback-backup/Documents --delete $S3_EXCLUDES

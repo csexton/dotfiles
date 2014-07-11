@@ -28,6 +28,7 @@
         lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
         standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)%an%Creset' --since yesterday --author csexton
         purr = pull --rebasely
+        workprofile = config user.email \"chris@radiusnetworks.com\"
 
 [github]
         user = csexton
@@ -44,4 +45,4 @@
 [color "diff"]
         whitespace = red reverse
 [heroku]
-	account = radius
+        account = radius

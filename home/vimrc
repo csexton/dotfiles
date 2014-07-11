@@ -23,12 +23,13 @@
 "
 " Bundles {{{
 " Pathogen is required for any of these plugins to work
+"=bundle junegunn/goyo.vim
 "=bundle justinmk/vim-sneak
 "=bundle Shougo/vimproc.vim
 "=bundle Shougo/unite.vim
 "=bundle jlanzarotta/bufexplorer
 "=bundle csexton/trailertrash.vim
-"=bundle csexton/vim-markdown
+"=bundle tpope/vim-markdown
 "=bundle ervandew/ag
 "=bundle ervandew/supertab
 "=bundle kchmck/vim-coffee-script
@@ -142,11 +143,12 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.DS_Store                       " OS X silliness
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
+set wildignore+=./vendor/bundle/ruby/*
 
 " Split Settings
 "set splitbelow
@@ -202,7 +204,7 @@ augroup settings
         \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
   "autocmd BufNewFile,BufRead *.scss             set ft=scss.css
-  autocmd BufNewFile,BufRead *.md               set ft=markdown
+  autocmd BufNewFile,BufRead *.md,*.markdown    set ft=markdown
   autocmd BufNewFile,BufRead *.haml,*.jst       set ft=haml
   autocmd BufNewFile,BufRead *.slim             set ft=slim
   autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
@@ -221,7 +223,7 @@ augroup settings
   autocmd FileType c                            setlocal et sw=2 sts=2
   autocmd FileType objc,objcpp                  setlocal et sw=4 sts=4
 
-  autocmd FileType markdown                     setlocal linebreak formatoptions=1 breakat=\ @-+;:,./?^I
+  autocmd FileType markdown                     setlocal linebreak formatoptions=1 breakat=\ @-+;:,./?^I wrap nolist textwidth=0 wrapmargin=0 fo-=t
 
   autocmd Syntax   css  syn sync minlines=50
 
@@ -384,7 +386,9 @@ if isdirectory(g:bundle_dir)
   map <D-g>  :GundoToggle<CR>
   command! Gundo :GundoToggle
 
-  nnoremap <leader>e :BufExplorer<cr>
+  "nnoremap <leader>e :BufExplorer<cr>
+
+  nnoremap <leader>t :CtrlP<cr>
 
 
   " Unite
@@ -411,10 +415,11 @@ if isdirectory(g:bundle_dir)
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
     let b:SuperTabDisabled=1
-    let b:show_trailertrash=0
+    "let b:show_trailertrash=0
     imap <buffer> <C-j>   <Plug>(unite_select_next_line)
     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
     nmap <buffer> <ESC> <Plug>(unite_exit)
+    "hi link UnwantedTrailerTrash Normal
   endfunction
 
 endif

@@ -10,6 +10,7 @@ alias :q="exit"
 alias :wq="exit"
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
 export P4CONFIG=".p4config"
 export EDITOR="vim"
 
