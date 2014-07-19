@@ -148,7 +148,54 @@ alias history='fc -l 1'
 
 # The following is based on https://github.com/gma/bundler-exec
 
-bundled_commands=(spring jekyll poole annotate cap capify cucumber ey foreman guard middleman nanoc rackup rainbows rails rake rspec shotgun spec spork thin thor unicorn unicorn_rails)
+alias be="bundle exec"
+alias bl="bundle list"
+alias bp="bundle package"
+alias bo="bundle open"
+alias bu="bundle update"
+
+bundled_commands=(
+  annotate
+  cap
+  capify
+  cucumber
+  foodcritic
+  guard
+  irb
+  jekyll
+  kitchen
+  knife
+  middleman
+  nanoc
+  pry
+  puma
+  rackup
+  rainbows
+  rake
+  rspec
+  shotgun
+  sidekiq
+  spec
+  spork
+  spring
+  strainer
+  tailor
+  taps
+  thin
+  thor
+  unicorn
+  unicorn_rails
+)
+
+# Remove $UNBUNDLED_COMMANDS from the bundled_commands list
+for cmd in $UNBUNDLED_COMMANDS; do
+  bundled_commands=(${bundled_commands#$cmd});
+done
+
+# Add $BUNDLED_COMMANDS to the bundled_commands list
+for cmd in $BUNDLED_COMMANDS; do
+  bundled_commands+=($cmd);
+done
 
 ## Functions
 
@@ -157,19 +204,23 @@ _bundler-installed() {
 }
 
 _within-bundled-project() {
-  local check_dir=$PWD
-  while [ $check_dir != "/" ]; do
+  local check_dir="$PWD"
+  while [ "$check_dir" != "/" ]; do
     [ -f "$check_dir/Gemfile" ] && return
     check_dir="$(dirname $check_dir)"
   done
   false
 }
 
+_binstubbed() {
+  [ -f "./bin/${1}" ]
+}
+
 _run-with-bundler() {
   if _bundler-installed && _within-bundled-project; then
-    if [ -f "./bin/bundle" ]; then
-      echo "$fg[blue]--> bundle exec $@$reset_color" >&2
-      bundle exec $@
+    if _binstubbed $1; then
+      echo "$fg[blue]--> ./bin/$@$reset_color" >&2
+      ./bin/$@
     else
       echo "$fg[blue]--> bundle exec $@$reset_color" >&2
       bundle exec $@
@@ -181,13 +232,31 @@ _run-with-bundler() {
 
 ## Main program
 for cmd in $bundled_commands; do
+  eval "function unbundled_$cmd () { $cmd \$@ }"
   eval "function bundled_$cmd () { _run-with-bundler $cmd \$@}"
-  alias $cmd="bundled_$cmd"
+  alias $cmd=bundled_$cmd
 
   if which _$cmd > /dev/null 2>&1; then
-        compdef _$cmd bundled_$cmd=$cmd
+    compdef _$cmd bundled_$cmd=$cmd
   fi
 done
+
+
+#_run-with-bundler() {
+#  if _bundler-installed && _within-bundled-project; then
+#    if _binstubbed $1; then
+#      echo "$fg[blue]--> ./bin/$@$reset_color" >&2
+#      ./bin/$@
+#    else
+#      echo "$fg[blue]--> bundle exec $@$reset_color" >&2
+#      bundle exec $@
+#    fi
+#  else
+#    $@
+#  fi
+#}
+
+
 # }}}
 # Git {{{
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[red]%}‹"
@@ -214,7 +283,6 @@ parse_git_dirty() {
 # }}}
 # Aliases and Functions {{{
 alias rake="noglob bundled_rake" # allows square brackts for rake task invocation
-alias rails="nocorrect bundled_rails" # allows square brackts for rake task invocation
 alias heroku="nocorrect heroku" # allows square brackts for rake task invocation
 alias ip="curl -s ip.tpo.pe"
 ackr() { ack $* app/* lib/* config/* db/migrate/* test/* }
