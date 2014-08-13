@@ -14,6 +14,7 @@ db/*.sqlite3
 
 .bundle
 .powenv
+.agignore
 vendor/bundle
 
 # /cache/

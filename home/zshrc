@@ -148,11 +148,8 @@ alias history='fc -l 1'
 
 # The following is based on https://github.com/gma/bundler-exec
 
+alias b="bundle exec"
 alias be="bundle exec"
-alias bl="bundle list"
-alias bp="bundle package"
-alias bo="bundle open"
-alias bu="bundle update"
 
 bundled_commands=(
   annotate
@@ -444,6 +441,3 @@ SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue
 if [[ -s $HOME/.profile ]] ; then source $HOME/.profile ; fi
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
-
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi

@@ -1,8 +1,7 @@
-if [[ -e /usr/local/share/chruby ]]; then
-	source '/usr/local/share/chruby/chruby.sh'
-	source '/usr/local/share/chruby/auto.sh'
-
-	if [[ -f ~/.ruby-version ]]; then
-		chruby $(cat ~/.ruby-version)
-	fi
+if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
+	source /usr/local/opt/chruby/share/chruby/chruby.sh
+	source /usr/local/opt/chruby/share/chruby/auto.sh
+else
+	echo "Ain't got no chruby"
+	print -n "\a"
 fi

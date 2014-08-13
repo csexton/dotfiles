@@ -27,6 +27,7 @@
 "=bundle justinmk/vim-sneak
 "=bundle Shougo/vimproc.vim
 "=bundle Shougo/unite.vim
+"=bundle Shougo/vimshell.vim
 "=bundle jlanzarotta/bufexplorer
 "=bundle csexton/trailertrash.vim
 "=bundle tpope/vim-markdown
@@ -49,6 +50,7 @@
 "=bundle tpope/vim-sensible
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-unimpaired
+"=bundle tpope/vim-vinegar
 "=bundle vim-ruby/vim-ruby
 "=bundle tpope/vim-eunuch
 "=bundle csexton/spacemanspiff.vim
@@ -77,9 +79,6 @@ set t_Co=256
 "silent! colorscheme Tomorrow-Night
 silent! colorscheme spacemanspiff
 
-"" Crazyness!
-imap jk <Esc>
-
 set fillchars=vert:\ ,fold:-
 set nofoldenable
 set number
@@ -102,7 +101,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 "set clipboard=unnamed
 " Copy to the system clipboard when in visual mode
-vnoremap y "+y
 vnoremap <M-y> "+y
 
 " Remap semicolon to be colon
@@ -405,6 +403,12 @@ if isdirectory(g:bundle_dir)
   " sort buffers by number
   "call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
 
+  if executable('ag')
+    let g:unite_source_grep_command='ag'
+    let g:unite_source_grep_default_opts='ag --nocolor --hidden'
+    let g:unite_source_grep_recursive_opt=''
+  endif
+
   nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
   nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
   nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
@@ -415,11 +419,11 @@ if isdirectory(g:bundle_dir)
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
     let b:SuperTabDisabled=1
-    "let b:show_trailertrash=0
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
     nmap <buffer> <ESC> <Plug>(unite_exit)
-    "hi link UnwantedTrailerTrash Normal
+    "Hide Trailer Trash
+    2match none
   endfunction
 
 endif
@@ -530,6 +534,33 @@ endfu
 vnoremap <C-a> :call Incr()<CR>
 
 
+"" Run a given vim command on the results of fuzzy selecting from a given shell
+"" command. See usage below.
+"function! SelectaCommand(choice_command, selecta_args, vim_command)
+"  try
+"    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+"  catch /Vim:Interrupt/
+"    " Swallow the ^C so that the redraw below happens; otherwise there will be
+"    " leftovers from selecta on the screen
+"    redraw!
+"    return
+"  endtry
+"  redraw!
+"  exec a:vim_command . " " . selection
+"endfunction
+"
+"" Find all files in all non-dot directories starting in the working directory.
+"" Fuzzy select one of those. Open the selected file with :e.
+"nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+
+"Kill Trailer Trash
+autocmd BufWritePre * :TrailerTrim
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Selecta Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
 function! SelectaCommand(choice_command, selecta_args, vim_command)
@@ -545,11 +576,27 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+function! SelectaFile(path)
+  call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
+endfunction
 
-"Kill Trailer Trash
-autocmd BufWritePre * :Trim
+nnoremap <leader>f :call SelectaFile(".")<cr>
+nnoremap <leader>gv :call SelectaFile("app/views")<cr>
+nnoremap <leader>gc :call SelectaFile("app/controllers")<cr>
+nnoremap <leader>gm :call SelectaFile("app/models")<cr>
+nnoremap <leader>gh :call SelectaFile("app/helpers")<cr>
+nnoremap <leader>gl :call SelectaFile("lib")<cr>
+nnoremap <leader>gp :call SelectaFile("public")<cr>
+nnoremap <leader>gs :call SelectaFile("public/stylesheets")<cr>
+nnoremap <leader>gf :call SelectaFile("features")<cr>
+
+function! SelectaIdentifier()
+  " Yank the word under the cursor into the z register
+  normal "zyiw
+  " Fuzzy match files in the current directory, starting with the word under
+  " the cursor
+  call SelectaCommand("find * -type f", "-s " . @z, ":e")
+endfunction
+nnoremap <c-g> :call SelectaIdentifier()<cr>
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:

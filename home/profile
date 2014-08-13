@@ -11,36 +11,9 @@ alias :wq="exit"
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
-export P4CONFIG=".p4config"
-export EDITOR="vim"
-
-PLATFORM=`uname -s`
-case "$PLATFORM" in
-"Darwin")
-  export PATH=/usr/local/bin:$HOME/bin:$PATH
-  export MANPATH=/usr/local/share/man:$MANPATH
-;;
-"Linux")
-  echo "Dotfiles Engage!"
-  alias ls="ls --color -F"
-;;
-esac
 
 if [ -f $HOME/.local_profile ]
 then
   source $HOME/.local_profile
 fi
 
-if [ -d /usr/local/share/npm/bin ]
-then
-  export PATH="/usr/local/share/npm/bin:$PATH"
-fi
-
-#curl -s randomfunfacts.com | grep '<i>' | sed -e 's/<[^>]*>//g;s/^ *//g;s/ *$//g;s/&nbsp;//'
-
-#if [ -d $HOME/.rvm]
-#then
-#  export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#fi
-
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
