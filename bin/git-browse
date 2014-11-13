@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 repo = `git config --get remote.origin.url`.strip
 branch = `git branch | sed -n '/\* /s///p'`.strip
-repo_url = repo.sub(':', '/').sub('git@', 'https://').sub('.git', '')
+repo_url = repo.sub(':', '/').sub(/^git@/, 'https://').sub(/(.*)\.git/, '\1')
 repo_url = "#{repo_url}/tree/#{branch}"
-puts repo_url
 `open #{repo_url}`
