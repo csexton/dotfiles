@@ -1,6 +1,5 @@
 #!/bin/sh
 # -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
-
 export LSCOLORS="exgxbxdxbxegedxbxgacba"
 export CLICOLOR=1
 export EDITOR="vim"
@@ -11,6 +10,8 @@ alias :wq="exit"
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+
+export PATH=~/bin:$PATH
 
 if [ -f $HOME/.local_profile ]
 then

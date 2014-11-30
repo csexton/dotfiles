@@ -58,6 +58,7 @@ task :home do
   end
 
   symlink_home('vim', '.vim')
+  symlink_home('zsh', '.zsh')
   symlink_home('bin', 'bin')
 end
 

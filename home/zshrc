@@ -99,9 +99,11 @@ bindtc kl "^[[D" backward-char
 #bindkey '^L' push-line # push current command into a buffer, allows you to do another command then returns to previous command
 # }}}
 # Completion {{{
+fpath=(~/.zsh/completion $fpath)
 # Show completion on first TAB
 zmodload zsh/complist
-autoload -U compinit && compinit
+autoload -U compinit
+compinit
 
 unsetopt menucomplete   # do not autoselect the first completion entry
 unsetopt flowcontrol
@@ -223,6 +225,7 @@ _run-with-bundler() {
       bundle exec $@
     fi
   else
+   echo "$fg[blue]--> $@$reset_color" >&2
     $@
   fi
 }
@@ -392,6 +395,16 @@ kapow(){
 compctl -W ~/.pow -/ kapow
 # View the standard out (puts) from any pow app
 alias kaput="tail -f ~/Library/Logs/Pow/apps/*"
+
+# Configure a directory for chruby and powrc file
+kaboom(){
+  echo "Creating .powrc file..."
+  echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" > .powrc
+  echo "chruby $(cat .ruby-version)" >> .powrc
+  echo "Symlinking ${PWD##*/} in ~/.pow ..."
+  ln -si "$PWD" ~/.pow
+  echo "Done."
+}
 # }}}
 # Edit command line {{{
 autoload -U edit-command-line
@@ -436,6 +449,9 @@ PROMPT='%(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%
 
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
+#
+
+. `brew --prefix`/etc/profile.d/z.sh
 
 # Load the profile if it exists
 if [[ -s $HOME/.profile ]] ; then source $HOME/.profile ; fi

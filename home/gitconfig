@@ -19,9 +19,10 @@
         unadd = reset HEAD
         lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
         ctags = !.git/hooks/ctags
-        cleanup = !git-cleanup-merged-branches
+        cleanup = !~/bin/git-cleanup-merged-branches
         sweep = !git-sweep
-        browse = !git-browse
+        browse = !hub browse
+        bro = browse
         br = branch
         df = diff
         ready = rebase -i @{u}
@@ -29,6 +30,7 @@
         standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)%an%Creset' --since yesterday --author csexton
         purr = pull --rebasely
         workprofile = config user.email \"chris@radiusnetworks.com\"
+        pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
 
 [github]
         user = csexton

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "rdr pass on lo0 inet proto tcp from any to any port 80 -> 127.0.0.1 port 20559" | sudo pfctl -a 'com.apple/250.ApplicationFirewall' -f - -E

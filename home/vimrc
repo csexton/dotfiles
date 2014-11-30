@@ -39,6 +39,7 @@
 "=bundle pangloss/vim-javascript
 "=bundle sjl/gundo.vim
 "=bundle slim-template/vim-slim
+"=bundle tpope/vim-abolish
 "=bundle tpope/vim-bundler
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-fugitive
@@ -54,6 +55,7 @@
 "=bundle vim-ruby/vim-ruby
 "=bundle tpope/vim-eunuch
 "=bundle csexton/spacemanspiff.vim
+"=bundle Keithbsmiley/swift.vim
 "
 "=bundle thoughtbot/vim-rspec
 " bundle csexton/jslint.vim
@@ -598,5 +600,6 @@ function! SelectaIdentifier()
   call SelectaCommand("find * -type f", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
+
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:

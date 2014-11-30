@@ -1,0 +1,6 @@
+#compdef swift
+
+_arguments "1: :(World)"
+#_swift "$@"
+#compdef _swift swift
+

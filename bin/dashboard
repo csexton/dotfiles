@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+curl -d "{ \"auth_token\": \"shhh\", \"title\": \"$1\", \"text\": \"$2\" }" "http://dashboard.radiusnetworks.com/widgets/welcome"
