@@ -5,6 +5,7 @@ bin/mr-curl
 bin/mate
 bin/nobu*
 vim/.VimballRecord
+vim/.cache
 vim/bundle
 vim/tmp
 vim/undo
