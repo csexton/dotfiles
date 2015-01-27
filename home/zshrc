@@ -350,7 +350,9 @@ autoload -U add-zsh-hook
 add-zsh-hook precmd  termsupport_precmd
 add-zsh-hook preexec termsupport_preexec
 # }}}
+
 # Custom Functions {{{
+
 # Kapow {{{
 _rack_root_detect(){
   setopt chaselinks
@@ -406,18 +408,18 @@ kaboom(){
   echo "Done."
 }
 # }}}
+
 # Edit command line {{{
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 # }}}
+
 # src Command {{{
 src(){cd ~/src/$1;}
 compctl -W ~/src -/ src
-
-rad(){cd ~/src/radius/$1;}
-compctl -W ~/src/radius -/ rad
 # }}}
+
 # v Command {{{
 # Fuzzy file opener in vim
 v(){
@@ -429,31 +431,14 @@ v(){
 # deriveddata Command {{{
 deriveddata(){cd ~/Library/Developer/Xcode/DerivedData/$1;}
 compctl -W ~/Library/Developer/Xcode/DerivedData -/ deriveddata
+# }}}
 
 # }}}
-# s Command {{{
-s(){
-  cd ~
-  if cd "$(find src -type d -maxdepth 1 | ~/bin/selecta)" ; then
-    clear
-    echo "Changed to $(pwd)"
-  else
-    cd -
-    echo "Command failed"
-  fi
-}
-# }}}
-# }}}
+
 # Prompt {{{
-#PROMPT='%{$fg[green]%}%2~ $(git_prompt_info)%{$reset_color%}%(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
-
-#PROMPT='%(?:%{$fg[blue]%}:$fg[red])╭ %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
-#%(?:%{$fg[blue]%}:$fg[red])╰ %(?:%{$fg[blue]%}:$fg[red])%(!.#.%%) %{$reset_color%}'
-
 PROMPT='%(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
 %(!.#.%%) '
 #RPROMPT='%{$fg[red]%}$(ruby --version | cut -d' ' -f 1-2)%{$reset_color%}%'
-
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
 
