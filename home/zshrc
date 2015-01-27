@@ -418,8 +418,15 @@ compctl -W ~/src -/ src
 rad(){cd ~/src/radius/$1;}
 compctl -W ~/src/radius -/ rad
 # }}}
+# v Command {{{
+# Fuzzy file opener in vim
+v(){
+  file=$(fzf)
+  [[ -n "$file" ]] && $EDITOR $file
+}
+# }}}
 
-# Command {{{
+# deriveddata Command {{{
 deriveddata(){cd ~/Library/Developer/Xcode/DerivedData/$1;}
 compctl -W ~/Library/Developer/Xcode/DerivedData -/ deriveddata
 
@@ -449,7 +456,7 @@ PROMPT='%(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%
 
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
-#
+
 
 . `brew --prefix`/etc/profile.d/z.sh
 
