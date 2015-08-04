@@ -9,7 +9,7 @@
 [core]
         excludesfile = /Users/csexton/.gitignore
 [alias]
-        ci = commit
+        c = commit --verbose
         co = checkout
         st = status
         ll = log --pretty=oneline --abbrev-commit --graph --decorate
@@ -21,7 +21,7 @@
         ctags = !.git/hooks/ctags
         cleanup = !~/bin/git-cleanup-merged-branches
         sweep = !git-sweep
-        browse = !hub browse
+        browse = !git-browse
         bro = browse
         br = branch
         df = diff
@@ -31,6 +31,9 @@
         purr = pull --rebasely
         workprofile = config user.email \"chris@radiusnetworks.com\"
         pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+        delete-old-branches =  !git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
+        delete-old-branches-remote =  !git remote prune $1 && git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
+        edit = "!vim `git ls-files -m`"
 
 [github]
         user = csexton
@@ -51,3 +54,7 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

@@ -1,7 +1,8 @@
-if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
-	#echo -e "\e[0;34mchruby engague\e[0m"
-	source /usr/local/opt/chruby/share/chruby/chruby.sh
-	source /usr/local/opt/chruby/share/chruby/auto.sh
+local chruby_source="/usr/local/opt/chruby/share/chruby"
+if [[ -f $chruby_source/chruby.sh ]]; then
+  #echo -e "\e[0;34mchruby engague\e[0m"
+  source $chruby_source/chruby.sh
+  source $chruby_source/auto.sh
 else
-	echo -e "\e[0;31m⚠  Ain't got no chruby ⚠\e[0m"
+  echo -e "\e[0;31m⚠  Ain't got no chruby ⚠\e[0m"
 fi
