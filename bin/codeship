@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+require 'pry'
+require 'yaml'
+require 'open-uri'
+require 'json'
+
+def colorize(color, string)
+  color_code = case color
+               when :red
+                 31
+               when :green
+                 32
+               when :yellow
+                 33
+               when :pink
+                 35
+               else
+                 0
+               end
+  "\e[#{color_code}m#{string}\e[0m"
+end
+
+def status(project)
+  case project["builds"].first["status"]
+  when "testing"
+    "😱 "
+  when "success"
+    "😊 "
+  else
+    "😡 "
+  end
+end
+
+def stat_color(project)
+  name = project["repository_name"]
+  case project["builds"].first["status"]
+  when "testing"
+    colorize :yellow, name
+  when "success"
+    colorize :green, name
+  else
+    colorize :red, name
+  end
+end
+
+config = YAML::load_file File.join(Dir.home, '.codeship')
+
+response_body = open("https://codeship.com/api/v1/projects.json?api_key=#{config["api_key"]}").read
+
+response = JSON.parse(response_body)
+
+response["projects"].each do |project|
+  #puts "#{status(project)} #{stat_color project}"
+  puts "#{stat_color project}"
+end
