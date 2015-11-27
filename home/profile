@@ -10,9 +10,15 @@ alias :wq="exit"
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+alias nvimrc="nvim ~/.nvimrc"
 #alias vim="nvim"
 
 export PATH=~/bin:$PATH
+
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]
+then
+  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+fi
 
 if [ -f $HOME/.local_profile ]
 then
