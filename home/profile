@@ -12,6 +12,9 @@ alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 alias nvimrc="nvim ~/.nvimrc"
 #alias vim="nvim"
+alias wut="git status"
+alias whaa="git diff"
+alias gc='nocorrect git commit -v'
 
 export PATH=~/bin:$PATH
 
