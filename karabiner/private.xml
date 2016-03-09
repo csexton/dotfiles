@@ -68,6 +68,29 @@
 </item>
 
 <item>
+  <name>Remap Control+N to Down</name>
+  <appendix>Control+N sends Down Arrow</appendix>
+  <identifier>private.CNDown</identifier>
+
+  <autogen>
+    __KeyToKey__
+    KeyCode::N, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL,
+    KeyCode::CURSOR_DOWN
+  </autogen>
+</item>
+
+<item>
+  <name>Remap Control+P to Up</name>
+  <appendix>Control+P sends Up Arrow</appendix>
+  <identifier>private.CPUp</identifier>
+
+  <autogen>
+    __KeyToKey__
+    KeyCode::P, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL,
+    KeyCode::CURSOR_UP
+  </autogen>
+</item>
+<item>
   <name>Remap Control+N to Down in Xcode</name>
   <appendix>Active in Xcode</appendix>
   <identifier>private.xcodeNDown</identifier>
