@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+if [ -e ".envrc" ]
+  then
+    echo "$(tput setaf 4).envrc already exists$(tput sgr 0)"
+  else
+    echo "$(tput setaf 4)Creating .envrc file$(tput sgr 0)"
+    cat <<END > .envrc
+# Load docker-machine enviroment
+#eval \$(docker-machine env default)
+
+# Other Enviroment vars
+#export MY_VAR=my-value
+
+END
+
+    echo -e "# Ruby Projects\n" >> .envrc
+    echo "# Load the ruby version manually" >> .envrc
+    echo -e "#use ruby 2.3.0\n" >> .envrc
+    echo "# Load the ruby version from the .ruby-version file" >> .envrc
+    if [ -e ".ruby-version" ]; then
+      echo -e "use ruby\n" >> .envrc
+    else
+      echo -e "#use ruby\n" >> .envrc
+    fi
+
+    echo "# Load .env files automatically:" >> .envrc
+    if [ -e ".env" ]; then
+      echo -e "dotenv\n" >> .envrc
+    else
+      echo -e "#dotenv\n" >> .envrc
+    fi
+fi
+
+# Touch the file to some long ago time so we can determine the the file is updated
+touch -t 200001010101 .envrc
+
+# Open it in a text editor to review and confirm
+if $EDITOR .envrc ; then
+  if [ "$(stat -f%c .envrc)" -eq "$(stat -f%B .envrc)" ]; then
+    direnv allow
+  else
+    echo "$(tput setaf 1).envrc was not saved so it was not approved. Either delete it or run \`direnv allow\` to approve its content.$(tput sgr 0)"
+  fi
+else
+  echo "$(tput setaf 1)Error: $EDITOR returned non-zero exit code$(tput sgr 0)"
+fi
+
+
