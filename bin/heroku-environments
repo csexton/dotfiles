@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+trap "SIGINT" do
+  puts "Exiting"
+  exit 130
+end
+
+class String
+  def red;            "\e[31m#{self}\e[0m" end
+  def green;          "\e[32m#{self}\e[0m" end
+  def blue;           "\e[34m#{self}\e[0m" end
+end
+
+def error(message)
+  STDERR.puts "Error: #{message}".red
+  exit 1
+end
+
+env_name = File.basename($0, File.extname($0))
+url = `git config --get remote.#{env_name}.url`.chomp
+
+if ARGV.empty?
+  puts "Heroku CLI Wrapper for #{env_name}. Try `#{env_name} --help` for more information"
+  exit 0
+end
+
+error "Unable to find git config file. Are you in a git repo?" if url.empty?
+
+app_name = /([^\/:]+)\.git$/.match(url)[1]
+
+error "Unable to find #{env_name} remote. Make sure you have `remote.production` set in your git config" if app_name.empty?
+
+cmd = "heroku #{ARGV.join " "} --app #{app_name}"
+
+puts cmd.blue
+puts
+
+system(cmd)
+exit $?.exitstatus
