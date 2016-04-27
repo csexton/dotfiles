@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+name=$1
+if [ -z "$1" ]; then
+  name=${PWD##*/}
+fi
+
+docker build -t radiusnetworks/$name .
+docker push radiusnetworks/$name
