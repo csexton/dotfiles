@@ -1,5 +1,30 @@
 #!/usr/bin/env ruby
 
+# Heroku enviroment helper script
+#
+# This is to streamline using differnt heroku enviroments from one repo.
+# Symlink this file to an envroment name (as set by the git-remote name), then
+# when running that symlink the script will look up the name in the git config
+# and use that remote as the heroku name.
+#
+# Setup:
+#
+#     ln -s ~/bin/heroku-enviroments production
+#
+# And assuming git is configured:
+#
+#     [remote "production"]
+#     url = git@heroku.com:my-app-production.git
+#     fetch = +refs/heads/*:refs/remotes/production/*
+#
+# Then running:
+#
+#     production run rails console
+#
+# Actually runs:
+#
+#     heroku run rails console --app my-app-production
+
 trap "SIGINT" do
   puts "Exiting"
   exit 130
