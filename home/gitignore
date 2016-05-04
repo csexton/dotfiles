@@ -48,4 +48,10 @@ custom_plan.rb
 zeus.json
 .pow
 
+# direnv
+.direnv
+.envrc
+
 scratch*
+
+.byebug_history
