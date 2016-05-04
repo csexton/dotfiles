@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+server=$1
+if [ -z "$1" ] ; then
+  echo "Usage: $(basename $0) hostname [session name]"
+  exit 1
+fi
+
+name=$2
+if [ -z "$2" ]
+then name=$(whoami)
+fi
+
+ssh -t $server "tmux attach-session -t $name || tmux new-session -s $name"
