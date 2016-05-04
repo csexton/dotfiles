@@ -16,6 +16,8 @@ alias wut="git status"
 alias whaa="git diff"
 alias gc='nocorrect git commit -v'
 
+alias eval-docker-machine='eval $(docker-machine env default)'
+
 export PATH=~/bin:$PATH
 
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]
