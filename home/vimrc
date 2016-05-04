@@ -109,7 +109,7 @@ vnoremap <M-y> "+y
 
 set cmdheight=1             " Command like height is forced to one line
 set dictionary+=/usr/share/dict/words
-set gdefault                " When on, the ":substitute" flag 'g' is default on.
+"set gdefault                " When on, the ":substitute" flag 'g' is default on.
 set guioptions=egmtc        " Get rid of the scrollbar, toolbar, and popups
 set hidden                  " Allow dirty unsaved buffers
 set history=1000            " Remember more history
@@ -569,6 +569,13 @@ autocmd BufWritePre * :TrailerTrim
 function MapSpace(command)
   exec ":nnoremap <Space> :wall\\|!ruby %<CR>"
 endfunction
+
+function Dequote()
+  " Requires `gdefault` to be set.
+  exec ":%s/[“”]/\"/"
+  exec ":%s/[‘’]/'/"
+endfunction
+command! -nargs=0 Dequote :call Dequote()
 
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
