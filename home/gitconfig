@@ -34,13 +34,14 @@
         delete-old-branches =  !git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
         delete-old-branches-remote =  !git remote prune $1 && git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
         edit = "!vim `git ls-files -m`"
+	tags = log -n1 --pretty=format:%h%d
 
 [github]
         user = csexton
 [merge]
         summary = true
 [push]
-        default = matching
+	default = current
 [diff "ruby"]
         funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
 [init]
@@ -58,5 +59,3 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
-[commit]
-  template = ~/.gitmessage
