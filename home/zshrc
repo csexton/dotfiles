@@ -172,6 +172,7 @@ bundled_commands=(
   rackup
   rainbows
   rake
+  reek
   rspec
   shotgun
   sidekiq
@@ -450,3 +451,5 @@ SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue
 [[ -s $HOME/.profile ]] && source $HOME/.profile
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
+
+
