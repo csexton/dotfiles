@@ -38,6 +38,7 @@
 "=bundle kchmck/vim-coffee-script
 "=bundle mattn/gist-vim
 "=bundle mattn/webapi-vim
+"=bundle opischke/unite-spell-suggest
 "=bundle pangloss/vim-javascript
 "=bundle sjl/gundo.vim
 "=bundle slim-template/vim-slim
@@ -409,22 +410,25 @@ if isdirectory(g:bundle_dir)
   "call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
 
   if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='ag --nocolor --hidden'
-    let g:unite_source_grep_recursive_opt=''
+    "let g:unite_source_grep_command='ag'
+    let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+    "let g:unite_source_grep_default_opts='ag --nocolor --hidden'
+    "let g:unite_source_grep_recursive_opt=''
   endif
 
   " Seeing is beleiving
 
   command! SeeingIsBelieving :call seeing_is_believing#run('n')<CR>
 
-  nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+  "nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+  nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/git:--cached:--others:--exclude-standard<cr>
   nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
   nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
   nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
   nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
   nnoremap <leader>j :<C-u>Unite -no-split -buffer-name=jump jump<cr>
+  nnoremap <leader>z :<C-u>Unite -buffer-name=spellingsuggestions spell_suggest<cr>
   autocmd FileType unite call s:unite_settings()
   function! s:unite_settings()
     let b:SuperTabDisabled=1
