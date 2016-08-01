@@ -10,6 +10,7 @@
         excludesfile = /Users/csexton/.gitignore
 [alias]
         c = commit --verbose
+        ocmmit = commit --verbose
         co = checkout
         st = status
         ll = log --pretty=oneline --abbrev-commit --graph --decorate
