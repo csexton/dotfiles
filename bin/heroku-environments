@@ -9,7 +9,7 @@
 #
 # Setup:
 #
-#     ln -s ~/bin/heroku-enviroments production
+#     ln -s ~/bin/heroku-enviroments ~/bin/production
 #
 # And assuming git is configured:
 #
