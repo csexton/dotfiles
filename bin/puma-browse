@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+#
+# Quickly open a browser window from a project file to the app hosted in
+# puma-dev.
+#
+# This script will find the matching symlink in `~/.puma-dev` and use that file
+# to construct the url to the local app.
+(require 'launchy') rescue nil
+
+dot_puma = File.expand_path "~/.puma-dev"
+match = Dir["#{dot_puma}/*"].detect do |file|
+  Dir.pwd.start_with? File.readlink(file)
+end
+
+exit 1 unless match
+
+url = "http://#{File.basename(match)}.dev"
+if defined?(Launchy)
+  Launchy.open url
+else
+  system("open #{url}")
+end
