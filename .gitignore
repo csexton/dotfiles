@@ -7,6 +7,7 @@ bin/nobu*
 vim/.VimballRecord
 vim/.cache
 vim/bundle
+vim/pack
 vim/tmp
 vim/undo
 bin/silly*

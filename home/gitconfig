@@ -1,62 +1,64 @@
 [user]
-        name = Christopher Sexton
-        email = github@codeography.com
+	name = Christopher Sexton
+	email = csexton@users.noreply.github.com
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
 [core]
-        excludesfile = /Users/csexton/.gitignore
+	excludesfile = /Users/csexton/.gitignore
 [alias]
-        c = commit --verbose
-        ocmmit = commit --verbose
-        co = checkout
-        st = status
-        ll = log --pretty=oneline --abbrev-commit --graph --decorate
-        sup = submodule update
-        input = read name && echo $name
-        oops = reset --soft "HEAD^"
-        unadd = reset HEAD
-        lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
-        ctags = !.git/hooks/ctags
-        cleanup = !~/bin/git-cleanup-merged-branches
-        sweep = !git-sweep
-        browse = !git-browse
-        bro = browse
-        br = branch
-        df = diff
-        ready = rebase -i @{u}
-        lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
-        standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)%an%Creset' --since yesterday --author csexton
-        purr = pull --rebasely
-        workprofile = config user.email \"chris@radiusnetworks.com\"
-        pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
-        delete-old-branches =  !git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
-        delete-old-branches-remote =  !git remote prune $1 && git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
-        edit = "!vim `git ls-files -m`"
+	br = branch
+	bro = browse
+	browse = !git-browse
+	c = commit --verbose
+	cleanup = !~/bin/git-cleanup-merged-branches
+	cm = commit --verbose
+	co = checkout
+	ctags = !.git/hooks/ctags
+	delete-old-branches = !git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
+	delete-old-branches-remote = !git remote prune $1 && git branch | grep -v \"*\" | xargs git branch -d 2>/dev/null
+	df = diff
+	edit = "!vim `git ls-files -m`"
+	input = read name && echo $name
+	lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+	ll = log --pretty=oneline --abbrev-commit --graph --decorate
+	lol = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
+	ocmmit = commit --verbose
+	oops = reset --soft "HEAD^"
+	pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+	purr = pull --rebasely
+	ready = rebase -i @{u}
+	siff = diff --submodule
+	st = status
+	standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)%an%Creset' --since yesterday --author csexton
+	sup = submodule update
+	sweep = !git-sweep
 	tags = log -n1 --pretty=format:%h%d
+	unadd = reset HEAD
+	workprofile = config user.email \"chris@radiusnetworks.com\"
 
 [github]
-        user = csexton
+	user = csexton
 [merge]
-        summary = true
+	summary = true
 [push]
 	default = current
 [diff "ruby"]
-        funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
+	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
 [init]
-        templatedir = ~/.git_template
+	templatedir = ~/.git_template
 [diff]
-        algorithm = patience
+	algorithm = patience
 [color "diff"]
-        whitespace = red reverse
+	whitespace = red reverse
 [heroku]
-        account = radius
+	account = radius
 [filter "media"]
-  clean = git-media-clean %f
-  smudge = git-media-smudge %f
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

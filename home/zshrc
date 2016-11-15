@@ -438,12 +438,21 @@ compctl -W ~/Library/Developer/Xcode/DerivedData -/ deriveddata
 # }}}
 
 # Prompt {{{
-PROMPT='%(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
-%(!.#.%%) '
+PROMPT=' %(?::$fg[red]⚠) %{$fg[green]%}%4~ $(git_prompt_info)%{$reset_color%}
+ %(!.#.%%) '
 #RPROMPT='%{$fg[red]%}$(ruby --version | cut -d' ' -f 1-2)%{$reset_color%}%'
 SPROMPT="%{$fg[yellow]%}Correct '%R' to '%r'? %{$fg[blue]%}(Yes, %{$fg_bold[blue]%}No%{$fg_no_bold[blue]%}, Abort, Edit): %{$reset_color%}"
 # }}}
 
+
+# Select the current directory in launchbar, optionally a file
+lb () {
+    if [[ $# = 1 ]]; then
+        [[ -e "$(pwd)/$1" ]] && open "x-launchbar:select?file=$(pwd)/$1" || open "x-launchbar:select?file=$1"
+    else
+        open "x-launchbar:select?file=$(pwd)"
+    fi
+  }
 
 [[ -s /usr/local/etc/profile.d/z.sh ]] && source /usr/local/etc/profile.d/z.sh
 

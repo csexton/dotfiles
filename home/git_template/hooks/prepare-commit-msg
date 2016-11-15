@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Automatically adds branch name and branch description to every commit message.
+#
+#echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" > "$1"

@@ -23,62 +23,63 @@
 "
 " Bundles {{{
 " Pathogen is required for any of these plugins to work
-" bundle ConradIrwin/vim-bracketed-paste
-"=bundle Keithbsmiley/swift.vim
-"=bundle Shougo/unite.vim
-"=bundle Shougo/vimproc.vim
-"=bundle Shougo/vimshell.vim
-"=bundle csexton/spacemanspiff.vim
-"=bundle csexton/trailertrash.vim
-"=bundle ervandew/ag
-"=bundle ervandew/supertab
-" bundle jlanzarotta/bufexplorer
-" bundle junegunn/goyo.vim
-"=bundle justinmk/vim-sneak
-"=bundle kchmck/vim-coffee-script
-"=bundle mattn/gist-vim
-"=bundle mattn/webapi-vim
-"=bundle opischke/unite-spell-suggest
-"=bundle pangloss/vim-javascript
-" bundle sjl/gundo.vim
-"=bundle slim-template/vim-slim
-"=bundle thoughtbot/vim-rspec
-"=bundle tpope/vim-abolish
-"=bundle tpope/vim-bundler
-"=bundle tpope/vim-endwise
-"=bundle tpope/vim-eunuch
-"=bundle tpope/vim-fugitive
-"=bundle tpope/vim-haml # for scss
-"=bundle tpope/vim-markdown
-"=bundle tpope/vim-pathogen
-"=bundle tpope/vim-rails
-"=bundle tpope/vim-rake
-"=bundle tpope/vim-repeat
-"=bundle tpope/vim-sensible
-"=bundle tpope/vim-surround
-"=bundle tpope/vim-unimpaired
-"=bundle tpope/vim-vinegar
-"=bundle vim-ruby/vim-ruby
+"=plugin ConradIrwin/vim-bracketed-paste
+"=plugin mhinz/vim-grepper
+"=plugin Keithbsmiley/swift.vim
+"=plugin Shougo/unite.vim
+"=plugin Shougo/vimproc.vim build: make
+"=plugin Shougo/vimshell.vim
+"=plugin csexton/spacemanspiff.vim
+"=plugin csexton/trailertrash.vim
+"=plugin ervandew/ag
+"=plugin ervandew/supertab
+" plugin jlanzarotta/bufexplorer
+" plugin junegunn/goyo.vim
+"=plugin justinmk/vim-sneak
+"=plugin kchmck/vim-coffee-script
+"=plugin mattn/gist-vim
+"=plugin mattn/webapi-vim
+"=plugin kopischke/unite-spell-suggest
+"=plugin pangloss/vim-javascript
+" plugin sjl/gundo.vim
+"=plugin slim-template/vim-slim
+"=plugin thoughtbot/vim-rspec
+"=plugin tpope/vim-abolish
+"=plugin tpope/vim-bundler
+"=plugin tpope/vim-endwise
+"=plugin tpope/vim-eunuch
+"=plugin tpope/vim-fugitive
+"=plugin tpope/vim-haml # for scss
+"=plugin tpope/vim-markdown
+"=plugin tpope/vim-pathogen
+"=plugin tpope/vim-rails
+"=plugin tpope/vim-rake
+"=plugin tpope/vim-repeat
+"=plugin tpope/vim-sensible
+"=plugin tpope/vim-surround
+"=plugin tpope/vim-unimpaired
+"=plugin tpope/vim-vinegar
+"=plugin vim-ruby/vim-ruby
 "
-"=bundle ekalinin/Dockerfile.vim
-"=bundle yuku-t/unite-git
-"=bundle Shougo/neomru.vim
-"=bundle mustache/vim-mustache-handlebars
-"=bundle godlygeek/tabular
+"=plugin ekalinin/Dockerfile.vim
+"=plugin yuku-t/unite-git
+"=plugin Shougo/neomru.vim
+"=plugin mustache/vim-mustache-handlebars
+"=plugin godlygeek/tabular
 "
 "
 " }}}
-
-" Pathogen {{{
-if !empty(glob("~/.vim/bundle/vim-pathogen/autoload/pathogen.vim"))
-  source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
-  execute pathogen#infect('bundle/{}')
-  syntax on
-  filetype plugin indent on
+"
+"
+if exists(":packloadall")
+  packloadall
 endif
-" }}}
+
+
 " Settings {{{
-"
+syntax on
+filetype plugin indent on
+
 let mapleader = ","
 set t_Co=256
 "colorscheme base16-tomorrow
@@ -395,31 +396,33 @@ let g:SuperTabMappingBackward = '<tab>'
 " Launch Markedapp
 ":nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
-if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
-if isdirectory(g:bundle_dir)
+"if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
+"if isdirectory(g:bundle_dir)
 
   command! Gundo :GundoToggle
 
-  " Unite
-  let g:unite_source_history_yank_enable = 1
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  "call unite#filters#sorter_default#use(['sorter_selecta'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-  " sort file results by length
-  "call unite#custom#source('file', 'sorters', 'sorter_length')
-  "call unite#custom#source('file_rec/async', 'sorters', 'sorter_length')
-  " limit results for recently edited files
-  "call unite#custom#source('file_mru', 'max_candidates', 10)
-  " ignored files for file_mru
-  "call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
-  " sort buffers by number
-  "call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
+  "if exists(':Unite')
+    " Unite
+    let g:unite_source_history_yank_enable = 1
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    "call unite#filters#sorter_default#use(['sorter_selecta'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
+    " sort file results by length
+    "call unite#custom#source('file', 'sorters', 'sorter_length')
+    "call unite#custom#source('file_rec/async', 'sorters', 'sorter_length')
+    " limit results for recently edited files
+    "call unite#custom#source('file_mru', 'max_candidates', 10)
+    " ignored files for file_mru
+    "call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
+    " sort buffers by number
+    "call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
 
-  "if executable('ag')
-  "  "let g:unite_source_grep_command='ag'
-  "  let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --ignore="tmp/*" --hidden -g ""'
-  "  "let g:unite_source_grep_default_opts='ag --nocolor --hidden'
-  "  "let g:unite_source_grep_recursive_opt=''
+    "if executable('ag')
+    "  "let g:unite_source_grep_command='ag'
+    "  let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --ignore="tmp/*" --hidden -g ""'
+    "  "let g:unite_source_grep_default_opts='ag --nocolor --hidden'
+    "  "let g:unite_source_grep_recursive_opt=''
+    "endif
   "endif
 
   " Seeing is beleiving
@@ -451,7 +454,7 @@ if isdirectory(g:bundle_dir)
   nmap gs <plug>(GrepperOperator)
   xmap gs <plug>(GrepperOperator)
 
-endif
+"endif
 
 " }}}
 
