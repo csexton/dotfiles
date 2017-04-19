@@ -22,7 +22,7 @@
 "
 "
 " Bundles {{{
-" Pathogen is required for any of these plugins to work
+"=plugin yuttie/comfortable-motion.vim
 "=plugin ConradIrwin/vim-bracketed-paste
 "=plugin mhinz/vim-grepper
 "=plugin Keithbsmiley/swift.vim
@@ -50,7 +50,8 @@
 "=plugin tpope/vim-eunuch
 "=plugin tpope/vim-fugitive
 "=plugin tpope/vim-haml # for scss
-"=plugin tpope/vim-markdown
+" plugin tpope/vim-markdown
+"=plugin plasticboy/vim-markdown
 "=plugin tpope/vim-pathogen
 "=plugin tpope/vim-rails
 "=plugin tpope/vim-rake
@@ -63,19 +64,18 @@
 "
 "=plugin ekalinin/Dockerfile.vim
 "=plugin yuku-t/unite-git
+"=plugin tsukkee/unite-tag
 "=plugin Shougo/neomru.vim
 "=plugin mustache/vim-mustache-handlebars
 "=plugin godlygeek/tabular
 "
 "
 " }}}
-"
-"
+" Packages {{{
 if exists(":packloadall")
   packloadall
 endif
-
-
+" }}}
 " Settings {{{
 syntax on
 filetype plugin indent on
@@ -296,6 +296,9 @@ nnoremap gl :ls<CR>
 " List all possible buffers with "gb" and accept a new buffer argument [1]
 nnoremap gb :ls<CR>:b
 
+" Get dot command repeatability in visual mode
+xnoremap . :normal.<CR>
+
 " Clear incremental search highlight
 nnoremap <silent> <C-L> :nohlsearch<CR><C-l>
 nnoremap <leader>/ :nohlsearch<CR>
@@ -458,80 +461,11 @@ let g:SuperTabMappingBackward = '<tab>'
 
 " }}}
 
-" Tmux Pane Nav {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" key mapping for window navigation
-"
-" If you're in tmux it'll keep going to tmux splits if you hit the end of
-" your vim splits.
-"
-" For the tmux side see:
-" https://github.com/aaronjensen/dotfiles/blob/e9c3551b40c43264ac2cd21d577f948192a46aea/tmux.conf#L96-L102
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if exists('$TMUX')
-"  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-"    let previous_winnr = winnr()
-"    silent! execute "wincmd " . a:wincmd
-"    if previous_winnr == winnr()
-"      call system("tmux select-pane -" . a:tmuxdir)
-"      redraw!
-"    endif
-"  endfunction
-"
-"  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-"  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-"  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
-"
-"  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-"  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-"  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-"  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-"else
-"  "map <C-h> <C-w>h
-"  "map <C-j> <C-w>j
-"  "map <C-k> <C-w>k
-"  "map <C-l> <C-w>l
-"endif
-" }}}
-
 hi ShowMarksHLl ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLu ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLo ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLm ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
 hi SignColumn   ctermbg=none
-
-"command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-"function! s:RunShellCommand(cmdline)
-"  echo a:cmdline
-"  botright new
-"  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-"  execute 'VimProcRead '. a:cmdline
-"  setlocal nomodifiable
-"  1
-"endfunction
-"
-"
-"
-"command! -complete=shellcmd -nargs=+ VimProcBackground call s:run_vimproc_background(<q-args>)
-"function! s:run_vimproc_background(cmdline)
-"  let sub = vimproc#popen2(a:cmdline)
-"  let res = ''
-"  while !sub.stdout.eof
-"    let res .= sub.stdout.read()
-"  endwhile
-"  let [cond, status] = sub.waitpid()
-"  botright new
-"  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-"  call append(0, split(res, '\r\n\|\r\|\n') + [string([cond, status])])
-"endfunction
-"
-"command! -complete=shellcmd -nargs=+ Background call s:run_bg(<q-args>)
-"function! s:run_bg(cmdline)
-"  call vimproc#system_bg(a:cmdline . " >> /tmp/r 2>&1")
-"endfunction
-
-"let g:rspec_command = "Background rspec --format=Nc --format=doc --tty --color {spec}"
-
 
 let g:rspec_command = "!bundle exec rspec --format=doc --tty --color {spec}"
 command! -nargs=0 RspecCurrentFile :call RunCurrentSpecFile()
@@ -547,16 +481,9 @@ endfunction
 nnoremap <leader>. :RspecLast<CR>
 nnoremap <Space> :wall\|RspecLast<CR>
 
-"function! RamapSpace()
-"  let cmd = input('Enter Command: ')
-"  execute 'nnoremap <Space> :wall\|'. cmd . '<CR>'
-"endfunction
-
 function! RamapSpace(cmd)
   execute 'nnoremap <Space> :wall\|'. cmd . '<CR>'
 endfunction
-
-"command! -nargs=* RamapSpace echo <q-args>
 command! -nargs=+ RemapSpace call RamapSpace(<q-args>)
 
 
@@ -573,27 +500,6 @@ endfu
 
 vnoremap <C-a> :call Incr()<CR>
 
-
-
-"" Run a given vim command on the results of fuzzy selecting from a given shell
-"" command. See usage below.
-"function! SelectaCommand(choice_command, selecta_args, vim_command)
-"  try
-"    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-"  catch /Vim:Interrupt/
-"    " Swallow the ^C so that the redraw below happens; otherwise there will be
-"    " leftovers from selecta on the screen
-"    redraw!
-"    return
-"  endtry
-"  redraw!
-"  exec a:vim_command . " " . selection
-"endfunction
-"
-"" Find all files in all non-dot directories starting in the working directory.
-"" Fuzzy select one of those. Open the selected file with :e.
-"nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
-
 "Kill Trailer Trash
 autocmd BufWritePre * :TrailerTrim
 
@@ -607,25 +513,6 @@ function Dequote()
   exec ":%s/[‘’]/'/"
 endfunction
 command! -nargs=0 Dequote :call Dequote()
-
-
-
-" Enable seeing-is-believing mappings only for Ruby
-augroup seeingIsBelievingSettings
-  autocmd!
-
-  autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
-  autocmd FileType ruby xmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
-
-  autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
-  autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
-  autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
-
-  autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
-  autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing-is-believing-run)
-augroup END
-
-command! -bar -nargs=0 SeeingIsBelieving :call seeing_is_believing#mark_and_run('n')
 
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
