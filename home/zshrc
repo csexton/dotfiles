@@ -462,3 +462,5 @@ lb () {
 # vim: set foldenable fdm=marker fmr={{{,}}}:
 
 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
