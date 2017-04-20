@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# Delete any branches that have been merged. Will warn you if it is trying to delete master branch.
+#
+# To install a git alias:
+#  1. Copy this file to somewhere in you path and make it executable
+#  2. `git config --global alias.cleanup '!git-cleanup-merged-branches'`
+#
 set -e
 
 branch_name=$(git symbolic-ref -q HEAD)
