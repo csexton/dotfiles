@@ -22,7 +22,6 @@
 "
 "
 " Bundles {{{
-"=plugin yuttie/comfortable-motion.vim
 "=plugin ConradIrwin/vim-bracketed-paste
 "=plugin mhinz/vim-grepper
 "=plugin Keithbsmiley/swift.vim
@@ -49,6 +48,7 @@
 "=plugin tpope/vim-endwise
 "=plugin tpope/vim-eunuch
 "=plugin tpope/vim-fugitive
+"=plugin tpope/vim-rhubarb
 "=plugin tpope/vim-haml # for scss
 " plugin tpope/vim-markdown
 "=plugin plasticboy/vim-markdown
@@ -68,6 +68,9 @@
 "=plugin Shougo/neomru.vim
 "=plugin mustache/vim-mustache-handlebars
 "=plugin godlygeek/tabular
+"
+"=plugin ramele/agrep
+"=plugin w0rp/ale
 "
 "
 " }}}
@@ -99,8 +102,6 @@ set guifont=Anonymous\ Pro:h14,Monaco:h14
 "set guifont=Menlo:h14
 
 "au BufEnter * cal ctrlp#SetWorkingPath(2)
-
-let g:pathogen_disabled = ["ack.vim"]
 
 if has("gui_macvim")
   nmap <SwipeLeft> :bN<CR>
@@ -375,7 +376,10 @@ let g:ruby_minlines = 500
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 
+" BufExplorer
 let g:bufExplorerShowRelativePath=1
+
+" Gist
 if has('mac')
   let g:gist_clip_command = 'pbcopy'
 endif
@@ -392,6 +396,15 @@ let vimclojure#ParenRainbow = 1      " Rainbow parentheses
 " SuperTab
 let g:SuperTabMappingForward  = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
+
+" ALE
+let g:ale_sign_error = '❗️'
+let g:ale_sign_warning = '⚠️'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+let g:ale_sign_column_always = 1
+autocmd BufRead,BufNewFile * setlocal signcolumn=yes
+autocmd FileType unite,nerdtree setlocal signcolumn=no
 
 " Fix arrow keys in tmux
 "map <Esc>[B <Down>
@@ -461,11 +474,12 @@ let g:SuperTabMappingBackward = '<tab>'
 
 " }}}
 
-hi ShowMarksHLl ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
-hi ShowMarksHLu ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
-hi ShowMarksHLo ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
-hi ShowMarksHLm ctermfg=11 ctermbg=none gui=bold guifg=blue guibg=lightblue
-hi SignColumn   ctermbg=none
+hi ShowMarksHLl ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
+hi ShowMarksHLu ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
+hi ShowMarksHLo ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
+hi ShowMarksHLm ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
+hi SignColumn   ctermbg=NONE guibg=NONE
+hi SpellCap     ctermfg=NONE ctermbg=NONE cterm=underline
 
 let g:rspec_command = "!bundle exec rspec --format=doc --tty --color {spec}"
 command! -nargs=0 RspecCurrentFile :call RunCurrentSpecFile()
@@ -516,3 +530,4 @@ command! -nargs=0 Dequote :call Dequote()
 
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
+
