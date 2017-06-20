@@ -23,54 +23,46 @@
 "
 " Bundles {{{
 "=plugin ConradIrwin/vim-bracketed-paste
-"=plugin mhinz/vim-grepper
 "=plugin Keithbsmiley/swift.vim
-"=plugin Shougo/unite.vim
-"=plugin Shougo/vimproc.vim build: make
-"=plugin Shougo/vimshell.vim
 "=plugin csexton/spacemanspiff.vim
 "=plugin csexton/trailertrash.vim
+"=plugin ekalinin/Dockerfile.vim
 "=plugin ervandew/ag
 "=plugin ervandew/supertab
-" plugin jlanzarotta/bufexplorer
-" plugin junegunn/goyo.vim
+"=plugin godlygeek/tabular
 "=plugin justinmk/vim-sneak
 "=plugin kchmck/vim-coffee-script
+"=plugin kshenoy/vim-signature
 "=plugin mattn/gist-vim
 "=plugin mattn/webapi-vim
-"=plugin kopischke/unite-spell-suggest
+"=plugin mhinz/vim-grepper
+"=plugin mustache/vim-mustache-handlebars
 "=plugin pangloss/vim-javascript
-" plugin sjl/gundo.vim
+"=plugin plasticboy/vim-markdown
+"=plugin ramele/agrep
+"=plugin sjl/gundo.vim
 "=plugin slim-template/vim-slim
-"=plugin thoughtbot/vim-rspec
+" plugin thoughtbot/vim-rspec
 "=plugin tpope/vim-abolish
 "=plugin tpope/vim-bundler
 "=plugin tpope/vim-endwise
 "=plugin tpope/vim-eunuch
 "=plugin tpope/vim-fugitive
-"=plugin tpope/vim-rhubarb
 "=plugin tpope/vim-haml # for scss
-" plugin tpope/vim-markdown
-"=plugin plasticboy/vim-markdown
 "=plugin tpope/vim-pathogen
 "=plugin tpope/vim-rails
 "=plugin tpope/vim-rake
 "=plugin tpope/vim-repeat
+"=plugin tpope/vim-rhubarb
 "=plugin tpope/vim-sensible
 "=plugin tpope/vim-surround
 "=plugin tpope/vim-unimpaired
 "=plugin tpope/vim-vinegar
 "=plugin vim-ruby/vim-ruby
-"
-"=plugin ekalinin/Dockerfile.vim
-"=plugin yuku-t/unite-git
-"=plugin tsukkee/unite-tag
-"=plugin Shougo/neomru.vim
-"=plugin mustache/vim-mustache-handlebars
-"=plugin godlygeek/tabular
-"
-"=plugin ramele/agrep
 "=plugin w0rp/ale
+"=plugin junegunn/fzf.vim
+"
+"=plugin janko-m/vim-test
 "
 "
 " }}}
@@ -362,15 +354,6 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 " For sneaky streak
 let g:sneak#streak = 1
 
-" For vimux
-"map <Leader>p :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-"map <Leader>rp :VimuxPromptCommand<CR>
-"map <Leader>rl :VimuxRunLastCommand<CR>
-"map <Leader>ri :VimuxInspectRunner<CR>
-"map <Leader>rx :VimuxClosePanes<CR>
-"map <Leader>rq :VimuxCloseRunner<CR>
-"map <Leader>rc :VimuxInterruptRunner<CR>
-
 let g:is_bash = 1                " Highlight all .sh files as if they were bash
 let g:ruby_minlines = 500
 let g:rubycomplete_buffer_loading = 1
@@ -406,74 +389,7 @@ let g:ale_sign_column_always = 1
 autocmd BufRead,BufNewFile * setlocal signcolumn=yes
 autocmd FileType unite,nerdtree setlocal signcolumn=no
 
-" Fix arrow keys in tmux
-"map <Esc>[B <Down>
-
-" Launch Markedapp
-":nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
-
-"if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
-"if isdirectory(g:bundle_dir)
-
-  command! Gundo :GundoToggle
-
-  "if exists(':Unite')
-    " Unite
-    let g:unite_source_history_yank_enable = 1
-    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    "call unite#filters#sorter_default#use(['sorter_selecta'])
-    call unite#filters#sorter_default#use(['sorter_rank'])
-    " sort file results by length
-    "call unite#custom#source('file', 'sorters', 'sorter_length')
-    "call unite#custom#source('file_rec/async', 'sorters', 'sorter_length')
-    " limit results for recently edited files
-    "call unite#custom#source('file_mru', 'max_candidates', 10)
-    " ignored files for file_mru
-    "call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
-    " sort buffers by number
-    "call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
-
-    "if executable('ag')
-    "  "let g:unite_source_grep_command='ag'
-    "  let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --ignore="tmp/*" --hidden -g ""'
-    "  "let g:unite_source_grep_default_opts='ag --nocolor --hidden'
-    "  "let g:unite_source_grep_recursive_opt=''
-    "endif
-  "endif
-
-  " Seeing is beleiving
-
-  command! SeeingIsBelieving :call seeing_is_believing#run('n')<CR>
-
-  "nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/git:--cached:--others:--exclude-standard<cr>
-  nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-  nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-  nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-  nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-  nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-  nnoremap <leader>j :<C-u>Unite -no-split -buffer-name=jump jump<cr>
-  nnoremap <leader>z :<C-u>Unite -buffer-name=spellingsuggestions spell_suggest<cr>
-  autocmd FileType unite call s:unite_settings()
-  function! s:unite_settings()
-    let b:SuperTabDisabled=1
-    imap <buffer> <C-j> <Plug>(unite_select_next_line)
-    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-    nmap <buffer> <ESC> <Plug>(unite_exit)
-    "Hide Trailer Trash
-    2match none
-  endfunction
-
-
-  " Vim grep
-  command! -nargs=* Ag Grepper -noprompt -tool ag  -grepprg ag --vimgrep <args>
-  nmap gs <plug>(GrepperOperator)
-  xmap gs <plug>(GrepperOperator)
-
-"endif
-
-" }}}
-
+" Showmarks
 hi ShowMarksHLl ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLu ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
 hi ShowMarksHLo ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
@@ -481,25 +397,57 @@ hi ShowMarksHLm ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
 hi SignColumn   ctermbg=NONE guibg=NONE
 hi SpellCap     ctermfg=NONE ctermbg=NONE cterm=underline
 
-let g:rspec_command = "!bundle exec rspec --format=doc --tty --color {spec}"
-command! -nargs=0 RspecCurrentFile :call RunCurrentSpecFile()
-command! -nargs=0 RspecNearest :call RunNearestSpec()
-command! -nargs=0 RspecLast :call RunLastSpec()
-command! -nargs=0 RspecAll :call RunAllSpecs()
+" Fix arrow keys in tmux
+"map <Esc>[B <Down>
 
-function RspecSpace()
-  :wall
-  :RspecLast
-endfunction
+" Trailer Trash
+autocmd BufWritePre * :TrailerTrim
 
-nnoremap <leader>. :RspecLast<CR>
-nnoremap <Space> :wall\|RspecLast<CR>
+" Gundo
+command! Gundo :GundoToggle
 
-function! RamapSpace(cmd)
+" FZF
+if exists("g:fzf#vim#default_layout")
+  let g:fzf#vim#default_layout = {'down': '~80%'}
+
+  set rtp+=/usr/local/opt/fzf " For homebrew
+
+  command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+  nnoremap <silent> <Leader><Leader> :Files<CR>
+  nnoremap <silent> <leader>t        :<C-u>Files<CR>
+  nnoremap <silent> <Leader>C        :Colors<CR>
+  nnoremap <silent> <Leader>e        :Buffers<CR>
+  nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+  nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
+  xnoremap <silent> <Leader>ag       y:Ag <C-R>"<CR>
+endif
+
+" Vim Test
+let test#ruby#rspec#options = '--color --backtrace --format documentation'
+command! -nargs=0 RspecCurrentFile TestFile
+command! -nargs=0 RspecNearest TestNearest
+command! -nargs=0 RspecAll TestAll
+command! -nargs=0 RspecLast TestLast
+nnoremap <leader>. :TestLast<CR>
+nnoremap <Space> :wall\|TestLast<CR>
+
+" Vim grep
+command! -nargs=* Ag Grepper -noprompt -tool ag  -grepprg ag --vimgrep <args>
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+"endif
+
+" }}}
+" Functions and commands {{{
+" Remap what spacebar does. Provide a custom command and every time space is
+" pressed vim will save all files and run the command.
+function! RemapSpace(cmd)
   execute 'nnoremap <Space> :wall\|'. cmd . '<CR>'
 endfunction
-command! -nargs=+ RemapSpace call RamapSpace(<q-args>)
-
+command! -nargs=+ RemapSpace call RemapSpace(<q-args>)
 
 " Increment a column of number. Select a column of numbers (numbers should be
 " the same), then C-a to have them incremented from the first number.
@@ -511,16 +459,9 @@ function! Incr()
     endif
     normal `<
 endfu
-
 vnoremap <C-a> :call Incr()<CR>
 
-"Kill Trailer Trash
-autocmd BufWritePre * :TrailerTrim
-
-function MapSpace(command)
-  exec ":nnoremap <Space> :wall\\|!ruby %<CR>"
-endfunction
-
+" Remove curly quotes
 function Dequote()
   " Requires `gdefault` to be set.
   exec ":%s/[“”]/\"/"
@@ -528,6 +469,7 @@ function Dequote()
 endfunction
 command! -nargs=0 Dequote :call Dequote()
 
+" }}}
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
 
