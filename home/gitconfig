@@ -47,8 +47,6 @@
 	default = current
 [diff "ruby"]
 	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
-[init]
-	templatedir = ~/.git_template
 [diff]
 	algorithm = patience
 [color "diff"]

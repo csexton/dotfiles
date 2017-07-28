@@ -15,18 +15,22 @@ alias nvimrc="nvim ~/.nvimrc"
 alias wut="git status"
 alias whaa="git diff"
 alias gc='nocorrect git commit -v'
+#export GOPATH="/usr/local/go"
+#export PATH=$GOPATH/bin:$PATH
 
 alias eval-docker-machine='eval $(docker-machine env default)'
 
 export PATH=~/bin:$PATH
 
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]
-then
+if [ -d $HOME/go ] ; then
+  export PATH=~/go/bin:$PATH
+fi
+
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ] ; then
   alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 fi
 
-if [ -f $HOME/.local_profile ]
-then
+if [ -f $HOME/.local_profile ] ; then
   source $HOME/.local_profile
 fi
 

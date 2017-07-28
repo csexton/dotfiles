@@ -22,14 +22,18 @@
 "
 "
 " Bundles {{{
+"
 "=plugin ConradIrwin/vim-bracketed-paste
 "=plugin Keithbsmiley/swift.vim
+"=plugin bsdelf/bufferhint
 "=plugin csexton/spacemanspiff.vim
 "=plugin csexton/trailertrash.vim
 "=plugin ekalinin/Dockerfile.vim
 "=plugin ervandew/ag
 "=plugin ervandew/supertab
-"=plugin godlygeek/tabular
+"=plugin janko-m/vim-test
+"=plugin junegunn/fzf.vim
+"=plugin junegunn/vim-easy-align
 "=plugin justinmk/vim-sneak
 "=plugin kchmck/vim-coffee-script
 "=plugin kshenoy/vim-signature
@@ -40,9 +44,10 @@
 "=plugin pangloss/vim-javascript
 "=plugin plasticboy/vim-markdown
 "=plugin ramele/agrep
+"=plugin rhysd/vim-crystal
 "=plugin sjl/gundo.vim
+"=plugin skywind3000/asyncrun.vim
 "=plugin slim-template/vim-slim
-" plugin thoughtbot/vim-rspec
 "=plugin tpope/vim-abolish
 "=plugin tpope/vim-bundler
 "=plugin tpope/vim-endwise
@@ -60,10 +65,6 @@
 "=plugin tpope/vim-vinegar
 "=plugin vim-ruby/vim-ruby
 "=plugin w0rp/ale
-"=plugin junegunn/fzf.vim
-"
-"=plugin janko-m/vim-test
-"
 "
 " }}}
 " Packages {{{
@@ -131,6 +132,8 @@ set suffixes+=.dvi          " Lower priority in wildcards
 set timeoutlen=1200         " A little bit more time for macros
 set virtualedit=block       " Let the cursor go where there is nothing
 set visualbell              " No more ding sounds
+set noerrorbells
+set t_vb=
 set winwidth=80             " Keep vsplits at least 80 cols
 
 " Wildmenu completion
@@ -205,11 +208,12 @@ augroup settings
         \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
   "autocmd BufNewFile,BufRead *.scss             set ft=scss.css
-  autocmd BufNewFile,BufRead *.md,*.markdown    set ft=markdown
-  autocmd BufNewFile,BufRead *.haml,*.jst       set ft=haml
-  autocmd BufNewFile,BufRead *.slim             set ft=slim
-  autocmd BufNewFile,BufRead *.feature,*.story  set ft=cucumber
   autocmd BufNewFile,BufRead *.coffee           setl foldmethod=indent nofoldenable
+  autocmd BufNewFile,BufRead *.feature,*.story  set  ft=cucumber
+  autocmd BufNewFile,BufRead *.go               setl noet ts=2 sw=2 sts=2
+  autocmd BufNewFile,BufRead *.haml,*.jst       set  ft=haml
+  autocmd BufNewFile,BufRead *.md,*.markdown    set  ft=markdown
+  autocmd BufNewFile,BufRead *.slim             set  ft=slim
   autocmd BufRead * if ! did_filetype() && getline(1)." ".getline(2).
         \ " ".getline(3) =~? '<\%(!DOCTYPE \)\=html\>' | setf html | endif
 
@@ -377,17 +381,41 @@ let vimclojure#HighlightBuiltins = 1 " Highlight Clojure builtins
 let vimclojure#ParenRainbow = 1      " Rainbow parentheses
 
 " SuperTab
-let g:SuperTabMappingForward  = '<s-tab>'
-let g:SuperTabMappingBackward = '<tab>'
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
+"let g:SuperTabDefaultCompletionType = "context"
+"autocmd FileType css,scss let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"autocmd FileType css,scss call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+"autocmd FileType css,scss call SuperTabSetDefaultCompletionType("context")
+
+"let g:SuperTabMappingForward  = '<s-tab>'
+"let g:SuperTabMappingBackward = '<tab>'
 
 " ALE
-let g:ale_sign_error = '❗️'
-let g:ale_sign_warning = '⚠️'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
+"let g:ale_sign_error = '❗️'
+"let g:ale_sign_warning = '⚠️'
+"highlight clear ALEErrorSign
+"highlight clear ALEWarningSign
+"let test#strategy = "asyncrun"
+
+let g:ale_sign_warning = '•'
+let g:ale_sign_warning = '•'
+highlight link ALEErrorSign WarningMsg
+highlight link ALEWarningSign Comment
+nnoremap <silent> <leader>a :ALEToggle<CR>
+
 let g:ale_sign_column_always = 1
 autocmd BufRead,BufNewFile * setlocal signcolumn=yes
 autocmd FileType unite,nerdtree setlocal signcolumn=no
+
+function! DisableAleStrategy(cmd)
+  ALEDisable
+  execute '!'.a:cmd
+  ALEEnable
+endfunction
+
+let g:test#custom_strategies = {'disable_ale': function('DisableAleStrategy')}
+let g:test#strategy = 'disable_ale'
+
 
 " Showmarks
 hi ShowMarksHLl ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
@@ -425,12 +453,13 @@ if exists("g:fzf#vim#default_layout")
 endif
 
 " Vim Test
-let test#ruby#rspec#options = '--color --backtrace --format documentation'
+let test#ruby#rspec#options = '--color --format documentation'
 command! -nargs=0 RspecCurrentFile TestFile
 command! -nargs=0 RspecNearest TestNearest
 command! -nargs=0 RspecAll TestAll
 command! -nargs=0 RspecLast TestLast
 nnoremap <leader>. :TestLast<CR>
+nnoremap <leader>n :TestNearest<CR>
 nnoremap <Space> :wall\|TestLast<CR>
 
 " Vim grep
@@ -470,6 +499,7 @@ endfunction
 command! -nargs=0 Dequote :call Dequote()
 
 " }}}
+
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
 

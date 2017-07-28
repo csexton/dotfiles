@@ -454,13 +454,29 @@ lb () {
     fi
   }
 
+
+f-history() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+f-vim() {
+  local f
+  local c
+  f=$(fzf -q "$1")
+  c="vim $f"
+  print -s $c
+  eval $c
+}
+f-src() {
+  local dir
+  dir=$(find ~/src -type d -maxdepth 1 2> /dev/null | fzf +m -q "$1")
+  cd "$dir"
+}
+
+
 [[ -s /usr/local/etc/profile.d/z.sh ]] && source /usr/local/etc/profile.d/z.sh
 
 # Load the profile if it exists
 [[ -s $HOME/.profile ]] && source $HOME/.profile
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
-
-
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
