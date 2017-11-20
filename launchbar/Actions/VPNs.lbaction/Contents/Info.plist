@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>VPN-active.png</string>
+	<key>CFBundleIdentifier</key>
+	<string>at.obdev.LaunchBar.action.VPNs</string>
+	<key>CFBundleName</key>
+	<string>VPNs</string>
+	<key>CFBundleVersion</key>
+	<string>1.3</string>
+	<key>LBDescription</key>
+	<dict>
+		<key>LBAuthor</key>
+		<string>Objective Development</string>
+		<key>LBEmail</key>
+		<string>launchbar@obdev.at</string>
+		<key>LBRequirements</key>
+		<string>Requires VPNs to be configured in the Network Preference Panel.</string>
+		<key>LBResult</key>
+		<string>Returns a list of VPNs. Opening one connects to or disconnects from it.</string>
+		<key>LBSummary</key>
+		<string>Shows a list of configured VPNs (Virtual Private Networks) and allows connecting to or disconnecting from them.</string>
+		<key>LBTwitter</key>
+		<string>@launchbar</string>
+		<key>LBWebsite</key>
+		<string>http://www.obdev.at/</string>
+	</dict>
+	<key>LBRequirements</key>
+	<string>Requires VPNs to be configured in the Network Preference Panel.</string>
+	<key>LBResult</key>
+	<string>Returns a list of VPNs. Opening one connects to or disconnects from it.</string>
+	<key>LBScripts</key>
+	<dict>
+		<key>LBDefaultScript</key>
+		<dict>
+			<key>LBKeepWindowActive</key>
+			<true/>
+			<key>LBResultType</key>
+			<string>unknown</string>
+			<key>LBReturnsResult</key>
+			<true/>
+			<key>LBScriptName</key>
+			<string>default.rb</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

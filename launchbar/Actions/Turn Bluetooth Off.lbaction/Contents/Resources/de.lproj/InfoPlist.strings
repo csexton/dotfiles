@@ -1,0 +1,2 @@
+"CFBundleName" = "Bluetooth ausschalten";
+"LBSummary" = "Schaltet Bluetooth aus. Verwendet “blueutil” von Frederik Seiffert: http://www.frederikseiffert.de/blueutil/";

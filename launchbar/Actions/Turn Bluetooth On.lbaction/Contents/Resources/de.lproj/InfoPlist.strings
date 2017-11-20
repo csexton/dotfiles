@@ -1,0 +1,2 @@
+"CFBundleName" = "Bluetooth einschalten";
+"LBSummary" = "Schaltet Bluetooth ein. Verwendet “blueutil” von Frederik Seiffert: http://www.frederikseiffert.de/blueutil/";

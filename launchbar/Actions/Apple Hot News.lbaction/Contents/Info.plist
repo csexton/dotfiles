@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>Apple Logo</string>
+	<key>CFBundleIdentifier</key>
+	<string>at.obdev.LaunchBar.action.AppleHotNews</string>
+	<key>CFBundleName</key>
+	<string>Apple Hot News</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LBDescription</key>
+	<dict>
+		<key>LBAuthor</key>
+		<string>Objective Development</string>
+		<key>LBEmail</key>
+		<string>launchbar@obdev.at</string>
+		<key>LBRequirements</key>
+		<string>Requires an active internet connection.</string>
+		<key>LBResult</key>
+		<string>Returns a list of news.</string>
+		<key>LBSummary</key>
+		<string>Shows news from Apple’s Hot News RSS feed.</string>
+		<key>LBTwitter</key>
+		<string>@launchbar</string>
+		<key>LBWebsiteURL</key>
+		<string>http://www.obdev.at/</string>
+	</dict>
+	<key>LBRequirements</key>
+	<string>Requires an active internet connection.</string>
+	<key>LBResult</key>
+	<string>Returns a list of news.</string>
+	<key>LBScripts</key>
+	<dict>
+		<key>LBDefaultScript</key>
+		<dict>
+			<key>LBKeepWindowActive</key>
+			<true/>
+			<key>LBResultType</key>
+			<string>unknown</string>
+			<key>LBReturnsResult</key>
+			<true/>
+			<key>LBScriptName</key>
+			<string>default.rb</string>
+		</dict>
+	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2014 Objective Development</string>
+</dict>
+</plist>

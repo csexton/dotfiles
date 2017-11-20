@@ -1,0 +1,4 @@
+CFBundleName = "Apple Hot News";
+"LBSummary" = "Zeigt Nachrichten von Apples Hot News RSS–Feed.";
+"LBRequirements" = "Benötigt eine aktive Internetverbindung.";
+"LBResult" = "Liefert eine Liste von Nachrichten.";

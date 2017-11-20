@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>gillibrand.jay.pinboard-recent</string>
+	<key>CFBundleIconFile</key>
+	<string>PinboardTemplate.icns</string>
+	<key>CFBundleName</key>
+	<string>Pinboard: Recent Bookmarks</string>
+	<key>LBAbbreviation</key>
+	<string>pbr</string>
+	<key>LBDebugLogEnabled</key>
+	<false/>
+	<key>CFBundleVersion</key>
+	<string>1.4.3</string>
+	<key>LBScripts</key>
+	<dict>
+		<key>LBDefaultScript</key>
+		<dict>
+			<key>LBAcceptedArgumentTypes</key>
+			<array>
+				<string>string</string>
+			</array>
+			<key>LBScriptName</key>
+			<string>pinboard-recent.js</string>
+			<key>LBReturnsResult</key>
+			<true/>
+			<key>LBRequiresArgument</key>
+			<false/>
+			<key>LBLiveFeedbackEnabled</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>LBDescription</key>
+	<dict>
+		<key>LBAuthor</key>
+		<string>Jay Gillibrand</string>
+		<key>LBWebsite</key>
+		<string>https://github.com/gillibrand/launchbar-pinboard</string>
+		<key>LBSummary</key>
+		<string>Lists you most recent Pinboard bookmarks.</string>
+		<key>LBResult</key>
+		<string>Up to 25 recent bookmarks.</string>
+		<key>LBRequirements</key>
+		<string>"Pinboard Log In" action.</string>
+	</dict>
+</dict>
+</plist>

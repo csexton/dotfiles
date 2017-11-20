@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>AirPlay.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>at.obdev.LaunchBar.action.iTunesAirPlay</string>
+	<key>CFBundleName</key>
+	<string>Select iTunes AirPlay Device</string>
+	<key>CFBundleVersion</key>
+	<string>1.3</string>
+	<key>LBDescription</key>
+	<dict>
+		<key>LBAuthor</key>
+		<string>Objective Development</string>
+		<key>LBEmail</key>
+		<string>launchbar@obdev.at</string>
+		<key>LBRequirements</key>
+		<string>Requires AirPlay devices on the current network.</string>
+		<key>LBResult</key>
+		<string>Returns AirPlay devices. Open one to set it as iTunes’ output device.</string>
+		<key>LBSummary</key>
+		<string>Shows all AirPlay devices available to iTunes and allows you to select one.</string>
+		<key>LBTwitter</key>
+		<string>@launchbar</string>
+		<key>LBWebsiteURL</key>
+		<string>http://www.obdev.at/</string>
+	</dict>
+	<key>LBRequirements</key>
+	<string>Requires AirPlay devices on the current network.</string>
+	<key>LBResult</key>
+	<string>Returns AirPlay devices. Open one to set it as iTunes’ output device.</string>
+	<key>LBScripts</key>
+	<dict>
+		<key>LBDefaultScript</key>
+		<dict>
+			<key>LBKeepWindowActive</key>
+			<true/>
+			<key>LBResultType</key>
+			<string>unknown</string>
+			<key>LBReturnsResult</key>
+			<true/>
+			<key>LBScriptName</key>
+			<string>default.scpt</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

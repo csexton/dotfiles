@@ -1,0 +1,4 @@
+CFBundleName = "VPNs";
+"LBSummary" = "Zeigt eine Liste der konfigurierten VPNs (Virtuelle Private Netzwerke) und ermöglicht es, Verbindungen zu ihnen zu erstellen oder zu trennen.";
+"LBRequirements" = "VPNs müssen in der Systemeinstellung „Netzwerk“ konfiguriert sein.";
+"LBResult" = "Zeigt eine Liste von VPNs. Durch Öffnen kann eine Verbindung dazu hergestellt bzw. getrennt werden.";

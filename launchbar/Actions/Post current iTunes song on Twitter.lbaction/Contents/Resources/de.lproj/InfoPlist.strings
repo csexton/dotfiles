@@ -1,0 +1,3 @@
+CFBundleName = "Aktuellen iTunes Song auf Twitter posten";
+"LBSummary" = "Erstellt einen Tweet mit dem aktuellen Song, Interpreten und iTunes Store–Link.";
+"LBRequirements" = "Funktioninert nur, wenn iTunes einen Song spielt, der im iTunes Store verfügbar ist. Benötigt eine aktive Internetverbindung.";
