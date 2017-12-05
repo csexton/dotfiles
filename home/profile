@@ -15,12 +15,20 @@ alias nvimrc="nvim ~/.nvimrc"
 alias wut="git status"
 alias whaa="git diff"
 alias gc='nocorrect git commit -v'
+
+alias production='nocorrect production'
+alias staging='nocorrect staging'
+alias heroku='nocorrect heroku'
 #export GOPATH="/usr/local/go"
 #export PATH=$GOPATH/bin:$PATH
 
 alias eval-docker-machine='eval $(docker-machine env default)'
 
 export PATH=~/bin:$PATH
+
+if [ -d /usr/local/bin ] ; then
+  export PATH=/usr/local/bin:$PATH
+fi
 
 if [ -d $HOME/go ] ; then
   export PATH=~/go/bin:$PATH

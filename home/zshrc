@@ -170,6 +170,7 @@ bundled_commands=(
   pry
   puma
   rackup
+  rails
   rainbows
   rake
   reek
@@ -480,3 +481,5 @@ f-src() {
 [[ -s $HOME/.profile ]] && source $HOME/.profile
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

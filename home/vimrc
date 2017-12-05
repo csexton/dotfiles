@@ -32,7 +32,6 @@
 "=plugin ervandew/ag
 "=plugin ervandew/supertab
 "=plugin janko-m/vim-test
-"=plugin junegunn/fzf.vim
 "=plugin junegunn/vim-easy-align
 "=plugin justinmk/vim-sneak
 "=plugin kchmck/vim-coffee-script
@@ -435,7 +434,8 @@ autocmd BufWritePre * :TrailerTrim
 command! Gundo :GundoToggle
 
 " FZF
-if exists("g:fzf#vim#default_layout")
+if isdirectory('/usr/local/opt/fzf')
+  set rtp+=/usr/local/opt/fzf " For homebrew
   let g:fzf#vim#default_layout = {'down': '~80%'}
 
   set rtp+=/usr/local/opt/fzf " For homebrew
