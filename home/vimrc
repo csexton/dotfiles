@@ -370,6 +370,9 @@ if has('mac')
   let g:gist_clip_command = 'pbcopy'
 endif
 
+" Markdown
+let g:vim_markdown_new_list_item_indent = 0
+
 " Surround
 let g:surround_{char2nr('s')} = " \r"
 let g:surround_{char2nr(':')} = ":\r"
