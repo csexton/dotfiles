@@ -254,6 +254,8 @@ augroup settings
   autocmd BufEnter *.rb syn match error contained "\<byebug\>"
   autocmd BufEnter *.coffee syn match error contained "\<debugger\>"
 
+  autocmd BufNewFile *.rb 0r ~/.vim/skeleton/ruby.rb | 3
+
 augroup END
 
 
@@ -455,6 +457,21 @@ if isdirectory('/usr/local/opt/fzf')
   xnoremap <silent> <Leader>ag       y:Ag <C-R>"<CR>
 endif
 
+" fzf ripgrep
+if executable("rg")
+    command! -bang -nargs=* Rg
+          \ call fzf#vim#grep(
+          \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+          \   <bang>0 ? fzf#vim#with_preview('up:60%')
+          \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+          \   <bang>0)
+
+    nnoremap <C-p>a :Rg
+endif
+
+
+
+
 " Vim Test
 let test#ruby#rspec#options = '--color --format documentation'
 command! -nargs=0 RspecCurrentFile TestFile
@@ -480,6 +497,8 @@ function! RemapSpace(cmd)
   execute 'nnoremap <Space> :wall\|'. cmd . '<CR>'
 endfunction
 command! -nargs=+ RemapSpace call RemapSpace(<q-args>)
+
+command! -nargs=* Prose set wrap linebreak nolist
 
 " Increment a column of number. Select a column of numbers (numbers should be
 " the same), then C-a to have them incremented from the first number.
