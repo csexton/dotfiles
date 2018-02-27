@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # S3
-S3_EXCLUDES="--exclude \".DS_Store\" --exclude=\"*.git/*\" --exclude=\"*vmwarevm\" --exclude=\"tmp\" --exclude=\"*.tmp\""
+S3_EXCLUDES="--exclude \"*.DS_Store*\" --exclude=\"*.git/*\" --exclude=\"*vmwarevm\" --exclude=\"tmp\" --exclude=\"*.tmp\""
 . ~/.aws/backup.conf
 echo $S3_EXCLUDES
 aws s3 sync ~/Pictures  s3://wampa-backup/Pictures  --delete $S3_EXCLUDES

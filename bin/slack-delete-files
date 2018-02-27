@@ -22,7 +22,7 @@ def list_files
   uri = URI.parse('https://slack.com/api/files.list')
   uri.query = URI.encode_www_form(params)
   response = Net::HTTP.get_response(uri)
-  JSON.parse(response.body)['files']
+  JSON.parse(response.body)['files'] rescue []
 end
 
 def delete_files(file_ids)
