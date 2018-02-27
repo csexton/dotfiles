@@ -14,7 +14,7 @@
 		<string>csexton@codeography.com</string>
 		<key>LBTwitter</key>
 		<string>@crsexton</string>
-		<key>LBWebsite</key>
+		<key>LBWebsiteURL</key>
 		<string>http://www.codeography.com</string>
 	</dict>
 	<key>LBScripts</key>
