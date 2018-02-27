@@ -34,11 +34,16 @@ if [ -d $HOME/go ] ; then
   export PATH=~/go/bin:$PATH
 fi
 
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ] ; then
-  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+if [ -f "/Applications/MacVim.app/Contents/bin/vim" ] ; then
+  alias vim="/Applications/MacVim.app/Contents/bin/vim"
+fi
+
+if [ -f "/Applications/MacVim.app/Contents/bin/mvim" ] ; then
+  alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
 fi
 
 if [ -f $HOME/.local_profile ] ; then
   source $HOME/.local_profile
 fi
 
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

@@ -38,6 +38,7 @@
 	tags = log -n1 --pretty=format:%h%d
 	unadd = reset HEAD
 	workprofile = config user.email \"chris@radiusnetworks.com\"
+	vim = "!git log --graph --pretty=format:'%h - %d %s (%cr) <%an>' | vim -R -c 'set filetype=git nowrap' -"
 
 [github]
 	user = csexton

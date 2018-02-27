@@ -25,7 +25,7 @@ setopt prompt_subst
 setopt correct_all
 # }}}
 # Key Bindings {{{
-# This might need to be moved into a mac-specific file in oh-my-zsh
+
 #stty erase ^H &>/dev/null
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
@@ -483,3 +483,8 @@ f-src() {
 # vim: set foldenable fdm=marker fmr={{{,}}}:
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# added by travis gem
+[ -f /Users/csexton/.travis/travis.sh ] && source /Users/csexton/.travis/travis.sh
