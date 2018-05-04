@@ -3,6 +3,7 @@
 export LSCOLORS="exgxbxdxbxegedxbxgacba"
 export CLICOLOR=1
 export EDITOR="vim"
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
 alias ls="ls -GF"
 alias ri="ri -Tf ansi"
 alias :q="exit"
