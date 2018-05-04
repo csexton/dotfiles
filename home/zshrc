@@ -175,6 +175,7 @@ bundled_commands=(
   rake
   reek
   rspec
+  rubocop
   shotgun
   sidekiq
   spec
