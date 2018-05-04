@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'uri'
+require 'json'
+
+uri = URI.parse('https://history.muffinlabs.com/date')
+response = Net::HTTP.get_response(uri)
+json_response = JSON.parse(response.body)
+output = json_response['data']['Events'].sample
+
+puts "On this day in the year #{output['year']}:"
+puts
+puts output['text']
+puts
+puts 'For more information, refer to wikipedia: '
+output['links'].each do |link|
+  puts "- [#{link['title']}](#{link['link']})"
+end
