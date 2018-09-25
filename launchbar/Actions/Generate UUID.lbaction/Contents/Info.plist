@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.codeography.LaunchBar.action.GenerateUUID</string>
+	<key>CFBundleName</key>
+	<string>Generate UUID</string>
+	<key>LBDescription</key>
+	<dict>
+		<key>LBAuthor</key>
+		<string>Christopher Sexton</string>
+		<key>LBEmail</key>
+		<string>chris@sexton.io</string>
+		<key>LBTwitter</key>
+		<string>@crsexton</string>
+		<key>LBWebsiteURL</key>
+		<string>http://www.codeography.com</string>
+	</dict>
+	<key>LBScripts</key>
+	<dict>
+		<key>LBDefaultScript</key>
+		<dict>
+			<key>LBKeepWindowActive</key>
+			<true/>
+			<key>LBResultType</key>
+			<string>string</string>
+			<key>LBReturnsResult</key>
+			<true/>
+			<key>LBScriptName</key>
+			<string>default.sh</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
