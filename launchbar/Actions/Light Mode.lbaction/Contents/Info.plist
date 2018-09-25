@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>lightmode.png</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.codeography.LaunchBar.action.LightMode</string>
+	<key>CFBundleName</key>
+	<string>Light Mode</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LBDescription</key>
+	<dict>
+		<key>LBAuthor</key>
+		<string>Christopher Sexton</string>
+		<key>LBEmail</key>
+		<string>csexton@codeography.com</string>
+		<key>LBSummary</key>
+		<string>Enable Light Mode</string>
+		<key>LBTwitter</key>
+		<string>@crsexton</string>
+		<key>LBWebsiteURL</key>
+		<string>http://www.codeography.com</string>
+	</dict>
+	<key>LBScripts</key>
+	<dict>
+		<key>LBDefaultScript</key>
+		<dict>
+			<key>LBResultType</key>
+			<string>unknown</string>
+			<key>LBRunInBackground</key>
+			<true/>
+			<key>LBScriptName</key>
+			<string>default.scpt</string>
+		</dict>
+	</dict>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.14</string>
+</dict>
+</plist>
