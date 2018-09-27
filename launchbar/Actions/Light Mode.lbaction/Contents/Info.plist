@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>lightmode.png</string>
+	<string>lightmodeTemplate.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.codeography.LaunchBar.action.LightMode</string>
 	<key>CFBundleName</key>

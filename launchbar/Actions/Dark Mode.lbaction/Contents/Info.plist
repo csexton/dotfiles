@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>darkmode.png</string>
+	<string>darkmodeTemplate.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.codeography.LaunchBar.action.DarkMode</string>
 	<key>CFBundleName</key>

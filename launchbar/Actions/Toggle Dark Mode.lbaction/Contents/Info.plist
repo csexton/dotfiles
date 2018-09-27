@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>toggledarklight.png</string>
+	<string>toggledarklightTemplate.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.codeography.LaunchBar.action.ToggleLightAndDarkMode</string>
 	<key>CFBundleName</key>
