@@ -73,3 +73,17 @@ task :xcode do
   FileUtils.ln_s(File.join(File.dirname(__FILE__), "xcode", "RistoInk.xccolortheme"), color_themes_dir)
 
 end
+
+desc "create simlinks to launchbar actions in the user's Library/Application Support"
+task :launchbar do
+  puts_blue "linking launchbar files"
+  base_dir = File.join( ENV['HOME'], "Library", "Application Support", "LaunchBar")
+
+  actions_dir = File.join(base_dir, "Actions")
+  FileUtils.rmdir(actions_dir)
+  FileUtils.ln_s(File.join(File.dirname(__FILE__), "launchbar", "Actions"), actions_dir)
+
+  snippets_dir = File.join(base_dir, "Snippets")
+  FileUtils.rmdir(snippets_dir)
+  FileUtils.ln_s(File.join(File.dirname(__FILE__), "launchbar", "Snippets"), snippets_dir)
+end
