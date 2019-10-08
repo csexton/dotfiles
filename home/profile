@@ -1,5 +1,4 @@
 #!/bin/sh
-# -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
 export LSCOLORS="exgxbxdxbxegedxbxgacba"
 export CLICOLOR=1
 export EDITOR="vim"
@@ -48,3 +47,5 @@ if [ -f $HOME/.local_profile ] ; then
 fi
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
