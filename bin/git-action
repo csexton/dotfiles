@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+repo = `git config --get remote.origin.url`.strip
+ref = `git rev-parse HEAD`.strip
+repo_url = repo.sub(':', '/').sub(/^git@/, 'https://').sub(/(.*)\.git/, '\1')
+repo_url = "#{repo_url}/commit/#{ref}/checks"
+`open #{repo_url}`
