@@ -23,6 +23,12 @@
 "
 " Bundles {{{
 "
+"=plugin wellle/targets.vim
+"=plugin tckmn/vim-minisnip
+"=plugin fatih/vim-go
+"=plugin rbong/vim-flog
+"=plugin liuchengxu/graphviz.vim
+"=plugin posva/vim-vue
 "=plugin ConradIrwin/vim-bracketed-paste
 "=plugin Keithbsmiley/swift.vim
 "=plugin bsdelf/bufferhint
@@ -34,6 +40,7 @@
 "=plugin janko-m/vim-test
 "=plugin junegunn/fzf.vim
 "=plugin junegunn/vim-easy-align
+"=plugin junegunn/vim-peekaboo
 "=plugin justinmk/vim-sneak
 "=plugin kchmck/vim-coffee-script
 "=plugin kshenoy/vim-signature
@@ -64,16 +71,12 @@
 "=plugin tpope/vim-sensible
 "=plugin tpope/vim-surround
 "=plugin tpope/vim-unimpaired
-"=plugin tpope/vim-vinegar
 "=plugin vim-ruby/vim-ruby
 "=plugin w0rp/ale
 "
 " }}}
-" Packages {{{
-if exists(":packloadall")
-  packloadall
-endif
-" }}}
+"
+"
 " Settings {{{
 syntax on
 filetype plugin indent on
@@ -128,7 +131,9 @@ set listchars=tab:»\ ,trail:\ ,extends:→,precedes:←,nbsp:‗ " Show whitesp
 set modelines=5             " Debian likes to disable this
 set mousemodel=popup        " Right mouse button pops up a menu
 "set relativenumber
+set showcmd                 " Show details in visual mode in command line
 set spelllang=en_us         " Make vim speak 'merican
+set spellsuggest=best    " Show just 10 possible matches instead of lots of garbage
 set suffixes+=.dvi          " Lower priority in wildcards
 "set tags+=../tags,../../tags,../../../tags,../../../../tags
 set timeoutlen=1200         " A little bit more time for macros
@@ -226,12 +231,22 @@ augroup settings
   autocmd FileType gitcommit                    setlocal spell
   autocmd FileType gitconfig                    setlocal noet sw=8 sts=8 tabstop=8
   autocmd FileType ruby                         setlocal comments=:#\  tw=79
+  autocmd FileType go                           setlocal nolist
   autocmd FileType vim                          setlocal et sw=2 sts=2 keywordprg=:help
   autocmd FileType python                       setlocal sts=4 ts=4 sw=4 textwidth=79
   autocmd FileType c                            setlocal et sw=2 sts=2
   autocmd FileType objc,objcpp                  setlocal et sw=4 sts=4
   autocmd FileType sh,zsh                       setlocal et sw=2 sts=2 ff=unix
   autocmd FileType make                         setlocal noet ts=8 sw=8 sts=0
+
+  " Fastlane
+  autocmd BufNewFile,BufRead Appfile set ft=ruby
+  autocmd BufNewFile,BufRead Deliverfile set ft=ruby
+  autocmd BufNewFile,BufRead Fastfile set ft=ruby
+  autocmd BufNewFile,BufRead Gymfile set ft=ruby
+  autocmd BufNewFile,BufRead Matchfile set ft=ruby
+  autocmd BufNewFile,BufRead Snapfile set ft=ruby
+  autocmd BufNewFile,BufRead Scanfile set ft=ruby
 
   autocmd FileType markdown                     setlocal linebreak formatoptions=1 breakat=\ @-+;:,./?^I wrap nolist textwidth=0 wrapmargin=0 fo-=t
   let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
@@ -249,6 +264,7 @@ augroup settings
   autocmd FileType ruby            set omnifunc=rubycomplete#Complete
   autocmd FileType ruby            let g:rubycomplete_buffer_loading=1
   autocmd FileType ruby            let g:rubycomplete_classes_in_global=1
+  autocmd FileType ruby            let g:ruby_indent_access_modifier_style='outdent'
 
   autocmd FileType ruby imap <C-l> <Space>=><Space>
 
@@ -286,6 +302,9 @@ cnoremap          <C-P> <Up>
 cnoremap          <C-N> <Down>
 inoremap          <C-k> <C-O>D
 cnoremap          <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+
+" ESC, C-c, and friends are hard on my RSI
+inoremap jk <Esc>
 
 " Buffer Navigation
 " Move to the previous buffer with "gp"
@@ -359,6 +378,11 @@ autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
 "let g:smartusline_hi_insert = 'guibg=#6D1F21 guifg=white ctermbg=red ctermfg=black'
 "let g:smartusline_hi_normal = 'guibg=#B5BD68 guifg=black ctermbg=green ctermfg=black'
 
+" Netrw
+let g:netrw_banner=0
+let g:netrw_winsize=20
+let g:netrw_liststyle=0
+
 " For sneaky streak
 let g:sneak#streak = 1
 
@@ -397,6 +421,9 @@ let vimclojure#ParenRainbow = 1      " Rainbow parentheses
 "let g:SuperTabMappingForward  = '<s-tab>'
 "let g:SuperTabMappingBackward = '<tab>'
 
+" MiniSnip
+let g:minisnip_trigger = "<c-s>"
+
 " ALE
 
 let g:ale_sign_warning = '•'
@@ -420,9 +447,16 @@ function! DisableAleStrategy(cmd)
   ALEEnable
 endfunction
 
+let g:ale_fixers = {'ruby': 'rubocop'}
+let g:ale_fix_on_save = 0
+
 let g:test#custom_strategies = {'disable_ale': function('DisableAleStrategy')}
 let g:test#strategy = 'disable_ale'
 
+" vim-go
+let g:go_list_height = 10
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
 
 " Showmarks
 hi ShowMarksHLl ctermfg=11 ctermbg=NONE gui=bold guifg=blue guibg=lightblue
@@ -453,22 +487,45 @@ if isdirectory('/usr/local/opt/fzf')
 
   nnoremap <silent> <Leader><Leader> :Files<CR>
   nnoremap <silent> <leader>t        :<C-u>Files<CR>g
-  nnoremap <silent> <Leader>C        :Colors<CR>
+  "nnoremap <silent> <Leader>c        :Colors<CR>
+  "nnoremap <silent> <Leader>c        :Tags<CR>
   nnoremap <silent> <Leader>e        :Buffers<CR>
   nnoremap <silent> <Leader>g        :Lines<CR>
+  nnoremap <silent> <leader>f        :BLines<CR>
+  nnoremap <silent> <Leader>h        :History:<CR>
+  nnoremap <silent> <Leader>/        :History/<CR>
+
+  inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+  "inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+  "\ 'prefix': '^.*$',
+  "\ 'source': 'rg -n ^ --color always',
+  "\ 'options': '--ansi --delimiter : --nth 3..',
+  "\ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
+
+  function! FzfSpellSink(word)
+    exe 'normal! "_ciw'.a:word
+  endfunction
+  function! FzfSpell()
+    let suggestions = spellsuggest(expand("<cword>"))
+    return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
+  endfunction
+  nnoremap z= :call FzfSpell()<CR>
+
 endif
+
 
 " fzf ripgrep
 if executable("rg")
     command! -bang -nargs=* Rg
           \ call fzf#vim#grep(
-          \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+          \   'rg --column --line-number --no-heading --color=always --glob "!.git/*" --ignore-case '.shellescape(<q-args>), 1,
           \   <bang>0 ? fzf#vim#with_preview('up:60%')
           \           : fzf#vim#with_preview('right:50%:hidden', '?'),
           \   <bang>0)
 
     nnoremap <C-p>a :Rg
 endif
+
 
 " Vim Test
 let test#ruby#rspec#options = '--color --format documentation'
@@ -487,11 +544,27 @@ nnoremap <Space> :wall\|TestLast<CR>
 " Remap what spacebar does. Provide a custom command and every time space is
 " pressed vim will save all files and run the command.
 function! RemapSpace(cmd)
-  execute 'nnoremap <Space> :wall\|'. cmd . '<CR>'
+  execute 'nnoremap <Space> :wall\|'. a:cmd . '<CR>'
 endfunction
 command! -nargs=+ RemapSpace call RemapSpace(<q-args>)
 
 command! -nargs=* Prose set wrap linebreak nolist
+
+" https://schollz.com/software/my-favorite-vimrc/
+function! WordProcessorMode()
+  set columns=80
+  setlocal formatoptions=1
+  setlocal noexpandtab
+  setlocal spell spelllang=en_us
+  setlocal complete+=s
+  setlocal formatprg=par
+  setlocal wrap
+  setlocal linebreak
+  setlocal foldcolumn=3
+  highlight Normal ctermfg=grey ctermbg=black
+  highlight NonText ctermfg=grey guifg=grey
+endfu
+com! WP call WordProcessorMode()
 
 " Increment a column of number. Select a column of numbers (numbers should be
 " the same), then C-a to have them incremented from the first number.
@@ -514,8 +587,25 @@ endfunction
 command! -nargs=0 Dequote :call Dequote()
 
 " }}}
+" Packages {{{
+if exists(":packloadall")
+  packloadall
+endif
 
 
+" Grepper
+let g:grepper.tools = ['rg', 'git', 'ag', 'ack', 'ack-grep', 'grep']
+" }}}
+
+function! s:HighlightCopy()
+  if executable("highlight")
+    call system('highlight --font "Menlo" -O rtf  '.expand("%:p").' | pbcopy')
+    echom "Copied to clipboard"
+  else
+    echoerr "highlight not installed"
+  endif
+endfunction
+command HighlightCopy :call s:HighlightCopy()
 
 " vim: set foldenable fdm=marker fmr={{{,}}}:
 
