@@ -16,14 +16,19 @@ alias nvimrc="nvim ~/.nvimrc"
 alias wut="git status"
 alias whaa="git diff"
 alias gc='nocorrect git commit -v'
+alias gp='nocorrect git pull'
+alias gg='nocorrect git pull'
+
+alias got='nocorrect go test ./...'
 
 alias production='nocorrect production'
 alias staging='nocorrect staging'
 alias heroku='nocorrect heroku'
-#export GOPATH="/usr/local/go"
+#export GOPATH="$HOME/go"
 #export PATH=$GOPATH/bin:$PATH
 
 alias eval-docker-machine='eval $(docker-machine env default)'
+
 
 export PATH=~/bin:$PATH
 
@@ -43,8 +48,12 @@ if [ -f "/Applications/MacVim.app/Contents/bin/mvim" ] ; then
   alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
 fi
 
+if [ -f "/Applications/Yoink.app/Contents/MacOS/Yoink" ] ; then
+  alias yoink="open -a Yoink"
+fi
+
 if [ -f $HOME/.local_profile ] ; then
   source $HOME/.local_profile
 fi
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
