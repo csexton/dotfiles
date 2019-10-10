@@ -12,6 +12,7 @@
 	br = branch
 	bro = browse
 	browse = !git-browse
+	action = !git-action
 	c = commit --verbose
 	cleanup = !~/bin/git-cleanup-merged-branches
 	cm = commit --verbose

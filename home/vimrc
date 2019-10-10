@@ -95,7 +95,7 @@ set nowrap
 " Indent settings for things not set by the file type
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
-set guifont=Anonymous\ Pro:h14,Monaco:h14
+set guifont=Anonymous\ Pro:h16,Monaco:h14
 "set guifont=Menlo\ for\ Powerline:h14
 "set guifont=Menlo:h14
 
