@@ -28,7 +28,6 @@
 	ocmmit = commit --verbose
 	oops = reset --soft "HEAD^"
 	pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
-	purr = pull --rebasely
 	ready = rebase -i @{u}
 	siff = diff --submodule
 	st = status
@@ -39,6 +38,7 @@
 	unadd = reset HEAD
 	workprofile = config user.email \"chris@radiusnetworks.com\"
 	vim = "!git log --graph --pretty=format:'%h - %d %s (%cr) <%an>' | vim -R -c 'set filetype=git nowrap' -"
+	lal = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
 
 [github]
 	user = csexton
