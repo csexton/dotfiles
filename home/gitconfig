@@ -40,6 +40,8 @@
 	workprofile = config user.email \"chris@radiusnetworks.com\"
 	vim = "!git log --graph --pretty=format:'%h - %d %s (%cr) <%an>' | vim -R -c 'set filetype=git nowrap' -"
 	lal = log --graph --pretty=format:'%C(red)%h%C(reset) %C(yellow)%d%C(reset)%s %C(green)%an %C(bold black)%cr%C(reset)' --abbrev-commit --date=relative
+	praise = blame
+	prune-tags = fetch --prune origin "+refs/tags/*:refs/tags/*"
 
 [github]
 	user = csexton
@@ -64,3 +66,4 @@
 	required = true
 [commit]
 	verbose = true
+	template = /Users/csexton/.git_template/commit.txt
