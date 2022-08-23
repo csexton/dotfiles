@@ -14,7 +14,7 @@ end
 
 exit 1 unless match
 
-url = "http://#{File.basename(match)}.dev"
+url = "http://#{File.basename(match)}.test"
 if defined?(Launchy)
   Launchy.open url
 else
