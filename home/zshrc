@@ -405,7 +405,7 @@ alias kaput="tail -f ~/Library/Logs/Pow/apps/*"
 # Configure a directory for chruby and powrc file
 kaboom(){
   echo "Creating .powrc file..."
-  echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" > .powrc
+  echo "source /opt/homebrew/opt/chruby/share/chruby/chruby.sh" > .powrc
   echo "chruby $(cat .ruby-version)" >> .powrc
   echo "Symlinking ${PWD##*/} in ~/.pow ..."
   ln -si "$PWD" ~/.pow

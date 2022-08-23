@@ -35,6 +35,10 @@ if [ -d /usr/local/bin ] ; then
   export PATH=/usr/local/bin:$PATH
 fi
 
+if [ -d /opt/homebrew/bin ] ; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
+
 if [ -d $HOME/go ] ; then
   export PATH=~/go/bin:$PATH
 fi

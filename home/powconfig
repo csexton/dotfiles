@@ -1,2 +1,2 @@
-source /usr/local/share/chruby/chruby.sh
+source /opt/homebrew/share/chruby/chruby.sh
 chruby $(cat .ruby-version)
