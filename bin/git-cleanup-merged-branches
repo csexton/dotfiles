@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Delete any branches that have been merged. Will warn you if it is trying to delete master branch.
+# Delete any branches that have been merged. Will warn you if it is trying to delete main branch.
 #
 # To install a git alias:
 #  1. Copy this file to somewhere in you path and make it executable
@@ -18,9 +18,9 @@ then
 fi
 
 echo $branch_name
-if [ "$branch_name" != 'master' ]
+if [ "$branch_name" != 'master' || "$branch_name" != 'main' ]
 then
-	read -p "Current branch is not 'master'. Are you sure? " -n 1 -r
+	read -p "Current branch is not 'main'. Are you sure? " -n 1 -r
 	if [[ $REPLY =~ ^[Nn]$ ]]
 	then
 		echo
