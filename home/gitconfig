@@ -67,3 +67,10 @@
 [commit]
 	verbose = true
 	template = /Users/csexton/.git_template/commit.txt
+[pull]
+	rebase = false
+[url "git@github.com:"]
+	InsteadOf = git://github.com/
+	InsteadOf = https://github.com/
+[init]
+	defaultBranch = main

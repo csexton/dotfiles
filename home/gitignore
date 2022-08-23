@@ -56,3 +56,7 @@ scratch*
 .byebug_history
 tags
 .jekyll-metadata
+
+.rgignore
+
+.env-chris
