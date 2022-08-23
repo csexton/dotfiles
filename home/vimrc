@@ -476,17 +476,15 @@ autocmd BufWritePre * :TrailerTrim
 command! Gundo :GundoToggle
 
 " FZF
-if isdirectory('/usr/local/opt/fzf')
-  set rtp+=/usr/local/opt/fzf " For homebrew
+if isdirectory('/opt/homebrew/opt/fzf/')
+  set rtp+=/opt/homebrew/opt/fzf/ " For homebrew
   let g:fzf#vim#default_layout = {'down': '~80%'}
-
-  set rtp+=/usr/local/opt/fzf " For homebrew
 
   command! -bang -nargs=? -complete=dir Files
         \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
   nnoremap <silent> <Leader><Leader> :Files<CR>
-  nnoremap <silent> <leader>t        :<C-u>Files<CR>g
+  nnoremap <silent> <leader>t        :<C-u>Files<CR>
   "nnoremap <silent> <Leader>c        :Colors<CR>
   "nnoremap <silent> <Leader>c        :Tags<CR>
   nnoremap <silent> <Leader>e        :Buffers<CR>
