@@ -2,6 +2,6 @@
 repo = `git config --get remote.origin.url`.strip
 abort "error: no remote 'origin' configured" if repo.empty?
 branch = `git branch | sed -n '/\* /s///p'`.strip
-repo_url = repo.sub(':', '/').sub(/^git@/, 'https://').sub(/(.*)\.git/, '\1')
+repo_url = repo.sub(/^git@([^:]+):/, 'https://\1/').sub(/\.git$/, '')
 repo_url = "#{repo_url}/tree/#{branch}"
 `open #{repo_url}`
