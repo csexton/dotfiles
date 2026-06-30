@@ -99,7 +99,7 @@ bindtc kl "^[[D" backward-char
 #bindkey '^L' push-line # push current command into a buffer, allows you to do another command then returns to previous command
 # }}}
 # Completion {{{
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(/opt/homebrew/share/zsh-completions $fpath)
 fpath=(~/.zsh/completion $fpath)
 # Show completion on first TAB
 zmodload zsh/complist
@@ -476,7 +476,7 @@ f-src() {
 }
 
 
-[[ -s /usr/local/etc/profile.d/z.sh ]] && source /usr/local/etc/profile.d/z.sh
+[[ -s /opt/homebrew/etc/profile.d/z.sh ]] && source /opt/homebrew/etc/profile.d/z.sh
 
 # vim: set foldenable fdm=marker fmr={{{,}}}:
 
@@ -489,4 +489,5 @@ f-src() {
 
 # Load the profile if it exists
 [[ -s $HOME/.profile ]] && source $HOME/.profile
+
 

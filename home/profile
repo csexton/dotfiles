@@ -59,6 +59,10 @@ if [ -f $HOME/.local_profile ] ; then
   source $HOME/.local_profile
 fi
 
+if [ -d $HOME/.local/bin ] ; then
+  export PATH=~/.local/bin:$PATH
+fi
+
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 # -*- sh -*- vim:set ft=sh ai et sw=4 sts=4:
