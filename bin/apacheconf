@@ -1,3 +1,0 @@
-#!/bin/sh
-# Edit the user specific apache config file on OS X
-vim /etc/apache2/users/$USER.conf

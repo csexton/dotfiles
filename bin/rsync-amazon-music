@@ -1,4 +1,0 @@
-#!/bin/sh
-rsync --progress --stats --verbose --recursive --times --perms --links \
---exclude "iTunes" --exclude ".*" \
-sexton@bold.local:"Music/" /Users/csexton/Music/
